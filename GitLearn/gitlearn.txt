@@ -20,7 +20,7 @@ command:git branch                             查看当前分支
 command:git merge <branchname>     合并制定分支到当前分支
 command:git branch -d <branchname> 合并后删除某一分支
 command:git branch -D <branchname> 强行删除某一分支
-git branch --set-upstream-to=harbin/master master       创建远程分支与本地分支的联系
+command:git branch --set-upstream-to=harbin/master master       创建远程分支与本地分支的联系
 command:git checkout -b <branchname> 创建并切换到此分支【同 git branch <branchname>+git checkout <branchname>】
 command:git merge --no-ff -m <message> <branchname> 把指定分支禁用Fast forward的模式下合并到当前分支
 command:git log --graph --pretty=oneline --abbrev-commit  显示分支新状态的形式查看提交历史
