@@ -1,0 +1,44 @@
+git 用法
+1.初始化git仓库 command：git init
+2.添加git仓库 
+command:git add <file>                       将文件添加至仓库可多次使用【将文件提交到暂存区】
+command:git commit -m <message>   提交命令【将暂存区的所有文件提交到当前分支】
+command:git status                              查看当前的状态
+command:git diff <file>                       对比文件修改的内容
+command:git log [--pretty=oneline]     查看提交历史
+command:git log --pretty=oneline --abbrev-commit  查看提交的commit历史
+command:git reflog                             查看命令历史
+command:git reset --hard <commit_id> 设置为某一个版本
+command:git checkout -- <file>          撤销工作区某个文件的修改
+command:git reset HEAD <file>          撤销暂存区某个文件的修改
+command:git rm <file>                        把文件移除版本库并删除本地文件
+command:git remote add origin <url> 将远程库与当前库联系起来
+command:git push -u origin master     将本地的库master分支推送到远程库并关联这个远程库【第一次】
+command:git branch <branchname>    创建名称为branchname的分支
+command:git checkout <branchname> 切换至某一分支
+command:git branch                             查看当前分支
+command:git merge <branchname>     合并制定分支到当前分支
+command:git branch -d <branchname> 合并后删除某一分支
+command:git branch -D <branchname> 强行删除某一分支
+git branch --set-upstream-to=harbin/master master       创建远程分支与本地分支的联系
+command:git checkout -b <branchname> 创建并切换到此分支【同 git branch <branchname>+git checkout <branchname>】
+command:git merge --no-ff -m <message> <branchname> 把指定分支禁用Fast forward的模式下合并到当前分支
+command:git log --graph --pretty=oneline --abbrev-commit  显示分支新状态的形式查看提交历史
+command:git stash                                 储存工作现场
+command:git stash list                            展示所有储存的信息
+command:git stash pop                          出栈并恢复至工作区
+command:git remote                             查看与此库关联的远程库的信息
+command:git remote -v                         查看与此库关联的远程库的详细信息
+command:git checkout -b <localbranchname> <remotebranchname>  将本地的分支与远端的联系起来
+command:git pull                                   抓取当前分支下的远程新的提交
+command:git push origin <localbrancename> 将本地分支推送到远端【修改后】
+command:git tag <tagcontent>             打标签
+command:git tag <tagcontent> <commit_id>  将标签与commitid绑定
+command:git show <tagcontent>          展示标签的详细内容
+command:git fetch <remotename>       获取远程库的内容
+
+
+遇到的问题：
+push失败：
+解决：终端利用chown -R 【所有者】：【使用者组】 【授权文件】  授权某一个组的可以使用此文件
+利用命令：git config --global sendpack.sideband false   修改本机的git配置
