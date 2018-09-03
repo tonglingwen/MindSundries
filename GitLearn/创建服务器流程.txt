@@ -1,0 +1,3 @@
+假设你已经在服务器端已经下好了git:
+git init --bare gitname.git                          //创建以gitname的git库
+sudo chown -R creater:users gitname.git   //将gitname.git的读写操作授权给users其中creater是创建者的用户名称
