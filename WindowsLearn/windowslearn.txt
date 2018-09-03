@@ -1,1 +1,2 @@
-dir *.lib /b> result.txt  将路径内的所有以.lib结尾的文件的文件名（包括后缀）拷贝到result.txt内
+dir *.lib /b> result.txt  将本路径内的所有以.lib结尾的文件的文件名（包括后缀）拷贝到result.txt内
+copy *.dll result         将本路径内的所有以.dll结尾的文件拷贝到文件夹result下
