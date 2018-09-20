@@ -1,3 +1,10 @@
 编译boost:
 编译64位dll的命令行： b2 --build-type=complete toolset=msvc-14.0 threading=multi link=shared address-model=64
 编译64位lib的命令行  b2 --build-type=complete toolset=msvc-14.0 threading=multi link=static address-model=64
+
+
+boost_1.55
+32位：
+bjam.exe stage --toolset=msvc-12.0 --without-graph --without-graph_parallel --without-math --without-mpi --without-serialization --without-wave --without-atomic --without-chrono --without-random --without-regex --without-test --without-thread --without-program_options --without-serialization --without-signals --stagedir=".\bin\vc12_x86" link=static runtime-link=shared threading=multi debug release
+64位：
+bjam.exe stage --toolset=msvc-12.0 --without-graph --without-graph_parallel --without-math --without-mpi --without-serialization --without-wave --without-atomic --without-chrono --without-random --without-regex --without-test --without-thread --without-program_options --without-serialization --without-signals --stagedir=".\bin\vc12_x64" link=static runtime-link=shared threading=multi debug release address-model=64
