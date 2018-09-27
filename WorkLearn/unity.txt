@@ -1,0 +1,103 @@
+欧拉角与只绕某一轴旋转矩阵转化：
+angel(x)=[
+1,0,0,0
+0,cos(x),-sin(x),0
+0,sin(x),cos(x),0
+0,0,0,1
+]
+angel(y)=[
+cos(y),0,sin(y),0
+0,1,0,0
+-sin(y),0,cos(y),0
+0,0,0,1
+]
+angel(z)=[
+cos(z),-sin(z),0,0
+sin(z),cos(z),0,0
+0,0,1,0
+0,0,0,1
+]
+
+旋转轴顺序与矩阵的关系：
+1.x->y->z
+cos(z)*cos(y) , -sin(z)*cos(x)+cos(z)*sin(y)*sin(x) , -sin(z)*-sin(x)+cos(z)*sin(y)*cos(x) , 0
+
+sin(z)*cos(y) , cos(z)*cos(x)+sin(z)*sin(y)*sin(x) , cos(z)*-sin(x)+sin(z)*sin(y)*cos(x) , 0
+
+-sin(y) , cos(y)*sin(x) , cos(y)*cos(x) , 0
+
+0 , 0 , 0 , 1
+
+2.x->z->y
+cos(y)*cos(z) , cos(y)*-sin(z)*cos(x)+sin(y)*sin(x) , cos(y)*-sin(z)*-sin(x)+sin(y)*cos(x) , 0
+
+sin(z) , cos(z)*cos(x) , cos(z)*-sin(x) , 0
+
+-sin(y)*cos(z) , -sin(y)*-sin(z)*cos(x)+cos(y)*sin(x) , -sin(y)*-sin(z)*-sin(x)+cos(y)*cos(x) , 0
+
+0 , 0 , 0 , 1
+
+3.y->x->z
+cos(z)*cos(y)+-sin(z)*-sin(x)*-sin(y) , -sin(z)*cos(x) , cos(z)*sin(y)+-sin(z)*-sin(x)*cos(y) , 0
+
+sin(z)*cos(y)+cos(z)*-sin(x)*-sin(y) , cos(z)*cos(x) , sin(z)*sin(y)+cos(z)*-sin(x)*cos(y) , 0
+
+cos(x)*-sin(y) , sin(x) , cos(x)*cos(y) , 0
+
+0 , 0 , 0 , 1
+
+4.y->z->x
+cos(z)*cos(y) , -sin(z) , cos(z)*sin(y) , 0
+
+cos(x)*sin(z)*cos(y)+-sin(x)*-sin(y) , cos(x)*cos(z) , cos(x)*sin(z)*sin(y)+-sin(x)*cos(y) , 0
+
+sin(x)*sin(z)*cos(y)+cos(x)*-sin(y) , sin(x)*cos(z) , sin(x)*sin(z)*sin(y)+cos(x)*cos(y) , 0
+
+0 , 0 , 0 , 1
+
+5.z->x->y
+cos(y)*cos(z)+sin(y)*sin(x)*sin(z) , cos(y)*-sin(z)+sin(y)*sin(x)*cos(z) , sin(y)*cos(x) , 0
+
+cos(x)*sin(z) , cos(x)*cos(z) , -sin(x) , 0
+
+-sin(y)*cos(z)+cos(y)*sin(x)*sin(z) , -sin(y)*-sin(z)+cos(y)*sin(x)*cos(z) , cos(y)*cos(x) , 0
+
+0 , 0 , 0 , 1
+
+6.z->y->x
+cos(y)*cos(z) , cos(y)*-sin(z) , sin(y) , 0
+
+-sin(x)*-sin(y)*cos(z)+cos(x)*sin(z) , -sin(x)*-sin(y)*-sin(z)+cos(x)*cos(z) , -sin(x)*cos(y) , 0
+
+cos(x)*-sin(y)*cos(z)+sin(x)*sin(z) , cos(x)*-sin(y)*-sin(z)+sin(x)*cos(z) , cos(x)*cos(y) , 0
+
+0 , 0 , 0 , 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
