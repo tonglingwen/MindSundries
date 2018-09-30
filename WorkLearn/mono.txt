@@ -1,1 +1,30 @@
 mcs file.cs -t:library       //将C#文件编译为dll
+
+//初始化应用域
+MonoDomain *domain= mono_jit_init("Test");  
+
+//加载程序集（dll）
+MonoAssembly* assembly = mono_domain_assembly_open(domain,dll_path);
+    
+MonoImage* image = mono_assembly_get_image(assembly);
+
+//根据反射的方式获取名称为class_name的类
+MonoClass* main_class = mono_class_from_name(image,namespace_name, class_name);
+
+//获取要调用的MonoMethodDesc,主要调用过程
+    
+MonoMethodDesc* entry_point_method_desc = mono_method_desc_new(namespace:class_name:method_name, true);   //获取指定函数的描述                           
+    
+MonoMethod* entry_point_method = mono_method_desc_search_in_class(entry_point_method_desc, main_class);
+            //获取函数入口           
+mono_method_desc_free(entry_point_method_desc);
+                                                                                                         //释放函数描述
+
+//调用方法
+    
+mono_runtime_invoke(entry_point_method, NULL, NULL, NULL); 
+    
+
+//释放应用域
+    
+mono_jit_cleanup(domain);
