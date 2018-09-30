@@ -1,0 +1,1 @@
+mcs file.cs -t:library       //将C#文件编译为dll
