@@ -12,7 +12,7 @@ py=datemat(:,2);
 
 y=k1+k2*x;
 kmat=[k1;k2];
-xmat=py;
+xmat=datemat;
 xmat(:,2)=xmat(:,1);
 xmat(:,1)=1;
 vy=xmat*kmat;
@@ -21,6 +21,7 @@ lost=1/(2*m)*sum((vy-py).^2);
 k1diff=diff(lost,k1);
 k2diff=diff(lost,k2);
 
+vpa(lost)
 
 for i=1:20
 tema=a-learnspeed* subs(k1diff,{'k1','k2'},[a,b]);
