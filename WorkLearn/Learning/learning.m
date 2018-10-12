@@ -1,7 +1,7 @@
 syms k1 k2 x y lost;
 syms py vy;
-a= 0.71837676275008657425500059428170;
-b=0.46754655979644809535801576008032;
+a= 8.47160;
+b=-0.44731;
 learnspeed=0.001;
 
 datemat=load('C:\Users\25285\Desktop\sym\vrk.txt');
@@ -21,7 +21,9 @@ lost=1/(2*m)*sum((vy-py).^2);
 k1diff=diff(lost,k1);
 k2diff=diff(lost,k2);
 
-vpa(lost)
+#sd= pinv(xmat'*xmat)*xmat'*py 正规方程法
+#lostval1=vpa(subs(lost,{'k1','k2'},[sd(1,1),sd(2,1)]))
+
 
 for i=1:20
 tema=a-learnspeed* subs(k1diff,{'k1','k2'},[a,b]);
