@@ -74,6 +74,17 @@ cos(x)*-sin(y)*cos(z)+sin(x)*sin(z) , cos(x)*-sin(y)*-sin(z)+sin(x)*cos(z) , cos
 0 , 0 , 0 , 1
 
 
+相机的投影矩阵：
+[
+cot(fovy/2)/aspect,0,0,0;
+0,cot(fovy/2),0,0;
+0,0,-(f+n)/(f-n),-2fn/(f-n);
+0,0,-1,0;
+]
+aspect:屏幕的宽高比
+fovy:视角角度
+f:远切面
+n:近切面
 
 
 
