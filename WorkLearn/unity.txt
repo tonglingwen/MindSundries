@@ -87,6 +87,7 @@ f:远切面
 n:近切面
 
 
+打包为web后，创建浏览器程序的快捷方式在目标位置后添加:" --enable-webgl --ignore-gpu-blacklist --allow-file-access-from-files"
 
 
 
