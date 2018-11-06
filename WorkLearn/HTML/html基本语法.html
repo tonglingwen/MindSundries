@@ -1,0 +1,708 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="referrer" content="origin" />
+<title>html基本语法 - 王丽松 - 博客园</title>
+<meta property="og:description" content="谈前端（HTML篇）第一课：HTML概述 一、什么是HTML？ HTML不是编程语言，是用来描述网页文档（页面结构）的一种标记语言； HTML指超文本标记语言（Hyper Text Markup La" />
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=-duj5vpGTntb85GJoM3iRI972XwWcI-j8zmqDzyfu2w1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="/skins/CodingLife/bundle-CodingLife.css?v=g4Oce5UBaUn_FUwadcT09ICEg5NkULQGtUpNhTtrI8U1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/CodingLife/bundle-CodingLife-mobile.css?v=Xay8b9tTSw814nBzbOgvS6rrbcxrobMhvHJHdZAO9vI1"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/wanglisong/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/wanglisong/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/wanglisong/wlwmanifest.xml"/>
+<script src="//common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+<script type="text/javascript">var currentBlogApp = 'wanglisong', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="/bundles/blog-common.js?v=anD-oO6y8jEoXfI___cW5-YM6Yon3n8ozm_a8g_nzcM1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="https://www.cnblogs.com/wanglisong/"><img id="blogLogo" src="/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="https://www.cnblogs.com/wanglisong/">王丽松</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/wanglisong/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E7%8E%8B%E4%B8%BD%E6%9D%BE">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/wanglisong/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/wanglisong/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 40&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 0</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/wanglisong/p/6924886.html">html基本语法</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><h1 class="postTitle"><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/hanzhaoxin/p/4324436.html">谈前端（HTML篇）第一课：HTML概述</a></h1>
+<div class="clear">&nbsp;<span style="font-size: 18pt">一、什么是<strong>HTML</strong>？</span></div>
+<div class="postBody">
+<div id="cnblogs_post_body">
+<p>HTML不是编程语言，是用来描述网页文档（页面结构）的一种标记语言；</p>
+<p>HTML指超文本标记语言（Hyper Text Markup Language），之所以称为超文本标记语言，是因为文本中包含了所谓“超级链接”点。；</p>
+<p>HTML规定了自己的语法规则，用来表示比“文本”更丰富的意义，比如图片，表格，链接等。浏览器 （IE,FireFox等）软件知道HTML语言的语法，可以用来查看HTML文档。目前互联网上的绝大部分网页都是使用HTML编写的。</p>
+<h2>二、HTML是什么样的？</h2>
+<p>简单地来说，HTML的语法就是给文本加上表明文本含义的标签(Tag)，让用户（人或程序）能对文本得到更好的理解。</p>
+<p>下面是一个最简单的HTML文档：</p>
+<div id="codeSnippetWrapper">
+<div id="codeSnippet">
+<pre>&lt;html&gt;</pre>
+<pre>  &lt;head&gt;</pre>
+<pre>    &lt;title&gt;第一个Html文档&lt;/title&gt;</pre>
+<pre>  &lt;/head&gt;</pre>
+<pre>  &lt;body&gt;</pre>
+<pre>    欢迎访问&lt;a href="http://hanzhaoxin.cnblogs.com/"&gt;我的博客&lt;/a&gt;! </pre>
+<pre>&nbsp;</pre>
+<pre>  &lt;/body&gt;</pre>
+<pre>&lt;/html&gt;</pre>
+</div>
+</div>
+<p>所有的HTML文档都应该有一个&lt;html&gt;元素，&lt;html&gt;元素可以包含两个部分:&lt;head&gt;和&lt;body&gt;。</p>
+<p>&lt;head&gt;元素用于包含整个文档的一般信息，比如文档的标题（&lt;title&gt;元素用于包含标题），对整个文档的描述，文档的关键字等等。</p>
+<p>文档的具体内容就要放在&lt;body&gt;元素里。&lt;a&gt;元素用于表示链接，在浏览器（如IE,Firefox等）中查看HTML文档时，点击&lt;a&gt;标签括起来的内容时， 通常会跳转到另一个页面。这个要跳转到的页面的地址由&lt;a&gt;元素的href属性指定。上面的&lt;a href=http://hanzhaoxin.cnblogs.com/&gt;中，href属性的值就是http://hanzhaoxin.cnblogs.com/。</p>
+<h2>三、HTML文档可以包含哪些内容 ？</h2>
+<p>通过不同的标签，HTML文档可以包含不同的内容，比如文本，链接，图片，列表，表格，表单，框架等。&nbsp;</p>
+<ul>
+<li>文本 ：HTML对文本的支持是最丰富的，你可以设置不同级别的标题，分段和换行，可以指定文本的语义和外观，可以说明文本是引用自其它的地方，等等等等。&nbsp;</li>
+<li>链接 ：链接用来指出内容与另一个页面或当前页面某个地方有关。&nbsp;</li>
+<li>
+<div align="left">图片 ：图片用于使页面更加美观，或提供更多的信息。&nbsp;</div>
+</li>
+<li>
+<div align="left">列表 ：列表用于说明一系列条目是彼此相关的。&nbsp;</div>
+</li>
+<li>
+<div align="left">表格 ：表格是按行与列将数据组织在一起的形式。也有不少人使用表格进行页面布局。&nbsp;</div>
+</li>
+<li>
+<div align="left">表单 ：表单通常由文本输入框，按钮，多选框，单选框，下拉列表等组成，使HTML页面更有交互性。&nbsp;</div>
+</li>
+<li>
+<div align="left">框架 ：框架使页面里能包含其它的页面。&nbsp;</div>
+</li>
+</ul>
+<h2>四、对于HTML我会说哪些概念？</h2>
+<p><strong>文档：</strong>HTML文档俗称网页。</p>
+<p><strong>标签：</strong>用尖括号包围的关键词我们成为标签。通常HTML标签成对出现，如：&lt;a&gt;、&lt;/a&gt;。</p>
+<ul>
+<li>开始标签：标签对中的第一个标签是开始标签，也成为开放标签。如&lt;a&gt;。</li>
+<li>结束标签：标签对中的第二个标签是结束标签，也成为闭合标签。如&lt;/a&gt;。</li>
+</ul>
+<p><strong>元素：</strong>我们把匹配的标签对以及它们包围的内容称为元素。即（元素 = 开始标签 + 内容 + 结束标签）。如：&lt;a href="http://hanzhaoxin.cnblogs.com/"&gt;我的博客&lt;/a&gt;。</p>
+<ul>
+<li>块级元素：在浏览器默认显示时以新行来开始（和结束）的元素。</li>
+<li>内联元素：又称行内元素，在浏览器默认显示时在同一行按从左至右顺序显示，不单独占一行的元素。</li>
+</ul>
+<p><strong>属性：</strong>开始标签中那些以名称/值对的形式出现的内容，我们称之为属性。如上例中：href="http://hanzhaoxin.cnblogs.com/"。（href是属性名称，"http://hanzhaoxin.cnblogs.com/"是属性值）。</p>
+</div>
+</div>
+<h1 class="postTitle"><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/hanzhaoxin/p/4324627.html">谈前端（HTML篇）第二课：常见元素</a></h1>
+<div class="clear">&nbsp;</div>
+<div class="postBody">
+<div id="cnblogs_post_body">
+<h3>一、根元素</h3>
+<table style="width: 900px" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="184">&lt;doctype&gt;</td>
+<td valign="top" width="716">定义文档类型。</td>
+</tr>
+<tr>
+<td valign="top" width="184">&lt;html&gt;</td>
+<td valign="top" width="716">定义 HTML 文档。</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h3>二、元数据元素</h3>
+<table style="width: 900px" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="185">&lt;head&gt;</td>
+<td valign="top" width="715">定义关于文档的信息。</td>
+</tr>
+<tr>
+<td valign="top" width="185">&lt;meta&gt;</td>
+<td valign="top" width="715">定义关于 HTML 文档的元数据。</td>
+</tr>
+<tr>
+<td valign="top" width="185">&lt;link&gt;</td>
+<td valign="top" width="715">定义文档与外部资源之间的关系，一般用于引入样式表。</td>
+</tr>
+<tr>
+<td valign="top" width="185">&lt;base&gt;</td>
+<td valign="top" width="715">定义页面上所有链接的默认地址或默认目标。</td>
+</tr>
+<tr>
+<td valign="top" width="185">&lt;title&gt;</td>
+<td valign="top" width="715">定义文档标题。</td>
+</tr>
+<tr>
+<td valign="top" width="185">&lt;style&gt;</td>
+<td valign="top" width="715">定义文档的样式信息。</td>
+</tr>
+</tbody>
+</table>
+<h3>三、脚本元素</h3>
+<table style="width: 900px" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="186">&lt;script&gt;</td>
+<td valign="top" width="714">定义客户端脚本。</td>
+</tr>
+<tr>
+<td valign="top" width="186">&lt;noscript&gt;</td>
+<td valign="top" width="714">定义当浏览器不支持脚本的时候所显示的内容</td>
+</tr>
+</tbody>
+</table>
+<h3>四、块元素</h3>
+<table style="width: 900px" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="187">&lt;body&gt;</td>
+<td valign="top" width="713">定义文档的主体。</td>
+</tr>
+<tr>
+<td valign="top" width="187">&lt;h1&gt;、&lt;h2&gt;...&lt;h6&gt;</td>
+<td valign="top" width="713">定义文档标题。</td>
+</tr>
+<tr>
+<td valign="top" width="187">&lt;p&gt;</td>
+<td valign="top" width="713">定义文档段落。</td>
+</tr>
+<tr>
+<td valign="top" width="187">&lt;blockquote&gt;</td>
+<td valign="top" width="713">定义块引用。</td>
+</tr>
+<tr>
+<td valign="top" width="187">&lt;ul&gt;、&lt;ul&gt;、&lt;dl&gt;</td>
+<td valign="top" width="713">定义列表。</td>
+</tr>
+<tr>
+<td valign="top" width="187">&lt;table&gt;</td>
+<td valign="top" width="713">定义表格。</td>
+</tr>
+</tbody>
+</table>
+<h4>1、列表元素</h4>
+<ul>
+<li>无序列表
+<table style="width: 861px" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="149">&lt;ul&gt;</td>
+<td valign="top" width="710">定义无序的列表。</td>
+</tr>
+<tr>
+<td valign="top" width="149">&lt;li&gt;</td>
+<td valign="top" width="710">定义列表项。</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>有序列表
+<table style="width: 862px" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="159">&lt;ol&gt;</td>
+<td valign="top" width="701">定义有序的列表。</td>
+</tr>
+<tr>
+<td valign="top" width="159">&lt;li&gt;</td>
+<td valign="top" width="701">定义列表项。</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>定义列表
+<table style="width: 863px" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="159">&lt;dl&gt;</td>
+<td valign="top" width="702">定义定义列表。</td>
+</tr>
+<tr>
+<td valign="top" width="159">&lt;dt&gt;</td>
+<td valign="top" width="702">定义定义术语。</td>
+</tr>
+<tr>
+<td valign="top" width="159">&lt;dd&gt;</td>
+<td valign="top" width="702">定义定义描述。</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h4>2、表格元素</h4>
+<table style="width: 865px" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="148">&lt;table&gt;</td>
+<td valign="top" width="715">定义表格。</td>
+</tr>
+<tr>
+<td valign="top" width="148">&lt;thead&gt;</td>
+<td valign="top" width="715">定义表格的页眉。</td>
+</tr>
+<tr>
+<td valign="top" width="148">&lt;tbody&gt;</td>
+<td valign="top" width="715">定义表格的主体。</td>
+</tr>
+<tr>
+<td valign="top" width="148">&lt;tfoot&gt;</td>
+<td valign="top" width="715">定义表格的页脚。</td>
+</tr>
+<tr>
+<td valign="top" width="148">&lt;th&gt;</td>
+<td valign="top" width="715">定义表格的表头行。</td>
+</tr>
+<tr>
+<td valign="top" width="148">&lt;tr&gt;</td>
+<td valign="top" width="715">定义表格的行。</td>
+</tr>
+<tr>
+<td valign="top" width="148">&lt;td&gt;</td>
+<td valign="top" width="715">定义表格单元。</td>
+</tr>
+</tbody>
+</table>
+<h3>五、文本元素</h3>
+<h4>1、文本格式化元素</h4>
+<table style="width: 864px" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="150">&lt;em&gt;</td>
+<td valign="top" width="712">定义着重文字。</td>
+</tr>
+<tr>
+<td valign="top" width="150">&lt;strong&gt;</td>
+<td valign="top" width="712">定义加重语气。</td>
+</tr>
+<tr>
+<td valign="top" width="150">&lt;sup&gt;</td>
+<td valign="top" width="712">定义上标字。</td>
+</tr>
+<tr>
+<td valign="top" width="150">&lt;sub&gt;</td>
+<td valign="top" width="712">定义下标字。</td>
+</tr>
+<tr>
+<td valign="top" width="150">&lt;ins&gt;</td>
+<td valign="top" width="712">定义插入字。</td>
+</tr>
+<tr>
+<td valign="top" width="150">&lt;del&gt;</td>
+<td valign="top" width="712">定义删除字。</td>
+</tr>
+<tr>
+<td valign="top" width="150">&lt;b&gt;</td>
+<td valign="top" width="712">定义粗体文本。</td>
+</tr>
+<tr>
+<td valign="top" width="150">&lt;i&gt;</td>
+<td valign="top" width="712">定义斜体文本。</td>
+</tr>
+<tr>
+<td valign="top" width="150">&lt;big&gt;</td>
+<td valign="top" width="712">定义大号字。</td>
+</tr>
+<tr>
+<td valign="top" width="150">&lt;small&gt;</td>
+<td valign="top" width="712">定义小号字。</td>
+</tr>
+</tbody>
+</table>
+<h4>2、“计算机输出”标签</h4>
+<table style="width: 863px" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="150">&lt;code&gt;</td>
+<td valign="top" width="711">定义计算机代码。</td>
+</tr>
+<tr>
+<td valign="top" width="150">&lt;kbd&gt;</td>
+<td valign="top" width="711">定义键盘码。</td>
+</tr>
+<tr>
+<td valign="top" width="150">&lt;pre&gt;</td>
+<td valign="top" width="711">定义预格式文本。</td>
+</tr>
+</tbody>
+</table>
+<h4>3、引用、引用和术语定义</h4>
+<table style="width: 861px" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="152">&lt;q&gt;</td>
+<td valign="top" width="707">定义简短引用。</td>
+</tr>
+<tr>
+<td valign="top" width="152">&lt;blockquote&gt;</td>
+<td valign="top" width="707">定义长引用。</td>
+</tr>
+<tr>
+<td valign="top" width="152">&lt;address&gt;</td>
+<td valign="top" width="707">定义地址。</td>
+</tr>
+</tbody>
+</table>
+<h3>六、链接与图像</h3>
+<table style="width: 902px" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="193">&lt;a&gt;</td>
+<td valign="top" width="707">定义超链接</td>
+</tr>
+<tr>
+<td valign="top" width="193">&lt;img&gt;</td>
+<td valign="top" width="707">定义图像。</td>
+</tr>
+<tr>
+<td valign="top" width="193">&lt;map&gt;</td>
+<td valign="top" width="707">定义图像地图。</td>
+</tr>
+<tr>
+<td valign="top" width="193">&lt;area&gt;</td>
+<td valign="top" width="707">定义图像地图中的可点击区域。</td>
+</tr>
+</tbody>
+</table>
+<h3>七、&lt;div&gt; 和 &lt;span&gt;</h3>
+<table style="width: 901px" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="192">&lt;div&gt;</td>
+<td valign="top" width="707">定义文档中的分区或节（division/section）。</td>
+</tr>
+<tr>
+<td valign="top" width="192">&lt;span&gt;</td>
+<td valign="top" width="707">定义 span，用来组合文档中的行内元素。</td>
+</tr>
+</tbody>
+</table>
+<h3>八、框架</h3>
+<table style="width: 899px" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="192">&lt;frameset&gt;</td>
+<td valign="top" width="705">定义如何将窗口分割为框架。（注：&lt;frameset&gt;元素只能嵌套在&lt;html&gt; 元素或&lt;frameset&gt;元素自身中！）</td>
+</tr>
+<tr>
+<td valign="top" width="192">&lt;frame&gt;</td>
+<td valign="top" width="705">定义放置在每个框架中的 HTML 文档。</td>
+</tr>
+</tbody>
+</table>
+<h3>九、内联框架</h3>
+<table style="width: 900px" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="192">&lt;iframe&gt;</td>
+<td valign="top" width="706">定义内联的子窗口（框架）。</td>
+</tr>
+</tbody>
+</table>
+<h3>十、表单元素</h3>
+<table style="width: 934px; height: 230px" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="195">&lt;form&gt;</td>
+<td valign="top" width="703">定义供用户输入的表单。</td>
+</tr>
+<tr>
+<td valign="top" width="195">&lt;input&gt;</td>
+<td valign="top" width="703">定义输入域。</td>
+</tr>
+<tr>
+<td valign="top" width="195">&lt;textarea&gt;</td>
+<td valign="top" width="703">定义文本域 (一个多行的输入控件)。</td>
+</tr>
+<tr>
+<td valign="top" width="195">&lt;lable&gt;</td>
+<td valign="top" width="703">定义一个控制的标签。</td>
+</tr>
+<tr>
+<td valign="top" width="195">&lt;select&gt;</td>
+<td valign="top" width="703">定义一个选择列表。</td>
+</tr>
+<tr>
+<td valign="top" width="195">&lt;option&gt;</td>
+<td valign="top" width="703">定义下拉列表中的选项。</td>
+</tr>
+<tr>
+<td valign="top" width="195">&lt;optgroup&gt;</td>
+<td valign="top" width="703">定义选项组。</td>
+</tr>
+<tr>
+<td valign="top" width="195">&lt;button&gt;</td>
+<td valign="top" width="703">定义一个按钮。</td>
+</tr>
+<tr>
+<td valign="top" width="195">&lt;fieldset&gt;</td>
+<td valign="top" width="703">定义域。</td>
+</tr>
+<tr>
+<td valign="top" width="195">&lt;legend&gt;</td>
+<td valign="top" width="703">
+<p>定义域的标题。</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="clear">&nbsp;</div>
+<div class="clear"><strong><span style="font-size: 18pt"><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/hanzhaoxin/p/4324690.html">谈前端（HTML篇）第三课：常见属性</a></span></strong></div>
+<div class="clear">&nbsp;</div>
+<div class="clear"><span style="font-size: 18pt">一、HTML全局属性</span></div>
+<div class="postBody">
+<div id="cnblogs_post_body">
+<h4>1、核心属性</h4>
+<table style="width: 900px" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="193">属性</td>
+<td valign="top" width="707">描述</td>
+</tr>
+<tr>
+<td valign="top" width="193">id</td>
+<td valign="top" width="707">设置元素的唯一 id。</td>
+</tr>
+<tr>
+<td valign="top" width="193">class</td>
+<td valign="top" width="707">设置元素的一个或多个类名（引用样式表中的类）。</td>
+</tr>
+<tr>
+<td valign="top" width="193">style</td>
+<td valign="top" width="707">设置元素的行内样式（CSS内联样式）。</td>
+</tr>
+<tr>
+<td valign="top" width="193">title</td>
+<td valign="top" width="707">设置有关元素的额外信息（可在工具提示中显示）。</td>
+</tr>
+</tbody>
+</table>
+<h4>2、语言属性</h4>
+<table style="width: 900px" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="193">属性</td>
+<td valign="top" width="707">描述</td>
+</tr>
+<tr>
+<td valign="top" width="193">lang</td>
+<td valign="top" width="707">设置元素内容的语言代码。</td>
+</tr>
+</tbody>
+</table>
+<h4>3、键盘属性</h4>
+<table style="width: 900px" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="192">属性</td>
+<td valign="top" width="708">描述</td>
+</tr>
+<tr>
+<td valign="top" width="192">accesskey</td>
+<td valign="top" width="708">设置访问元素的键盘快捷键。</td>
+</tr>
+<tr>
+<td valign="top" width="192">tabindex</td>
+<td valign="top" width="708">设置元素的 tab 键次序。</td>
+</tr>
+</tbody>
+</table>
+<h2>二、常见元素属性：</h2>
+<h4>1、&lt;a&gt;元素的属性：</h4>
+<table style="width: 900px" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="198">属性</td>
+<td valign="top" width="702">描述</td>
+</tr>
+<tr>
+<td valign="top" width="198">href</td>
+<td valign="top" width="702">指定链接到互联网或你的计算机上的一个资源的别称。</td>
+</tr>
+<tr>
+<td valign="top" width="198">target</td>
+<td valign="top" width="702">指定打开链接的目标窗口。</td>
+</tr>
+<tr>
+<td valign="top" width="198">title</td>
+<td valign="top" width="702">指定所要链接到页面的文本描述。</td>
+</tr>
+</tbody>
+</table>
+<h4>2、&lt;img&gt;元素的属性：</h4>
+<table style="width: 900px" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="199">属性</td>
+<td valign="top" width="701">描述</td>
+</tr>
+<tr>
+<td valign="top" width="199">src</td>
+<td valign="top" width="701">指定向服务器请求的资源。</td>
+</tr>
+<tr>
+<td valign="top" width="199">alt</td>
+<td valign="top" width="701">指定图像无法显示时的替代文本。</td>
+</tr>
+</tbody>
+</table>
+<p><span style="font-size: 18pt"><strong><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/hanzhaoxin/p/4324690.html">谈前端（HTML篇）第四课：注意事项</a></strong></span></p>
+<p><span style="color: #ff0000">空元素或者void元素</span>：&lt;br&gt;,&lt;img&gt;</p>
+<p><span style="color: #ff0000">字符实体：</span>&lt;: &amp;lt ,&gt;:&amp;gt &nbsp;,&amp;:&amp;amp,版权符号：&amp;copyright</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 比如：the &lt;html&gt; element rocks &nbsp;代码：the &amp;lt html &amp;gt element rocks</p>
+<p><span style="color: #ff0000">&lt;a&gt;属性</span>：可以通过相对路径来链接同一网站的页面，也可以通过url绝对路径来链接其他网站的页面。</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 可以通过id属性连接到页面的特定位置 &nbsp;比如：<span style="color: #ff0000">1.</span>id=“chai”<span style="color: #ff0000">2.</span> &lt;a href="index.html#chai"&gt;.....&lt;/a&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;也比如：&lt;a href="#top"&gt;back to top&lt;/a&gt;同页面的目标链接。&nbsp;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;a href="....",title="...对链接的内容进行描述"&gt;........&lt;/a&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;a target="_blank" href="..."&gt;...&lt;/a&gt;:在新窗口打开一个页面</p>
+<p><span style="color: #ff0000">&lt;img&gt;属性</span>：&lt;img src="...." alt="图片不显示时对图片信息的描述"&gt;。<span style="color: #ff0000">alt属性不可不写</span>。</p>
+<p><span style="color: #ff0000">编写html页面的原则</span>：</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1.一定要以&lt;doctype&gt;开头 &nbsp;&lt;!doctype html&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;2.在&lt;head&gt;中指出正确的字符编码。 用&lt;meta charset="utf-8"&gt;来标记</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;3.在&lt;head&gt;中一定包含一个&lt;title&gt;元素</p>
+<p><span style="color: #ff0000">&nbsp;编写好html以后，ctrl+s保存，然后打开浏览器访问即可</span>。</p>
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+</div></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2017-05-31 16:41</span> <a href='https://www.cnblogs.com/wanglisong/'>王丽松</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=6924886" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(6924886);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=353287,cb_entryId=6924886,cb_blogApp=currentBlogApp,cb_blogUserGuid='9eb5229b-6325-e711-9fc1-ac853d9f53cc',cb_entryCreatedDate='2017/5/31 16:41:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<div id='cnblogs_c1' class='c_ad_block'></div>
+<div id='under_post_news'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'>
+    <script>
+    if (new Date() >= new Date(2018, 9, 13)) {
+        googletag.cmd.push(function() { googletag.display('div-gpt-ad-1539008685004-0'); });
+    }
+    </script>
+    </div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2018 王丽松
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+</body>
+</html>
