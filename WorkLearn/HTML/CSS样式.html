@@ -1,0 +1,433 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="referrer" content="origin" />
+<title>后端码农谈前端（CSS篇）第五课：CSS样式 - 韩兆新 - 博客园</title>
+<meta property="og:description" content="一、背景： CSS 允许应用纯色作为背景，也允许使用背景图像创建相当复杂的效果。 1、背景色 可以使用 background-color 属性为元素设置背景色。这个属性接受任何合法的颜色值。 例如： " />
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=-duj5vpGTntb85GJoM3iRI972XwWcI-j8zmqDzyfu2w1"/>
+<link type="text/css" rel="stylesheet" href="/blog/customcss/133283.css?v=Z3IIyR5V4U0To%2fvMr6Q4ONse0S0%3d"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/darkgreentrip/bundle-darkgreentrip-mobile.css?v=6NcJHqsIyaE4w19VtgFvCFahrnr2rYCTRRTdxlMDhhQ1"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/hanzhaoxin/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/hanzhaoxin/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/hanzhaoxin/wlwmanifest.xml"/>
+<script src="//common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+<script type="text/javascript">var currentBlogApp = 'hanzhaoxin', cb_enable_mathjax=true;var isLogined=false;</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, extensions: ['extpfeil.js'] 
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="//mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="/bundles/blog-common.js?v=oVrWjmbP-rXxVp7O71kev8vWEZCetdwYaIziKHJCYc41" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<!--代码着色Start-->
+<link type="text/css" rel="stylesheet" href="https://files.cnblogs.com/hanzhaoxin/SyntaxHighlighter.css"></link>
+<!--代码着色End-->
+<!--我的GitHub连接Start-->
+<a href="https://github.com/hanzhaoxin">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://images.cnblogs.com/cnblogs_com/hanzhaoxin/638238/o_ForkMe.png" alt="Fork me on GitHub">
+</a>
+<!--我的GitHub连接End-->
+<!--PageBeginHtml Block End-->
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="https://www.cnblogs.com/hanzhaoxin/"><img id="blogLogo" src="/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="https://www.cnblogs.com/hanzhaoxin/">韩兆新的博客园</a></h1>
+<h2>Jensen's blog</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/hanzhaoxin/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E9%9F%A9%E5%85%86%E6%96%B0">联系</a></li>
+<li>
+<!----></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 128&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 260</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/hanzhaoxin/p/4364266.html">后端码农谈前端（CSS篇）第五课：CSS样式</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><h2>一、背景：</h2> <p>CSS 允许应用纯色作为背景，也允许使用背景图像创建相当复杂的效果。 <h3>1、背景色</h3> <p>可以使用 background-color 属性为元素设置背景色。这个属性接受任何合法的颜色值。 <p>例如：</p> <div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4"> <div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">p</span> {<span style="color: #0000ff">background-color</span>: <span style="color: #006080">gray;</span>}</pre><!--CRLF--></div></div>
+<h3>2、背景图像</h3>
+<p>要把图像放入背景，需要使用 background-image 属性。background-image 属性的默认值是 none，表示背景上没有放置任何图像。如果需要设置一个背景图像，必须为这个属性设置一个 URL 值：</p>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">body</span> {<span style="color: #0000ff">background-image</span>: url(/<span style="color: #0000ff">i</span>/eg_bg_04<span style="color: #cc6633">.gif</span>);}</pre><!--CRLF--></div></div>
+<h3>3、背景图像重复</h3>
+<p>如果需要在页面上对背景图像进行平铺，可以使用 background-repeat 属性。
+<p>属性值 repeat 导致图像在水平垂直方向上都平铺，就像以往背景图像的通常做法一样。repeat-x 和 repeat-y 分别导致图像只在水平或垂直方向上重复，no-repeat 则不允许图像在任何方向上平铺。
+<p>默认地，背景图像将从一个元素的左上角开始。请看下面的例子：</p>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">body</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">  { </pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">    <span style="color: #0000ff">background-image</span>: url(/<span style="color: #0000ff">i</span>/eg_bg_03<span style="color: #cc6633">.gif</span>);</pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">    <span style="color: #0000ff">background-repeat</span>: repeat<span style="color: #006080">-y;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">  }</pre><!--CRLF--></div></div>
+<h3>4、背景图像定位</h3>
+<p>可以利用 background-position 属性改变图像在背景中的位置。
+<p>下面的例子在 body 元素中将一个背景图像居中放置：</p>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">body</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">  { </pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">    <span style="color: #0000ff">background-image</span>:url('/<span style="color: #0000ff">i</span>/eg_bg_03<span style="color: #cc6633">.gif</span>');</pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">    <span style="color: #0000ff">background-repeat</span>:no<span style="color: #006080">-repeat;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">    <span style="color: #0000ff">background-position</span>:<span style="color: #006080">center;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">  }</pre><!--CRLF--></div></div>
+<p>为 background-position 属性提供值有很多方法。首先，可以使用一些关键字：top、bottom、left、right 和 center。通常，这些关键字会成对出现，不过也不总是这样。还可以使用长度值，如 100px 或 5cm，最后也可以使用百分数值。不同类型的值对于背景图像的放置稍有差异。
+<h3>5、背景图像关联</h3>
+<p>如果文档比较长，那么当文档向下滚动时，背景图像也会随之滚动。当文档滚动到超过图像的位置时，图像就会消失。您可以通过 background-attachment 属性防止这种滚动。通过这个属性，可以声明图像相对于可视区是固定的（fixed），因此不会受到滚动的影响：<pre><div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4"><div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">body</span> </pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">  {</pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">    <span style="color: #0000ff">background-image</span>:url(/<span style="color: #0000ff">i</span>/eg_bg_02<span style="color: #cc6633">.gif</span>);</pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">    <span style="color: #0000ff">background-repeat</span>:no<span style="color: #006080">-repeat;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">    <span style="color: #0000ff">background-attachment</span>:fixed</pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">  }</pre><!--CRLF--></div></div></pre>
+
+
+
+
+<h2>二、文本CSS 文本属性可定义文本的外观。</h2><pre><font face="微软雅黑">通过文本属性，您可以改变文本的颜色、字符间距，对齐文本，装饰文本，对文本进行缩进，等等。</font></pre>
+<h3>1、缩进文本（text-indent ）</h3>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">p</span> {<span style="color: #0000ff">text-indent</span>: <span style="color: #006080">-5em;</span>}</pre><!--CRLF--></div></div>
+
+<h3>2、水平对齐（text-align）</h3>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">h1</span>{<span style="color: #0000ff">text-align</span>:<span style="color: #006080">center;</span>}</pre><!--CRLF--></div></div>
+
+<h3>3、字间隔（word-spacing）</h3>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">p</span> {<span style="color: #0000ff">word-spacing</span>: <span style="color: #006080">30px;</span>}</pre><!--CRLF--></div></div>
+
+<h3>4、字母间隔（letter-spacing）</h3>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">h4</span> {<span style="color: #0000ff">letter-spacing</span>: 20px}</pre><!--CRLF--></div></div>
+
+<h3>5、字符转换（text-transform）</h3>
+<p>属性值：</p>
+<ul>
+<li><font size="2">none</font></li>
+<li><font size="2">uppercase</font></li>
+<li><font size="2">lowercase</font></li>
+<li><font size="2">capitalize</font></li></ul>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">h1</span> {<span style="color: #0000ff">text-transform</span>: uppercase}</pre><!--CRLF--></div></div>
+<h3>6、文本装饰（text-decoration）</h3>
+<p>属性值：</p>
+<ul>
+<li><font size="2">none</font></li>
+<li><font size="2">underline</font></li>
+<li><font size="2">overline</font></li>
+<li><font size="2">line-through</font></li>
+<li><font size="2">blink</font></li></ul>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">a {<span style="color: #0000ff">text-decoration</span>: <span style="color: #006080">none;</span>}</pre><!--CRLF--></div></div>
+
+<h3>7、文本方向（direction）</h3>
+<p>【注：对于行内元素，只有当 unicode-bidi 属性设置为 embed 或 bidi-override 时才会应用 direction 属性。】</p>
+<p>属性值：</p>
+<ul>
+<li><font size="2">ltr</font></li>
+<li><font size="2">rtl</font></li></ul>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">p</span> {word-<span style="color: #0000ff">direction</span> : <span style="color: #006080">rtl;</span>}</pre><!--CRLF--></div></div>
+<h3>8、处理空白符（white-space）</h3>
+<p>white-space 属性会影响到用户代理对源文档中的空格、换行和 tab 字符的处理。详：</p>
+<table cellspacing="0" cellpadding="0" width="900" border="1">
+<tbody>
+<tr>
+<td valign="top" width="225">值</td>
+<td valign="top" width="225">空白符</td>
+<td valign="top" width="225">换行符</td>
+<td valign="top" width="225">自动换行</td></tr>
+<tr>
+<td valign="top" width="225">pre-line</td>
+<td valign="top" width="225">合并</td>
+<td valign="top" width="225">保留</td>
+<td valign="top" width="225">允许</td></tr>
+<tr>
+<td valign="top" width="225">normal</td>
+<td valign="top" width="225">合并</td>
+<td valign="top" width="225">忽略</td>
+<td valign="top" width="225">允许</td></tr>
+<tr>
+<td valign="top" width="225">nowrap</td>
+<td valign="top" width="225">合并</td>
+<td valign="top" width="225">忽略</td>
+<td valign="top" width="225">不允许</td></tr>
+<tr>
+<td valign="top" width="225">pre</td>
+<td valign="top" width="225">保留</td>
+<td valign="top" width="225">保留</td>
+<td valign="top" width="225">不允许</td></tr>
+<tr>
+<td valign="top" width="225">pre-wrap</td>
+<td valign="top" width="225">保留</td>
+<td valign="top" width="225">保留</td>
+<td valign="top" width="225">允许</td></tr></tbody></table>
+<h2>三、字体</h2>
+<h3>1、设置字体系列。（font-family）</h3>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">h1</span> {<span style="color: #0000ff">font-family</span>: <span style="color: #006080">Georgia;</span>}</pre><!--CRLF--></div></div>
+
+<h3>2、设置字体的尺寸。（font-size）</h3>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">h1</span> {<span style="color: #0000ff">font-size</span>:<span style="color: #006080">60px;</span>}</pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><span style="color: #0000ff">h2</span> {<span style="color: #0000ff">font-size</span>:<span style="color: #006080">40px;</span>}</pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">p</span> {<span style="color: #0000ff">font-size</span>:<span style="color: #006080">14px;</span>}</pre><!--CRLF--></div></div>
+
+<h3>3、设置字体风格。（font-style）</h3>
+<p>属性值：</p>
+<ul>
+<li><font size="2">normal : 文本正常显示</font></li>
+<li><font size="2">italic : 文本斜体显示</font></li>
+<li><font size="2">oblique : 文本倾斜显示</font></li></ul>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">p</span><span style="color: #cc6633">.normal</span> {<span style="color: #0000ff">font-style</span>:<span style="color: #006080">normal;</span>}</pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><span style="color: #0000ff">p</span><span style="color: #cc6633">.italic</span> {<span style="color: #0000ff">font-style</span>:<span style="color: #006080">italic;</span>}</pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">p</span><span style="color: #cc6633">.oblique</span> {<span style="color: #0000ff">font-style</span>:<span style="color: #006080">oblique;</span>}</pre><!--CRLF--></div></div>
+
+<h3>4、以小型大写字体或者正常字体显示文本。（font-variant）</h3>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">p</span> {<span style="color: #0000ff">font-variant</span>:<span style="color: #0000ff">small</span><span style="color: #006080">-caps;</span>}</pre><!--CRLF--></div></div>
+
+<h3>5、设置字体的粗细。（font-weight）</h3>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">p</span><span style="color: #cc6633">.normal</span> {<span style="color: #0000ff">font-weight</span>:<span style="color: #006080">normal;</span>}</pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><span style="color: #0000ff">p</span><span style="color: #cc6633">.thick</span> {<span style="color: #0000ff">font-weight</span>:<span style="color: #006080">bold;</span>}</pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">p</span><span style="color: #cc6633">.thicker</span> {<span style="color: #0000ff">font-weight</span>:<span style="color: #006080">900;</span>}</pre><!--CRLF--></div></div>
+
+<h2>四、列表</h2>
+<h3>1、将图象设置为列表项标志。（list-style-image）</h3>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">ul</span> <span style="color: #0000ff">li</span> {<span style="color: #0000ff">list-style</span>-image : url(xxx<span style="color: #cc6633">.gif</span>)}</pre><!--CRLF--></div></div>
+
+<h3>2、设置列表中列表项标志的位置。（list-style-position）</h3>
+<p>属性值：</p>
+<ul>
+<li><font size="2">inside：列表项目标记放置在文本以内，且环绕文本根据标记对齐。</font></li>
+<li><font size="2">outside：默认值。保持标记位于文本的左侧。列表项目标记放置在文本以外，且环绕文本不根据标记对齐。</font></li>
+<li><font size="2">inherit:规定应该从父元素继承 list-style-position 属性的值。</font></li></ul>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">ul</span>{<span style="color: #0000ff">list-style</span>-<span style="color: #0000ff">position</span>:<span style="color: #006080">inside;</span>}</pre><!--CRLF--></div></div>
+
+<h3>3、设置列表项标志的类型。（list-style-type）</h3>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">ul</span> {<span style="color: #0000ff">list-style</span>-type : square}</pre><!--CRLF--></div></div>
+
+<h2>五、表格</h2>
+<h3>1、设置是否把表格边框合并为单一的边框。（border-collapse）</h3>
+<p>属性值：</p>
+<ul>
+<li><font size="2">separate：默认值。边框会被分开。不会忽略 border-spacing 和 empty-cells 属性。</font></li>
+<li><font size="2">collapse：如果可能，边框会合并为一个单一的边框。会忽略 border-spacing 和 empty-cells 属性。</font></li>
+<li><font size="2">inherit：规定应该从父元素继承 border-collapse 属性的值。</font></li></ul>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">table</span>{<span style="color: #0000ff">border-collapse</span>:<span style="color: #006080">collapse;</span>}</pre><!--CRLF--></div></div>
+
+<h3>2、设置分隔单元格边框的距离。（border-spacing）</h3>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">table</span>{<span style="color: #0000ff">border-spacing</span>:<span style="color: #006080">10px 50px;</span>}</pre><!--CRLF--></div></div>
+
+<h3>3、设置表格标题的位置。（caption-side）</h3>
+<p>属性值：</p>
+<ul>
+<li><font size="2">top：默认值。把表格标题定位在表格之上。</font></li>
+<li><font size="2">bottom：把表格标题定位在表格之下。</font></li>
+<li><font size="2">inherit：规定应该从父元素继承 caption-side 属性的值。</font></li></ul>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">caption</span>{<span style="color: #0000ff">caption-side</span>:<span style="color: #006080">bottom;</span>}</pre><!--CRLF--></div></div>
+
+<h3>4、设置是否显示表格中的空单元格。（empty-cells）</h3>
+<p>属性值：</p>
+<ul>
+<li><font size="2">hide：不在空单元格周围绘制边框。</font></li>
+<li><font size="2">show：在空单元格周围绘制边框。默认。</font></li>
+<li><font size="2">inherit：规定应该从父元素继承 empty-cells 属性的值。</font></li></ul>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">table</span>{<span style="color: #0000ff">empty-cells</span>:<span style="color: #006080">hide;</span>}</pre><!--CRLF--></div></div>
+
+<h3>5、设置显示单元、行和列的算法。（table-layout）</h3>
+<p>属性值：</p>
+<ul>
+<li><font size="2">automatic：默认。列宽度由单元格内容设定。</font></li>
+<li><font size="2">fixed：列宽由表格宽度和列宽度设定。</font></li>
+<li><font size="2">inherit：规定应该从父元素继承 table-layout 属性的值。</font></li></ul>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">table</span>{<span style="color: #0000ff">table-layout</span>:<span style="color: #006080">fixed;</span>}</pre><!--CRLF--></div></div>
+
+<h2>六、轮廓</h2>
+<p>轮廓（outline）是绘制于元素周围的边框线，可起到突出元素的作用。
+<p>CSS outline 属性规定元素轮廓的样式、颜色和宽度。
+<h3>1、设置轮廓的颜色。（outline-color）</h3>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">p</span>{<span style="color: #0000ff">outline-color</span>:<span style="color: #006080">#00ff00;</span>}</pre><!--CRLF--></div></div>
+
+<h3>2、设置轮廓的样式。（outline-style）</h3>
+<p>属性值：</p>
+<ul>
+<li><font size="2">none：默认。定义无轮廓。</font></li>
+<li><font size="2">dotted：定义点状的轮廓。</font></li>
+<li><font size="2">dashed：定义虚线轮廓。</font></li>
+<li><font size="2">solid：定义实线轮廓。</font></li>
+<li><font size="2">double：定义双线轮廓。双线的宽度等同于 outline-width 的值。</font></li>
+<li><font size="2">groove：定义 3D 凹槽轮廓。此效果取决于 outline-color 值。</font></li>
+<li><font size="2">ridge：定义 3D 凸槽轮廓。此效果取决于 outline-color 值。</font></li>
+<li><font size="2">inset：定义 3D 凹边轮廓。此效果取决于 outline-color 值。</font></li>
+<li><font size="2">outset：定义 3D 凸边轮廓。此效果取决于 outline-color 值。</font></li>
+<li><font size="2">inherit：规定应该从父元素继承轮廓样式的设置。</font></li></ul>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">p</span>{<span style="color: #0000ff">outline-style</span>:<span style="color: #006080">dotted;</span>}</pre><!--CRLF--></div></div>
+
+<h3>3、设置轮廓的宽度。（outline-width）</h3>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">p</span>{<span style="color: #0000ff">outline-width</span>:<span style="color: #006080">5px;</span>}</pre><!--CRLF--></div></div></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2015-03-24 22:51</span> <a href='https://www.cnblogs.com/hanzhaoxin/'>韩兆新</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=4364266" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(4364266);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=133283,cb_entryId=4364266,cb_blogApp=currentBlogApp,cb_blogUserGuid='9302ade2-352b-e211-aa8f-842b2b196315',cb_entryCreatedDate='2015/3/24 22:51:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<div id='cnblogs_c1' class='c_ad_block'></div>
+<div id='under_post_news'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'>
+    <script>
+    if (new Date() >= new Date(2018, 9, 13)) {
+        googletag.cmd.push(function() { googletag.display('div-gpt-ad-1539008685004-0'); });
+    }
+    </script>
+    </div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2018 韩兆新
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<!-- toTop模块开始 -->
+<div id="toTop" style="zoom:0;"></div>
+<script type="text/javascript" src="https://files.cnblogs.com/hanzhaoxin/Jensen.cnblogs.js"></script>
+<!-- toTop模块结束 -->
+<!--代码着色Start-->
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shCore.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushCSharp.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushCpp.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushCss.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushDelphi.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushJava.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushJScript.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushPhp.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushPython.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushRuby.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushSql.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushVb.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushXml.js"></script>
+ 
+<script language="javascript">
+window.onload = function() {
+     dp.SyntaxHighlighter.ClipboardSwf = 'https://files.cnblogs.com/hanzhaoxin/clipboard.swf';
+     dp.SyntaxHighlighter.HighlightAll('code');
+};
+ </script>
+<!--代码着色End-->
+<!--PageEndHtml Block End-->
+</body>
+</html>

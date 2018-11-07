@@ -1,0 +1,221 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="referrer" content="origin" />
+<title>后端码农谈前端（CSS篇）第六课：盒子模型 - 韩兆新 - 博客园</title>
+<meta property="og:description" content="元素框的最内部分是实际的内容，直接包围内容的是内边距。内边距呈现了元素的背景。内边距的边缘是边框。边框以外是外边距，外边距默认是透明的，因此不会遮挡其后的任何元素。 提示：背景应用于由内容和内边距、边" />
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=-duj5vpGTntb85GJoM3iRI972XwWcI-j8zmqDzyfu2w1"/>
+<link type="text/css" rel="stylesheet" href="/blog/customcss/133283.css?v=Z3IIyR5V4U0To%2fvMr6Q4ONse0S0%3d"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/darkgreentrip/bundle-darkgreentrip-mobile.css?v=6NcJHqsIyaE4w19VtgFvCFahrnr2rYCTRRTdxlMDhhQ1"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/hanzhaoxin/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/hanzhaoxin/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/hanzhaoxin/wlwmanifest.xml"/>
+<script src="//common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+<script type="text/javascript">var currentBlogApp = 'hanzhaoxin', cb_enable_mathjax=true;var isLogined=false;</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, extensions: ['extpfeil.js'] 
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="//mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="/bundles/blog-common.js?v=oVrWjmbP-rXxVp7O71kev8vWEZCetdwYaIziKHJCYc41" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<!--代码着色Start-->
+<link type="text/css" rel="stylesheet" href="https://files.cnblogs.com/hanzhaoxin/SyntaxHighlighter.css"></link>
+<!--代码着色End-->
+<!--我的GitHub连接Start-->
+<a href="https://github.com/hanzhaoxin">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://images.cnblogs.com/cnblogs_com/hanzhaoxin/638238/o_ForkMe.png" alt="Fork me on GitHub">
+</a>
+<!--我的GitHub连接End-->
+<!--PageBeginHtml Block End-->
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="https://www.cnblogs.com/hanzhaoxin/"><img id="blogLogo" src="/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="https://www.cnblogs.com/hanzhaoxin/">韩兆新的博客园</a></h1>
+<h2>Jensen's blog</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/hanzhaoxin/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E9%9F%A9%E5%85%86%E6%96%B0">联系</a></li>
+<li>
+<!----></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 128&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 260</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/hanzhaoxin/p/4367385.html">后端码农谈前端（CSS篇）第六课：盒子模型</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p><a href="https://images0.cnblogs.com/blog/466760/201503/252331149741460.png"><img title="clipboard" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="clipboard" src="https://images0.cnblogs.com/blog/466760/201503/252331172397819.png" width="560" height="560"></a></p> <p>元素框的最内部分是实际的内容，直接包围内容的是内边距。内边距呈现了元素的背景。内边距的边缘是边框。边框以外是外边距，外边距默认是透明的，因此不会遮挡其后的任何元素。  <p><font color="#c0504d">提示</font>：背景应用于由内容和内边距、边框组成的区域。  <h2>一、CSS 内边距属性</h2> <table cellspacing="0" cellpadding="0" width="900" border="1"> <tbody> <tr> <td valign="top" width="310">属性</td> <td valign="top" width="590">描述</td></tr> <tr> <td valign="top" width="310">padding</td> <td valign="top" width="590">简写属性。作用是在一个声明中设置元素的所内边距属性。</td></tr> <tr> <td valign="top" width="310">padding-bottom</td> <td valign="top" width="590">设置元素的下内边距。</td></tr> <tr> <td valign="top" width="310">padding-left</td> <td valign="top" width="590">设置元素的左内边距。</td></tr> <tr> <td valign="top" width="310">padding-right</td> <td valign="top" width="590">设置元素的右内边距。</td></tr> <tr> <td valign="top" width="310">padding-top</td> <td valign="top" width="590">设置元素的上内边距。</td></tr></tbody></table> <p>属性值：</p> <li>auto：浏览器计算内边距。  <li>length：规定以具体单位计的内边距值，比如像素、厘米等。默认值是 0px。  <li>%：规定基于父元素的宽度的百分比的内边距。  <li>inherit：规定应该从父元素继承内边距。  <h2>二、CSS 边框属性</h2> <h3>1、border</h3> <table cellspacing="0" cellpadding="0" width="900" border="1"> <tbody> <tr> <td valign="top" width="313">属性</td> <td valign="top" width="587">描述</td></tr> <tr> <td valign="top" width="313">border</td> <td valign="top" width="587">简写属性，用于把针对四个边的属性设置在一个声明。</td></tr> <tr> <td valign="top" width="313">border-bottom</td> <td valign="top" width="587">简写属性，用于把下边框的所有属性设置到一个声明中。</td></tr> <tr> <td valign="top" width="313">border-left</td> <td valign="top" width="587">简写属性，用于把左边框的所有属性设置到一个声明中。</td></tr> <tr> <td valign="top" width="313">border-right</td> <td valign="top" width="587">简写属性，用于把右边框的所有属性设置到一个声明中。</td></tr> <tr> <td valign="top" width="313">border-top</td> <td valign="top" width="587">简写属性，用于把上边框的所有属性设置到一个声明中。</td></tr></tbody></table> <h3>2、border-style</h3> <table cellspacing="0" cellpadding="0" width="900" border="1"> <tbody> <tr> <td valign="top" width="312">属性</td> <td valign="top" width="588">描述</td></tr> <tr> <td valign="top" width="312">border-style</td> <td valign="top" width="588">用于设置元素所有边框的样式，或者单独地为各边设置边框样式。</td></tr> <tr> <td valign="top" width="312">border-bottom-style</td> <td valign="top" width="588">设置元素的下边框的样式。</td></tr> <tr> <td valign="top" width="312">border-left-style</td> <td valign="top" width="588">设置元素的左边框的样式。</td></tr> <tr> <td valign="top" width="312">border-right-style</td> <td valign="top" width="588">设置元素的右边框的样式。</td></tr> <tr> <td valign="top" width="312">border-top-style</td> <td valign="top" width="588">设置元素的上边框的样式。</td></tr></tbody></table> <p>属性值： </p> <li>none：定义无边框。  <li>hidden：与 "none" 相同。不过应用于表时除外，对于表，hidden 用于解决边框冲突。  <li>dotted：定义点状边框。在大多数浏览器中呈现为实线。  <li>dashed：定义虚线。在大多数浏览器中呈现为实线。  <li>solid：定义实线。  <li>double：定义双线。双线的宽度等于 border-width 的值。  <li>groove：定义 3D 凹槽边框。其效果取决于 border-color 的值。  <li>ridge：定义 3D 垄状边框。其效果取决于 border-color 的值。  <li>inset：定义 3D inset 边框。其效果取决于 border-color 的值。  <li>outset：定义 3D outset 边框。其效果取决于 border-color 的值。  <li>inherit：规定应该从父元素继承边框样式。  <h3>3、border-width</h3> <table cellspacing="0" cellpadding="0" width="900" border="1"> <tbody> <tr> <td valign="top" width="311">属性</td> <td valign="top" width="589">描述</td></tr> <tr> <td valign="top" width="311">border-width</td> <td valign="top" width="589">简写属性，用于为元素的所有边框设置宽度，或者单独地为各边边框设置宽度。</td></tr> <tr> <td valign="top" width="311">border-bottom-width</td> <td valign="top" width="589">设置元素的下边框的宽度。</td></tr> <tr> <td valign="top" width="311">border-left-width</td> <td valign="top" width="589">设置元素的左边框的宽度。</td></tr> <tr> <td valign="top" width="311">border-right-width</td> <td valign="top" width="589">设置元素的右边框的宽度。</td></tr> <tr> <td valign="top" width="311">border-top-width</td> <td valign="top" width="589">设置元素的上边框的宽度。</td></tr></tbody></table> <p>属性值：</p> <li>thin：定义细的边框。  <li>medium：默认。定义中等的边框。  <li>thick：定义粗的边框。  <li>length：允许您自定义边框的宽度。  <li>inherit“规定应该从父元素继承边框宽度。  <h3>4、border-color</h3> <table cellspacing="0" cellpadding="0" width="900" border="1"> <tbody> <tr> <td valign="top" width="312">属性</td> <td valign="top" width="588">描述</td></tr> <tr> <td valign="top" width="312">border-color</td> <td valign="top" width="588">简写属性，设置元素的所有边框中可见部分的颜色，或为 4 个边分别设置颜色。</td></tr> <tr> <td valign="top" width="312">border-bottom-color</td> <td valign="top" width="588">设置元素的下边框的颜色。</td></tr> <tr> <td valign="top" width="312">border-left-color</td> <td valign="top" width="588">设置元素的左边框的颜色。</td></tr> <tr> <td valign="top" width="312">border-right-color</td> <td valign="top" width="588">设置元素的右边框的颜色。</td></tr> <tr> <td valign="top" width="312">border-top-color</td> <td valign="top" width="588">设置元素的上边框的颜色。</td></tr></tbody></table> <li>color_name：规定颜色值为颜色名称的边框颜色（比如 red）。  <li>hex_number：规定颜色值为十六进制值的边框颜色（比如 #ff0000）。  <li>rgb_number：规定颜色值为 rgb 代码的边框颜色（比如 rgb(255,0,0)）。  <li>transparent：默认值。边框颜色为透明。  <li>inherit：规定应该从父元素继承边框颜色。  <h2>三、CSS 外边距属性</h2> <table cellspacing="0" cellpadding="0" width="900" border="1"> <tbody> <tr> <td valign="top" width="309">属性</td> <td valign="top" width="591">描述</td></tr> <tr> <td valign="top" width="309">margin</td> <td valign="top" width="591">简写属性。在一个声明中设置所有外边距属性。</td></tr> <tr> <td valign="top" width="309">margin-bottom</td> <td valign="top" width="591">设置元素的下外边距。</td></tr> <tr> <td valign="top" width="309">margin-left</td> <td valign="top" width="591">设置元素的左外边距。</td></tr> <tr> <td valign="top" width="309">margin-right</td> <td valign="top" width="591">设置元素的右外边距。</td></tr> <tr> <td valign="top" width="309">margin-top</td> <td valign="top" width="591">设置元素的上外边距。</td></tr></tbody></table> <p>属性值：</p> <li> <div>auto：浏览器计算外边距。 </div> <li> <div>length：规定以具体单位计的外边距值，比如像素、厘米等。默认值是 0px。 </div> <li> <div>%：规定基于父元素的宽度的百分比的外边距。 </div> <li> <div>inherit：规定应该从父元素继承外边距。</div> <h2>四、外边距合并：</h2> <p>外边距合并指的是，当两个垂直外边距相遇时，它们将形成一个外边距。合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者。</p> <p><a href="https://images0.cnblogs.com/blog/466760/201503/252331178643178.png"><img title="clipboard[6]" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="clipboard[6]" src="https://images0.cnblogs.com/blog/466760/201503/252331184272049.png" width="560" height="343"></a></p> </li></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2015-03-25 23:31</span> <a href='https://www.cnblogs.com/hanzhaoxin/'>韩兆新</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=4367385" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(4367385);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=133283,cb_entryId=4367385,cb_blogApp=currentBlogApp,cb_blogUserGuid='9302ade2-352b-e211-aa8f-842b2b196315',cb_entryCreatedDate='2015/3/25 23:31:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<div id='cnblogs_c1' class='c_ad_block'></div>
+<div id='under_post_news'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'>
+    <script>
+    if (new Date() >= new Date(2018, 9, 13)) {
+        googletag.cmd.push(function() { googletag.display('div-gpt-ad-1539008685004-0'); });
+    }
+    </script>
+    </div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2018 韩兆新
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<!-- toTop模块开始 -->
+<div id="toTop" style="zoom:0;"></div>
+<script type="text/javascript" src="https://files.cnblogs.com/hanzhaoxin/Jensen.cnblogs.js"></script>
+<!-- toTop模块结束 -->
+<!--代码着色Start-->
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shCore.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushCSharp.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushCpp.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushCss.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushDelphi.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushJava.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushJScript.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushPhp.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushPython.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushRuby.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushSql.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushVb.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushXml.js"></script>
+ 
+<script language="javascript">
+window.onload = function() {
+     dp.SyntaxHighlighter.ClipboardSwf = 'https://files.cnblogs.com/hanzhaoxin/clipboard.swf';
+     dp.SyntaxHighlighter.HighlightAll('code');
+};
+ </script>
+<!--代码着色End-->
+<!--PageEndHtml Block End-->
+</body>
+</html>

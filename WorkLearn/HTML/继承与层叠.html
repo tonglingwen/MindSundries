@@ -1,0 +1,254 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="referrer" content="origin" />
+<title>后端码农谈前端（CSS篇）第八课：继承与层叠 - 韩兆新 - 博客园</title>
+<meta property="og:description" content="一、继承 继承：所谓CSS样式继承，就是子元素应用父元素的规则声明。（由这一特性，可将CSS属性分为可继承属性和非可继承属性。）可继承属性：属性值可由父元素继承给子元素的属性称之为可继承属性。 哪些属" />
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=-duj5vpGTntb85GJoM3iRI972XwWcI-j8zmqDzyfu2w1"/>
+<link type="text/css" rel="stylesheet" href="/blog/customcss/133283.css?v=Z3IIyR5V4U0To%2fvMr6Q4ONse0S0%3d"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/darkgreentrip/bundle-darkgreentrip-mobile.css?v=6NcJHqsIyaE4w19VtgFvCFahrnr2rYCTRRTdxlMDhhQ1"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/hanzhaoxin/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/hanzhaoxin/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/hanzhaoxin/wlwmanifest.xml"/>
+<script src="//common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+<script type="text/javascript">var currentBlogApp = 'hanzhaoxin', cb_enable_mathjax=true;var isLogined=false;</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, extensions: ['extpfeil.js'] 
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="//mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="/bundles/blog-common.js?v=oVrWjmbP-rXxVp7O71kev8vWEZCetdwYaIziKHJCYc41" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<!--代码着色Start-->
+<link type="text/css" rel="stylesheet" href="https://files.cnblogs.com/hanzhaoxin/SyntaxHighlighter.css"></link>
+<!--代码着色End-->
+<!--我的GitHub连接Start-->
+<a href="https://github.com/hanzhaoxin">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://images.cnblogs.com/cnblogs_com/hanzhaoxin/638238/o_ForkMe.png" alt="Fork me on GitHub">
+</a>
+<!--我的GitHub连接End-->
+<!--PageBeginHtml Block End-->
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="https://www.cnblogs.com/hanzhaoxin/"><img id="blogLogo" src="/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="https://www.cnblogs.com/hanzhaoxin/">韩兆新的博客园</a></h1>
+<h2>Jensen's blog</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/hanzhaoxin/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E9%9F%A9%E5%85%86%E6%96%B0">联系</a></li>
+<li>
+<!----></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 128&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 260</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/hanzhaoxin/p/4374235.html">后端码农谈前端（CSS篇）第八课：继承与层叠</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><h2>一、继承</h2> <p>继承：所谓CSS样式继承，就是子元素应用父元素的规则声明。（由这一特性，可将CSS属性分为可继承属性和非可继承属性。）<br>可继承属性：属性值可由父元素继承给子元素的属性称之为可继承属性。</p> <p>哪些属性是可继承属性？</p> <h3>1、文本样式属性</h3> <p>text-indent、text-align、word-spacing、letter-spacing、text-transform、text-decoration、direction、white-space</p> <h3>2、字体样式属性</h3> <p>font、font-family、font-size、font-style、font-variant、font-weight</p> <h3>3、列表样式属性<br></h3> <p>list-style、list-style-image、list-style-position、list-style-type</p> <h3>4、color属性</h3> <p>注：这里特别解释:font-size属性(继承性比较特殊)&nbsp;&nbsp;&nbsp;&nbsp; <br>不同于有准确的值被继承,font-size继承的是计算的值。&nbsp;&nbsp;&nbsp; </p> <p>例如：</p> <div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4"> <div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">&lt;!</span><span style="color: #800000">DOCTYPE</span> <span style="color: #ff0000">html</span><span style="color: #0000ff">&gt;</span> </pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><span style="color: #0000ff">&lt;</span><span style="color: #800000">html</span> <span style="color: #ff0000">lang</span>=“<span style="color: #ff0000">utf8</span>”<span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">    <span style="color: #0000ff">&lt;</span><span style="color: #800000">head</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">        <span style="color: #0000ff">&lt;</span><span style="color: #800000">meta</span> <span style="color: #ff0000">charset</span><span style="color: #0000ff">="utf-8"</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">        <span style="color: #0000ff">&lt;</span><span style="color: #800000">title</span><span style="color: #0000ff">&gt;</span>Demo<span style="color: #0000ff">&lt;/</span><span style="color: #800000">title</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">head</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">    <span style="color: #0000ff">&lt;</span><span style="color: #800000">body</span> <span style="color: #ff0000">style</span><span style="color: #0000ff">="font-size:85%"</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">        body字体大小</pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">        <span style="color: #0000ff">&lt;</span><span style="color: #800000">h1</span> <span style="color: #ff0000">style</span><span style="color: #0000ff">="font-size:200%"</span><span style="color: #0000ff">&gt;</span>h1字体大小<span style="color: #0000ff">&lt;/</span><span style="color: #800000">h1</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">        <span style="color: #0000ff">&lt;</span><span style="color: #800000">h2</span> <span style="color: #ff0000">style</span><span style="color: #0000ff">="font-size:150%"</span><span style="color: #0000ff">&gt;</span>h2字体大小<span style="color: #0000ff">&lt;/</span><span style="color: #800000">h2</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">        <span style="color: #0000ff">&lt;</span><span style="color: #800000">p</span><span style="color: #0000ff">&gt;</span>p字体大小<span style="color: #0000ff">&lt;</span><span style="color: #800000">em</span><span style="color: #0000ff">&gt;</span>em字体大小<span style="color: #0000ff">&lt;/</span><span style="color: #800000">em</span><span style="color: #0000ff">&gt;&lt;/</span><span style="color: #800000">p</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">body</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">&lt;/</span><span style="color: #800000">html</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--></div></div>
+<table cellspacing="0" cellpadding="0" width="900" border="1">
+<tbody>
+<tr>
+<td valign="top" width="300">元素</td>
+<td valign="top" width="300">值</td>
+<td valign="top" width="300">计算值</td></tr>
+<tr>
+<td valign="top" width="300">default font-size</td>
+<td valign="top" width="300">16px</td>
+<td valign="top" width="300">&nbsp;</td></tr>
+<tr>
+<td valign="top" width="300">&lt;body&gt;</td>
+<td valign="top" width="300">85%</td>
+<td valign="top" width="300">16px × 85% = 13.6px</td></tr>
+<tr>
+<td valign="top" width="300">&lt;h1&gt;</td>
+<td valign="top" width="300">200%</td>
+<td valign="top" width="300">13.6px × 200% = 27.2px</td></tr>
+<tr>
+<td valign="top" width="300">&lt;h2&gt;</td>
+<td valign="top" width="300">150%</td>
+<td valign="top" width="300">13.6px × 150% = 20.4px</td></tr>
+<tr>
+<td valign="top" width="300">&lt;p&gt;</td>
+<td valign="top" width="300">unspecified</td>
+<td valign="top" width="300">13.6px</td></tr>
+<tr>
+<td valign="top" width="300">&lt;em&gt;</td>
+<td valign="top" width="300">unspecified</td>
+<td valign="top" width="300">13.6px</td></tr></tbody></table>
+<p>即:除非font-size值被重新赋值,否则就按照上一次的尺寸大小值继续.比如上图中设置body字体为默认字体(通常为16px=1em)的85%(13.6px),那么下面的字体均为13.6px.而不是继续继承85%,让13.6再次乘以85%。</p>
+<h2>二、层叠</h2>
+<p>层叠：所谓CSS样式层叠就是DOM元素应用样式表中的规则覆盖继承样式的过程。</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2015-03-28 14:55</span> <a href='https://www.cnblogs.com/hanzhaoxin/'>韩兆新</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=4374235" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(4374235);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=133283,cb_entryId=4374235,cb_blogApp=currentBlogApp,cb_blogUserGuid='9302ade2-352b-e211-aa8f-842b2b196315',cb_entryCreatedDate='2015/3/28 14:55:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<div id='cnblogs_c1' class='c_ad_block'></div>
+<div id='under_post_news'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'>
+    <script>
+    if (new Date() >= new Date(2018, 9, 13)) {
+        googletag.cmd.push(function() { googletag.display('div-gpt-ad-1539008685004-0'); });
+    }
+    </script>
+    </div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2018 韩兆新
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<!-- toTop模块开始 -->
+<div id="toTop" style="zoom:0;"></div>
+<script type="text/javascript" src="https://files.cnblogs.com/hanzhaoxin/Jensen.cnblogs.js"></script>
+<!-- toTop模块结束 -->
+<!--代码着色Start-->
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shCore.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushCSharp.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushCpp.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushCss.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushDelphi.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushJava.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushJScript.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushPhp.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushPython.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushRuby.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushSql.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushVb.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushXml.js"></script>
+ 
+<script language="javascript">
+window.onload = function() {
+     dp.SyntaxHighlighter.ClipboardSwf = 'https://files.cnblogs.com/hanzhaoxin/clipboard.swf';
+     dp.SyntaxHighlighter.HighlightAll('code');
+};
+ </script>
+<!--代码着色End-->
+<!--PageEndHtml Block End-->
+</body>
+</html>

@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="referrer" content="origin" />
+<title>后端码农谈前端（CSS篇）第七课：定位与浮动 - 韩兆新 - 博客园</title>
+<meta property="og:description" content="一、定位： 1、定位的理解 （1）相对定位 相对定位是一个非常容易掌握的概念。如果对一个元素进行相对定位，它将出现在它所在的位置上。然后，可以通过设置垂直或水平位置，让这个元素“相对于”它的起点进行移" />
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=-duj5vpGTntb85GJoM3iRI972XwWcI-j8zmqDzyfu2w1"/>
+<link type="text/css" rel="stylesheet" href="/blog/customcss/133283.css?v=Z3IIyR5V4U0To%2fvMr6Q4ONse0S0%3d"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/darkgreentrip/bundle-darkgreentrip-mobile.css?v=6NcJHqsIyaE4w19VtgFvCFahrnr2rYCTRRTdxlMDhhQ1"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/hanzhaoxin/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/hanzhaoxin/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/hanzhaoxin/wlwmanifest.xml"/>
+<script src="//common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+<script type="text/javascript">var currentBlogApp = 'hanzhaoxin', cb_enable_mathjax=true;var isLogined=false;</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, extensions: ['extpfeil.js'] 
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="//mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="/bundles/blog-common.js?v=oVrWjmbP-rXxVp7O71kev8vWEZCetdwYaIziKHJCYc41" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<!--代码着色Start-->
+<link type="text/css" rel="stylesheet" href="https://files.cnblogs.com/hanzhaoxin/SyntaxHighlighter.css"></link>
+<!--代码着色End-->
+<!--我的GitHub连接Start-->
+<a href="https://github.com/hanzhaoxin">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://images.cnblogs.com/cnblogs_com/hanzhaoxin/638238/o_ForkMe.png" alt="Fork me on GitHub">
+</a>
+<!--我的GitHub连接End-->
+<!--PageBeginHtml Block End-->
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="https://www.cnblogs.com/hanzhaoxin/"><img id="blogLogo" src="/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="https://www.cnblogs.com/hanzhaoxin/">韩兆新的博客园</a></h1>
+<h2>Jensen's blog</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/hanzhaoxin/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E9%9F%A9%E5%85%86%E6%96%B0">联系</a></li>
+<li>
+<!----></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 128&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 260</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/hanzhaoxin/p/4370490.html">后端码农谈前端（CSS篇）第七课：定位与浮动</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><h2>一、定位：</h2> <h3>1、定位的理解</h3> <h4>（1）相对定位</h4> <p>相对定位是一个非常容易掌握的概念。如果对一个元素进行相对定位，它将出现在它所在的位置上。然后，可以通过设置垂直或水平位置，让这个元素“相对于”它的起点进行移动。</p> <p>如果将 top 设置为 20px，那么框将在原位置顶部下面 20 像素的地方。如果 left 设置为 30 像素，那么会在元素左边创建 30 像素的空间，也就是将元素向右移动。</p><br> <p> <div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4"> <div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">#box_relative {</pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">  <span style="color: #0000ff">position</span>: <span style="color: #006080">relative;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">  <span style="color: #0000ff">left</span>: <span style="color: #006080">30px;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">  <span style="color: #0000ff">top</span>: <span style="color: #006080">20px;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">}</pre><!--CRLF--></div></div></p>
+<p>如下图所示：</p>
+<p><a href="https://images0.cnblogs.com/blog/466760/201503/270007194587042.gif"><img title="tive_example" style="border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px" border="0" alt="tive_example" src="https://images0.cnblogs.com/blog/466760/201503/270007200675629.gif" width="560" height="200"></a></p>
+<p>注意，在使用相对定位时，无论是否进行移动，元素仍然占据原来的空间。因此，移动元素会导致它覆盖其它框。</p>
+<h4>（2）绝对定位</h4>
+<p>绝对定位使元素的位置与文档流无关，因此不占据空间。这一点与相对定位不同，相对定位实际上被看作普通流定位模型的一部分，因为元素的位置相对于它在普通流中的位置。<br>普通流中其它元素的布局就像绝对定位的元素不存在一样：<br>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">#box_relative {</pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">  <span style="color: #0000ff">position</span>: <span style="color: #006080">absolute;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">  <span style="color: #0000ff">left</span>: <span style="color: #006080">30px;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">  <span style="color: #0000ff">top</span>: <span style="color: #006080">20px;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">}</pre><!--CRLF--></div></div>如下图所示：</p>
+<p><a href="https://images0.cnblogs.com/blog/466760/201503/270007205673716.gif"><img title="lute_example" style="border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px" border="0" alt="lute_example" src="https://images0.cnblogs.com/blog/466760/201503/270007211145816.gif" width="560" height="218"></a></p>
+<p>绝对定位的元素的位置相对于最近的已定位祖先元素，如果元素没有已定位的祖先元素，那么它的位置相对于最初的包含块。<br>对于定位的主要问题是要记住每种定位的意义。所以，现在让我们复习一下学过的知识吧：相对定位是“相对于”元素在文档中的初始位置，而绝对定位是“相对于”最近的已定位祖先元素，如果不存在已定位的祖先元素，那么“相对于”最初的包含块。<br>注释：根据用户代理的不同，最初的包含块可能是画布或 HTML 元素。<br>提示：因为绝对定位的框与文档流无关，所以它们可以覆盖页面上的其它元素。可以通过设置 z-index 属性来控制这些框的堆放次序。</p>
+<h3>2、CSS 定位属性</h3>
+<p>CSS 定位属性允许你对元素进行定位。</p>
+<h4>（1）position</h4>
+<p>把元素放置到一个静态的、相对的、绝对的、或固定的位置中。</p>
+<p>属性值：</p>
+<ul>
+<li>absolute：生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。</li>
+<li>fixed：生成绝对定位的元素，相对于浏览器窗口进行定位。元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。</li>
+<li>relative:生成相对定位的元素，相对于其正常位置进行定位。因此，"left:20" 会向元素的 LEFT 位置添加 20 像素。</li>
+<li>static:默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）。</li>
+<li>inherit:规定应该从父元素继承 position 属性的值。</li></ul>
+<h4>（2）top、right、bottom、left</h4>
+<table cellspacing="0" cellpadding="0" width="900" border="1">
+<tbody>
+<tr>
+<td valign="top" width="227">属性</td>
+<td valign="top" width="673">描述</td></tr>
+<tr>
+<td valign="top" width="227">top</td>
+<td valign="top" width="673">定义了一个定位元素的上外边距边界与其包含块上边界之间的偏移。</td></tr>
+<tr>
+<td valign="top" width="227">right</td>
+<td valign="top" width="673">定义了定位元素右外边距边界与其包含块右边界之间的偏移。</td></tr>
+<tr>
+<td valign="top" width="227">bottom</td>
+<td valign="top" width="673">定义了定位元素下外边距边界与其包含块下边界之间的偏移。</td></tr>
+<tr>
+<td valign="top" width="227">left</td>
+<td valign="top" width="673">定义了定位元素左外边距边界与其包含块左边界之间的偏移。</td></tr></tbody></table>
+
+<p>属性值：</p>
+<ul>
+<li>auto：默认值。通过浏览器计算上边缘的位置。</li>
+<li>%：设置以包含元素的百分比计的上边位置。可使用负值。</li>
+<li>length：使用 px、cm 等单位设置元素的上边位置。可使用负值。</li>
+<li>inherit：规定应该从父元素继承 top 属性的值。</li></ul>
+<h4>（3）overflow</h4>
+<p>设置当元素的内容溢出其区域时发生的事情。</p>
+<p>属性值：</p>
+<ul>
+<li>visible:默认值。内容不会被修剪，会呈现在元素框之外。</li>
+<li>hidden:内容会被修剪，并且其余内容是不可见的。</li>
+<li>scroll:内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。</li>
+<li>auto:如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。</li>
+<li>inherit:规定应该从父元素继承 overflow 属性的值。</li></ul>
+<h4>（4）clip</h4>
+<p>设置元素的形状。元素被剪入这个形状之中，然后显示出来。</p>
+<p>属性值：</p>
+<ul>
+<li>shape:设置元素的形状。唯一合法的形状值是：rect (top, right, bottom, left)。</li>
+<li>auto：默认值。不应用任何剪裁。</li>
+<li>inherit：规定应该从父元素继承 clip 属性的值。</li></ul>
+<h4>（5）vertical-align</h4>
+<p>设置元素的垂直对齐方式。
+<p>属性值：
+<ul>
+<li>baseline:默认。元素放置在父元素的基线上。</li>
+<li>sub：垂直对齐文本的下标。</li>
+<li>super：垂直对齐文本的上标</li>
+<li>top：把元素的顶端与行中最高元素的顶端对齐</li>
+<li>text-top：把元素的顶端与父元素字体的顶端对齐</li>
+<li>middle：把此元素放置在父元素的中部。</li>
+<li>bottom：把元素的顶端与行中最低的元素的顶端对齐。</li>
+<li>text-bottom：把元素的底端与父元素字体的底端对齐。</li>
+<li>length&nbsp;&nbsp;&nbsp; </li>
+<li>%:使用 "line-height" 属性的百分比值来排列此元素。允许使用负值。</li>
+<li>inherit:规定应该从父元素继承 vertical-align 属性的值。</li></ul>
+<h4>（6）z-index:设置元素的堆叠顺序。</h4>
+<p>属性值：</p>
+<ul>
+<li>auto:默认。堆叠顺序与父元素相等。</li>
+<li>number:设置元素的堆叠顺序。</li>
+<li>inherit:规定应该从父元素继承 z-index 属性的值。</li></ul>
+<h2>二、浮动</h2>
+<h3>1、浮动的理解</h3>
+<p>浮动的框可以向左或向右移动，直到它的外边缘碰到包含框或另一个浮动框的边框为止。</p>
+<p>由于浮动框不在文档的普通流中，所以文档的普通流中的块框表现得就像浮动框不存在一样。</p>
+<p>请看下图，当把框 1 向右浮动时，它脱离文档流并且向右移动，直到它的右边缘碰到包含框的右边缘：</p>
+<p><a href="https://images0.cnblogs.com/blog/466760/201503/270007215835658.gif"><img title="ight_example" style="border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px" border="0" alt="ight_example" src="https://images0.cnblogs.com/blog/466760/201503/270007220676974.gif" width="560" height="248"></a></p>
+<p>再请看下图，当框 1 向左浮动时，它脱离文档流并且向左移动，直到它的左边缘碰到包含框的左边缘。因为它不再处于文档流中，所以它不占据空间，实际上覆盖住了框 2，使框 2 从视图中消失。</p>
+<p>如果把所有三个框都向左移动，那么框 1 向左浮动直到碰到包含框，另外两个框向左浮动直到碰到前一个浮动框。</p>
+<p><a href="https://images0.cnblogs.com/blog/466760/201503/270007224584559.gif"><img title="left_example" style="border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px" border="0" alt="left_example" src="https://images0.cnblogs.com/blog/466760/201503/270007228643617.gif" width="560" height="248"></a></p>
+<p>如下图所示，如果包含框太窄，无法容纳水平排列的三个浮动元素，那么其它浮动块向下移动，直到有足够的空间。如果浮动元素的高度不同，那么当它们向下移动时可能被其它浮动元素“卡住”：</p>
+<p><a href="https://images0.cnblogs.com/blog/466760/201503/270007232702675.gif"><img title="ft_example_2" style="border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px" border="0" alt="ft_example_2" src="https://images0.cnblogs.com/blog/466760/201503/270007237392518.gif" width="560" height="248"></a></p>
+<h3>2、CSS 浮动属性</h3>
+<p>float</p>
+<p>属性值：</p>
+<ul>
+<li>left：元素向左浮动。</li>
+<li>right：元素向右浮动。</li>
+<li>none：默认值。元素不浮动，并会显示在其在文本中出现的位置。</li>
+<li>inherit：规定应该从父元素继承 float 属性的值。</li></ul>
+<p>实例（把图像向右浮动）：<br>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">img</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">  {</pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">  <span style="color: #0000ff">float</span>:<span style="color: #006080">right;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">  }</pre><!--CRLF--></div></div></p>
+<h3>3、来个实验吧！</h3>
+<h4>示例1：（认识float的两种特性）</h4>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">&lt;!</span><span style="color: #800000">DOCTYPE</span> <span style="color: #ff0000">html</span><span style="color: #0000ff">&gt;</span> </pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><span style="color: #0000ff">&lt;</span><span style="color: #800000">html</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">    <span style="color: #0000ff">&lt;</span><span style="color: #800000">head</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">        <span style="color: #0000ff">&lt;</span><span style="color: #800000">title</span><span style="color: #0000ff">&gt;</span>Demo<span style="color: #0000ff">&lt;/</span><span style="color: #800000">title</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">head</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">    <span style="color: #0000ff">&lt;</span><span style="color: #800000">body</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">        <span style="color: #0000ff">&lt;</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">            <span style="color: #0000ff">&lt;</span><span style="color: #800000">div</span> <span style="color: #ff0000">style</span><span style="color: #0000ff">='float:left'</span><span style="color: #0000ff">&gt;&lt;</span><span style="color: #800000">img</span> <span style="color: #ff0000">src</span><span style="color: #0000ff">="image/1.jpg"</span> <span style="color: #0000ff">&gt;&lt;/</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">            <span style="color: #0000ff">&lt;</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;&lt;</span><span style="color: #800000">img</span> <span style="color: #ff0000">src</span><span style="color: #0000ff">="image/2.jpg"</span> <span style="color: #0000ff">&gt;&lt;/</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">            <span style="color: #0000ff">&lt;</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;&lt;</span><span style="color: #800000">img</span> <span style="color: #ff0000">src</span><span style="color: #0000ff">="image/3.jpg"</span> <span style="color: #0000ff">&gt;&lt;/</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">            <span style="color: #0000ff">&lt;</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;&lt;</span><span style="color: #800000">img</span> <span style="color: #ff0000">src</span><span style="color: #0000ff">="image/4.jpg"</span> <span style="color: #0000ff">&gt;&lt;/</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">        <span style="color: #0000ff">&lt;/</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">body</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><span style="color: #0000ff">&lt;/</span><span style="color: #800000">html</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--></div></div>
+<p>截图如是：</p>
+<p><a href="https://images0.cnblogs.com/blog/466760/201503/270007296614293.png"><img title="image" style="display: inline" alt="image" src="https://images0.cnblogs.com/blog/466760/201503/270007328641339.png" width="720" height="381"></a></p>
+<p>第一个&lt;div&gt;:</p>
+<p><a href="https://images0.cnblogs.com/blog/466760/201503/270007384278070.png"><img title="image" style="display: inline" alt="image" src="https://images0.cnblogs.com/blog/466760/201503/270007413179788.png" width="720" height="357"></a></p>
+<p>第二个&lt;div&gt;:</p>
+<p><a href="https://images0.cnblogs.com/blog/466760/201503/270007465521720.png"><img title="image" style="display: inline" alt="image" src="https://images0.cnblogs.com/blog/466760/201503/270007498805036.png" width="720" height="357"></a></p>
+<p>第一个&lt;div&gt;去掉'float:left':</p>
+<p><a href="https://images0.cnblogs.com/blog/466760/201503/270007542392769.png"><img title="image" style="display: inline" alt="image" src="https://images0.cnblogs.com/blog/466760/201503/270007564272170.png" width="720" height="357"></a></p>
+<p>我们对比这几幅截图，可以得知以下几点：</p>
+<ol>
+<li>float具有“包裹性”。（所谓包裹性就是普通的div如果没有设置宽度，它会撑满整个屏幕，而如果给div增加float:left之后，它会把内容紧紧包裹起来。)【见图(第一个&lt;div&gt;)与图(第一个&lt;div&gt;去掉'float:left')的对比】</li>
+<li>float具有“破坏性”。（所谓破坏性就是设置了float属性的元素会脱离文档流。）【见图(第一个&lt;div&gt;)与图(第二个&lt;div&gt;)】</li></ol>
+<p>其实，如是解析仍感觉对float的“破坏性”描述的不太明白，好吧，再来个例子。看看float的本职工作。</p>
+<h4>示例2：（我生来是做文字环绕效果的！）</h4>
+<div id="codeSnippetWrapper" style="overflow: auto; cursor: text; font-size: 8pt; border-top: silver 1px solid; font-family: 'Courier New', courier, monospace; border-right: silver 1px solid; width: 97.5%; border-bottom: silver 1px solid; padding-bottom: 4px; direction: ltr; text-align: left; padding-top: 4px; padding-left: 4px; margin: 20px 0px 10px; border-left: silver 1px solid; line-height: 12pt; padding-right: 4px; max-height: 300px; background-color: #f4f4f4">
+<div id="codeSnippet" style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">&lt;!</span><span style="color: #800000">DOCTYPE</span> <span style="color: #ff0000">html</span><span style="color: #0000ff">&gt;</span> </pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4"><span style="color: #0000ff">&lt;</span><span style="color: #800000">html</span> <span style="color: #ff0000">lang</span>=“<span style="color: #ff0000">utf8</span>”<span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">    <span style="color: #0000ff">&lt;</span><span style="color: #800000">head</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">        <span style="color: #0000ff">&lt;</span><span style="color: #800000">meta</span> <span style="color: #ff0000">charset</span><span style="color: #0000ff">="utf-8"</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">        <span style="color: #0000ff">&lt;</span><span style="color: #800000">title</span><span style="color: #0000ff">&gt;</span>Demo<span style="color: #0000ff">&lt;/</span><span style="color: #800000">title</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">head</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">    <span style="color: #0000ff">&lt;</span><span style="color: #800000">body</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">        <span style="color: #0000ff">&lt;</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">            <span style="color: #0000ff">&lt;</span><span style="color: #800000">img</span> <span style="color: #ff0000">src</span><span style="color: #0000ff">="image/1.jpg"</span> <span style="color: #ff0000">style</span><span style="color: #0000ff">='float:left'</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">            哇咔咔，我生来是做文字文字环绕效果的！</pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white">        <span style="color: #0000ff">&lt;/</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: #f4f4f4">    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">body</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--><pre style="border-top-style: none; overflow: visible; font-size: 8pt; font-family: 'Courier New', courier, monospace; width: 100%; border-bottom-style: none; color: black; padding-bottom: 0px; direction: ltr; text-align: left; padding-top: 0px; border-right-style: none; padding-left: 0px; margin: 0em; border-left-style: none; line-height: 12pt; padding-right: 0px; background-color: white"><span style="color: #0000ff">&lt;/</span><span style="color: #800000">html</span><span style="color: #0000ff">&gt;</span></pre><!--CRLF--></div></div>
+<p>去掉'float:left'的&lt;img&gt;元素：</p>
+<p><a href="https://images0.cnblogs.com/blog/466760/201503/270008001457773.png"><img title="image" style="display: inline" alt="image" src="https://images0.cnblogs.com/blog/466760/201503/270008027087989.png" width="720" height="357"></a></p>
+<p>带有'float:left'的&lt;img&gt;元素：</p>
+<p><a href="https://images0.cnblogs.com/blog/466760/201503/270008069741992.png"><img title="image" style="display: inline" alt="image" src="https://images0.cnblogs.com/blog/466760/201503/270008095058665.png" width="720" height="357"></a></p>
+<p>&lt;img&gt;元素去掉'float:left'时的&lt;div&gt;元素：</p>
+<p><a href="https://images0.cnblogs.com/blog/466760/201503/270008133022825.png"><img title="image" style="display: inline" alt="image" src="https://images0.cnblogs.com/blog/466760/201503/270008159112756.png" width="720" height="357"></a></p>
+<p>&lt;img&gt;元素带有'float:left'时的&lt;div&gt;元素：</p>
+<p><a href="https://images0.cnblogs.com/blog/466760/201503/270008199423688.png"><img title="image" style="display: inline" alt="image" src="https://images0.cnblogs.com/blog/466760/201503/270008223958104.png" width="720" height="357"></a></p>
+<p>其实 ，我一直想强调，但一直没能说清楚的是：</p>
+<p><a href="https://images0.cnblogs.com/blog/466760/201503/270008258953707.png"><img title="image" style="display: inline" alt="image" src="https://images0.cnblogs.com/blog/466760/201503/270008283801665.png" width="720" height="357"></a></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2015-03-27 00:09</span> <a href='https://www.cnblogs.com/hanzhaoxin/'>韩兆新</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=4370490" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(4370490);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=133283,cb_entryId=4370490,cb_blogApp=currentBlogApp,cb_blogUserGuid='9302ade2-352b-e211-aa8f-842b2b196315',cb_entryCreatedDate='2015/3/27 0:09:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<div id='cnblogs_c1' class='c_ad_block'></div>
+<div id='under_post_news'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'>
+    <script>
+    if (new Date() >= new Date(2018, 9, 13)) {
+        googletag.cmd.push(function() { googletag.display('div-gpt-ad-1539008685004-0'); });
+    }
+    </script>
+    </div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2018 韩兆新
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<!-- toTop模块开始 -->
+<div id="toTop" style="zoom:0;"></div>
+<script type="text/javascript" src="https://files.cnblogs.com/hanzhaoxin/Jensen.cnblogs.js"></script>
+<!-- toTop模块结束 -->
+<!--代码着色Start-->
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shCore.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushCSharp.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushCpp.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushCss.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushDelphi.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushJava.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushJScript.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushPhp.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushPython.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushRuby.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushSql.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushVb.js"></script>
+<script language="javascript" src="https://files.cnblogs.com/hanzhaoxin/shBrushXml.js"></script>
+ 
+<script language="javascript">
+window.onload = function() {
+     dp.SyntaxHighlighter.ClipboardSwf = 'https://files.cnblogs.com/hanzhaoxin/clipboard.swf';
+     dp.SyntaxHighlighter.HighlightAll('code');
+};
+ </script>
+<!--代码着色End-->
+<!--PageEndHtml Block End-->
+</body>
+</html>
