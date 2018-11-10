@@ -1,0 +1,18 @@
+# Created by Octave 4.4.1, Sat Nov 10 19:21:23 2018 GMT <unknown@DESKTOP-95P77KB>
+# name: vk
+# type: matrix
+# rows: 3
+# columns: 1
+ 5.35456706463812
+ -0.17043546962693495
+ -2.2285825145779419
+
+
+# name: expend
+# type: matrix
+# rows: 2
+# columns: 2
+ 959.37649999999996 840.03089999999997
+ 0.030952819082165343 0.026303229681511289
+
+
