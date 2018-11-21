@@ -22,5 +22,49 @@
 <div><big>这是big[大号字体]</big></div>
 <div>这是br[换行]<br/></div>
 <div><button type="button">这是button[按钮]</button><div>
+<div>这是canvas[画布]<canvas id="myCanvas"/>
+<script type="text/javascript">
+var canvas=document.getElementById('myCanvas');
+var ctx=canvas.getContext('2d');
+ctx.fillStyle='#FF0000';
+ctx.fillRect(0,0,80,100);
+</script></div>
+<div><table width="50%" border="1">
+  <caption>这是caption[表头]</caption>
+  <tr>
+    <th>Month</th>
+  </tr>
+  <tr>
+    <td>January</td>
+  </tr>
+</table></div>
+<div>这是datalist[选项列表]<input id="myCar" list="cars" />
+<datalist id="cars">
+  <option value="BMW">
+  <option value="Ford">
+  <option value="Volvo">
+</datalist></div>
+<div><del>这是del[删除]</del></div>
+<div><details>
+<summary>这是details[细节标签]</summary>
+<p>这是details所展示的详细信息</p>
+</details></div>
+<div><dir>这是dir[目录]
+   <li>条目1</li>
+   <li>条目2</li>
+   <li>条目3</li>
+</dir></div>
+<div><embed src="AOI.swf">这是embed[嵌入]</embed></div>
+<div>
+  <fieldset>
+    <legend>这是fieldset[表单分组]</legend>
+    身高：<input type="text" />
+    体重：<input type="text" />
+  </fieldset>
+</div>
+<div><figure>
+  <figcaption>这是figure[图片]</figcaption>
+  <img src="figure.jpg" width="350" height="234" />
+</figure></div>
 </body>
 </html>
