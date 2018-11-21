@@ -1,5 +1,5 @@
 trainmod=load('C:\Users\25285\Desktop\ss\model.mat')
-test=0;
+test=1;
 
 if test==1
 ltest=load('C:\Users\25285\Desktop\ss\test.txt');
@@ -9,7 +9,7 @@ testmax=trainmod.expend(1,:);
 ltestx= ltest(:,1:2).*testdistance.- (testmax.*testdistance.-10);
 ltestx=[ones(size(ltestx)(1,1),1),ltestx];
 r= [1./(1.+e.^(0.-ltestx*testvk)),ltest(:,3)];
-r
+vpa(r)
 return
 endif
 
@@ -23,7 +23,7 @@ l3=[0,0,0];
 vk=vpa(trainmod.vk)
 #[5.3545670646381196181146543186266;-0.17043546962693495880512976396681;-2.2285825145779419953529928022823];
 
-learnspeed=2;
+learnspeed=1;
 punish=1;
 
 for i=1:size(l)(1,1)
