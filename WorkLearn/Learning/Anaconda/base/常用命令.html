@@ -1,0 +1,64 @@
+<html>
+<head>
+<style>
+table{
+width:40%;
+height:auto;
+border:1px solid black;
+margin-top:0px;
+margin-left:100px;
+}
+td{
+text-align:center;
+}
+.often{
+color:red;
+}
+</style>
+</head>
+<body>
+<table  border="10">
+  <caption><h1>命令列表</h1></caption>
+  <tr>
+    <th>命令名</th>
+	<th>功能</th>
+	<th>备注</th>
+  </tr>
+  <tr>
+    <td class="often">conda list</td>
+	<td>显示所有已经安装的包</td>
+	<td></td>
+  </tr>
+    <tr>
+    <td>conda install package_name</td>
+	<td>根据包名安装指定的包</td>
+	<td></td>
+  </tr>
+    <tr>
+    <td>conda remove package_name</td>
+	<td>根据包名卸载指定的包</td>
+	<td></td>
+  </tr>
+    <tr>
+    <td>conda update package_name</td>
+	<td>根据包名更新指定的包</td>
+	<td></td>
+  </tr>
+    <tr>
+    <td class="often">activate env_name</td>
+	<td>进入某一环境</td>
+	<td></td>
+  </tr>
+    <tr>
+    <td class="often">conda env list</td>
+	<td>显示所有已经创建的环境</td>
+	<td></td>
+  </tr>
+    <tr>
+    <td class="often">conda env remove -n env_name</td>
+	<td>根据环境名删除指定环境</td>
+	<td></td>
+  </tr>
+</table>
+</body>
+</html>
