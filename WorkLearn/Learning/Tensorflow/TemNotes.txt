@@ -1,0 +1,107 @@
+备注：
+shape为矩阵的形状 如：[2,3]代表2x3矩阵
+dtype对类型的定义 如：tf.float32
+value为值 如：[1]、[1,2,3,...]、[[2],[3],...]
+tensor为张量
+dims为张量的形状
+mean为平均值
+stddev为标准差
+一、常量的操作：
+1.常量的创建
+ tf.constant(value, dtype=None, shape=None, name='Const')
+ tf.zeros(shape, dtype=tf.float32, name=None)
+ tf.zeros_like(tensor, dtype=None, name=None)
+ tf.ones(shape, dtype=tf.float32, name=None)
+ tf.ones_like(tensor, dtype=None, name=None)
+ tf.fill(dims, value, name=None)
+2.列表的创建
+ tf.linspace(start, stop, num, name=None) 如：tf.linspace(10.0, 12.0, 3, name="linspace") => [ 10.0  11.0  12.0]
+ tf.range(start, limit, delta=1, name='range') 如：tf.range(3, 18, 3) ==> [3, 6, 9, 12, 15]
+3.随机值的创建
+ tf.random_normal(shape, mean=0.0, stddev=1.0, dtype=tf.float32, seed=None, name=None)
+ tf.truncated_normal(shape, mean=0.0, stddev=1.0, dtype=tf.float32, seed=None, name=None)
+ tf.random_uniform(shape, minval=0.0, maxval=1.0, dtype=tf.float32, seed=None, name=None)
+ tf.random_uniform(shape, minval=0.0, maxval=1.0, dtype=tf.float32, seed=None, name=None)
+ tf.set_random_seed(seed)
+ tf.random_shuffle(value, seed=None, name=None)
+二、变量的操作：
+1.变量的创建：
+ x = tf.Variable(<initial-value>, name=<optional-name>)
+2.变量的初始化
+(1)初始化某一个变量
+	x.initializer.run()
+(2)初始化所有变量
+	init_op = tf.initialize_all_variables()
+3.变量的保存与恢复
+(1)保存对象的创建
+	saver = tf.train.Saver()
+(2)保存变量
+	saver.save(var1,path) var为变量 path为路径
+(3)恢复变量
+	saver.restore(sess,path) sess为要恢复到的指定会话中(恢复的变量不需要初始化)
+三、会话(Session)的操作(所有的操作最后都是在会话中完成的):
+1.启动会话
+	sess=tf.Session()
+2.运行会话
+    result=sess.run(fetches, feed_dict=None)
+fetches:result将返回由fetches指定的值
+feed_dict:设置会话运行过程中需要的参数
+(1)取
+由fetches决定要取的内容，会话运行后将要取的结果赋给result；如：result=sess.run(var1)、result=sess.run([var1,var2])  var1与var2为定义的变量。
+(2)喂
+由feed_dict设置要进行设置的占位符参与会话中的计算；如：sess.run([output],feed_dict={input1:[7.],input2:[2.]}) input1与input2为占位符
+3.关闭会话
+    sess.close()
+四、占位符(会话运行时需要喂图时使用):
+1.占位符的定义
+	input1=tf.placeholder()
+五、神经网络
+备注：
+features为一个Tensor
+1.激活函数(将特征转化为概率)
+	tf.nn.relu(features, name=None)
+	tf.nn.relu6(features, name=None)
+	tf.nn.softplus(features, name=None)
+	tf.nn.dropout(x, keep_prob, noise_shape=None, seed=None, name=None)
+	tf.nn.bias_add(value, bias, name=None)
+	tf.sigmoid(x, name=None)
+	tf.tanh(x, name=None)
+2.卷积函数(数据与卷积核相乘后得到)
+	tf.nn.conv2d(input, filter, strides, padding, use_cudnn_on_gpu=None, name=None)
+	tf.nn.depthwise_conv2d(input, filter, strides, padding, name=None)
+	tf.nn.separable_conv2d(input, depthwise_filter, pointwise_filter, strides, padding, name=None)
+3.池化函数(对数据量的压缩)
+	tf.nn.avg_pool(value, ksize, strides, padding, name=None)
+	tf.nn.max_pool(value, ksize, strides, padding, name=None)
+	tf.nn.max_pool_with_argmax(input, ksize, strides, padding, Targmax=None, name=None)
+4.归一化函数(数据归一化(标准化))
+	tf.nn.l2_normalize(x, dim, epsilon=1e-12, name=None)
+	tf.nn.local_response_normalization(input, depth_radius=None, bias=None, alpha=None, beta=None, name=None)
+	tf.nn.moments(x, axes, name=None)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
