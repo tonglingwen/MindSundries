@@ -10,8 +10,8 @@ y_ = tf.placeholder("float", [None,10])
 sess = tf.Session()
 
 #卷积操作
-def conv2d(x, W):                                                             
-  return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding='SAME') #卷积操作x为输入的图片矩阵，W为卷积核，strides为在每一个维度的步幅，padding为扫面图片的方式
+def conv2d(x, W,pad):                                                             
+  return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding=pad) #卷积操作x为输入的图片矩阵，W为卷积核，strides为在每一个维度的步幅，padding为扫面图片的方式
 #其中x的结构为一个四维向量[batch, in_height, in_width, in_channels]各个参数含义为[训练时一个batch的图片数量, 图片高度, 图片宽度, 图像通道数]
 #其中W的结构为一个四维向量[filter_height, filter_width, in_channels, out_channels]各个参数含义为[卷积核的高度，卷积核的宽度，图像通道数，卷积核个数]
 
@@ -26,24 +26,29 @@ def bias_variable(shape):
   initial = tf.constant(0.1, shape=shape)
   return tf.Variable(initial)
 						
-W_conv1 = weight_variable([5, 5, 1, 32])
-b_conv1 = bias_variable([32])
+W_conv1 = weight_variable([5, 5, 1, 6])
+b_conv1 = bias_variable([6])
 
 x_image = tf.reshape(x, [-1,28,28,1])
 
-h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)#第一层卷积操作
+h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1,'SAME') + b_conv1)#第一层卷积操作
 h_pool1 = max_pool_2x2(h_conv1)                         #第一层池化层
 
-W_conv2 = weight_variable([5, 5, 32, 64])
-b_conv2 = bias_variable([64])
+W_conv2 = weight_variable([5, 5, 6, 16])
+b_conv2 = bias_variable([16])
 
-h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)#第二层卷积操作
+h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2,'VALID') + b_conv2)#第二层卷积操作
 h_pool2 = max_pool_2x2(h_conv2)                         #第二层池化层
 
-W_fc1 = weight_variable([7 * 7 * 64, 1024])
+W_conv3 = weight_variable([5, 5, 16, 120])
+b_conv3 = bias_variable([120])
+
+h_conv3 = tf.nn.relu(conv2d(h_pool2, W_conv3,'VALID') + b_conv3)#第二层卷积操作
+
+W_fc1 = weight_variable([120, 1024])
 b_fc1 = bias_variable([1024])
 
-h_pool2_flat = tf.reshape(h_pool2, [-1, 7*7*64])
+h_pool2_flat = tf.reshape(h_conv3, [-1, 120])
 h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, W_fc1) + b_fc1)#全连接层
 
 keep_prob = tf.placeholder("float")
