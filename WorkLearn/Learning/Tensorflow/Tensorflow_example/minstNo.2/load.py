@@ -39,7 +39,7 @@ b_conv2 = bias_variable([64])
 
 h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)#第二层卷积操作
 h_pool2 = max_pool_2x2(h_conv2)                         #第二层池化层
-
+#print(h_conv2.shape)
 W_fc1 = weight_variable([7 * 7 * 64, 1024])
 b_fc1 = bias_variable([1024])
 
@@ -63,7 +63,8 @@ for i in range(20000):#训练过程
   if i%100 == 0:
     train_accuracy = accuracy.eval(session=sess,feed_dict={x:batch[0], y_: batch[1], keep_prob: 1.0})
     print("step %d, training accuracy %g"%(i, train_accuracy))
-  train_step.run(session=sess,feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
+  #train_step.run(session=sess,feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
+  print(sess.run(h_conv2,feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5}).shape)
 
 print("test accuracy %g"%accuracy.eval(session=sess,feed_dict={x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}))
 

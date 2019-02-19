@@ -31,19 +31,19 @@ b_conv1 = bias_variable([6])
 
 x_image = tf.reshape(x, [-1,28,28,1])
 
-h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1,'SAME') + b_conv1)#第一层卷积操作
+h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1,'SAME') + b_conv1)#第一层卷积操作(共5*5*6+6个权重需要训练)
 h_pool1 = max_pool_2x2(h_conv1)                         #第一层池化层
 
 W_conv2 = weight_variable([5, 5, 6, 16])
 b_conv2 = bias_variable([16])
 
-h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2,'VALID') + b_conv2)#第二层卷积操作
+h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2,'VALID') + b_conv2)#第二层卷积操作(共(5*5*16+16)个参数需要训练)
 h_pool2 = max_pool_2x2(h_conv2)                         #第二层池化层
 
 W_conv3 = weight_variable([5, 5, 16, 120])
 b_conv3 = bias_variable([120])
 
-h_conv3 = tf.nn.relu(conv2d(h_pool2, W_conv3,'VALID') + b_conv3)#第二层卷积操作
+h_conv3 = tf.nn.relu(conv2d(h_pool2, W_conv3,'VALID') + b_conv3)#第三层卷积操作
 
 W_fc1 = weight_variable([120, 1024])
 b_fc1 = bias_variable([1024])
