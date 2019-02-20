@@ -81,6 +81,19 @@ features为一个Tensor
 
 
 
+常量、变量与占位符的区别
+
+常量在初始化之后就无法更改：
+constant_node=tf.constant(0.0)
+constant_assign_node=tf.assign(constant_node,tf.constant(1.0)) #尝试改变常量的值是非法的将报错
+变量在初始化之后还可以更改：
+var_node=tf.Variable(constant_node)
+var_assign_node=tf.assign(var_node,tf.constant(1.0)) #可以改变变量的值 但是无法改变变量的维度
+占位符本身并没有值需要通过feed_dict将其赋值，因此其作用域尽在sess.run()中有效
+placeholder_node=tf.placeholder(tf.float32)
+var_assign_node=tf.assign(var_node,placeholder_node)
+sess.run(var_assign_node,feed_dict={placeholder_node:45.2})
+print(sess.run(var_node))                                 #var_node的值变为45.2
 
 
 
