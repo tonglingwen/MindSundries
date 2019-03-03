@@ -1,0 +1,17 @@
+电脑：小米游戏本
+硬件配置：
+cpu:intel-core-i5
+ram:8G
+GPU1:NVIDIA 1050Ti
+GPU2:Intel HD Graphics 630
+
+软件:
+os:ubuntu16.04.5
+nvidia drive:nvidia 410.67
+cuda 9.0
+cudnn 7.3
+
+1.显卡驱动不用单独装，安装cuda的过程会自动安装或更新显卡驱动安装完并重启之后用nvidia-smi验证显卡是否安装正确
+cuda的安装过程见官方网站需要注意的是在最后是由apt-get进行安装时要用 sudo apt-get install cuda-9.0,如果用 sudo apt-get install cuda的话会自动安装最新版的cuda
+2.下载cudnn7.3的时候需要注意的是下载的是cuDNN v7.3.0 Library for Linux
+3.tensorflow安装见tensorflow官方网站需要安装gpu版
