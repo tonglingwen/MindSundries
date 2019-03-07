@@ -4,17 +4,25 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 import time
+
+ClassNum=2
+ImagePath='F:/ILSVRC2012_dataset/image_train'
+LabelPath='train_label_origin.txt'
+SavePath='./model/AlexNetModel.ckpt'
+BatchSize=50
+
+
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 np.set_printoptions(threshold=np.inf)  
 
-dataset = readImageNet.ImageNetDataSet('F:/ILSVRC2012_dataset/image_train')#加载图片根目录
-dataset.get_labels('train_label_origin.txt')
+dataset = readImageNet.ImageNetDataSet(ImagePath,ClassNum,BatchSize)#加载图片根目录
+dataset.get_labels(LabelPath)
 image_batch,label_batch = dataset.get_batch_data()
 
 
 
 x = tf.placeholder("float", [None, 227*227*3])
-y_ = tf.placeholder("float", [None,1000])
+y_ = tf.placeholder("float", [None,ClassNum])
 
 input_data=tf.reshape(x, [-1,227,227,3])
 
@@ -64,8 +72,8 @@ h_full7=tf.nn.relu(tf.matmul(h_fc1_drop,w_full7)+b_full7)
 h_fc2_drop = tf.nn.dropout(h_full7, keep_prob)
 print("h_full7:",h_full7.shape)
 
-w_softmax=tf.Variable(tf.truncated_normal([4096,1000], stddev=0.1))
-b_softmax=tf.Variable(tf.constant(0.1, shape=[1000]))
+w_softmax=tf.Variable(tf.truncated_normal([4096,2], stddev=0.1))
+b_softmax=tf.Variable(tf.constant(0.1, shape=[ClassNum]))
 y_conv=tf.nn.softmax(tf.matmul(h_fc2_drop, w_softmax) + b_softmax)
 print("y_conv:",y_conv.shape)
 
@@ -80,17 +88,28 @@ with tf.Session() as sess:
 	sess.run(init_op)
 	coord = tf.train.Coordinator()
 	threads = tf.train.start_queue_runners(sess=sess, coord=coord)
-	for i in range(26000):#训练过程
+	for i in range(1):#训练过程
 		try:
 			image_v,label_v=sess.run([image_batch,label_batch])
+			'''
+			#print(image_v)
+			for i in tf.reshape(image_v,[BatchSize,227,227,3]).eval(session=sess):
+				plt.imshow(i)
+				plt.draw()
+				plt.pause(1)
+			'''
+			
 			if i%100 == 0:
-				train_accuracy = accuracy.eval(session=sess,feed_dict={x:batch[0], y_: batch[1], keep_prob: 1.0})
+				train_accuracy = accuracy.eval(session=sess,feed_dict={x:image_v, y_: label_v, keep_prob: 1.0})
 				print("step %d, training accuracy %g"%(i, train_accuracy))
-			train_step.run(session=sess,feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
+			train_step.run(session=sess,feed_dict={x: image_v, y_: label_v, keep_prob: 0.5})
+			
 		except BaseException:
 			pass
 		else:
 			pass
+	saver=tf.train.Saver()
+	saver.save(sess,SavePath)
 	coord.request_stop()
 	coord.join(threads)
 
