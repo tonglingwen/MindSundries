@@ -1,4 +1,17 @@
+import readImageNet
 import tensorflow as tf
+import numpy as np  
+import os
+import matplotlib.pyplot as plt
+import time
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
+np.set_printoptions(threshold=np.inf)  
+
+dataset = readImageNet.ImageNetDataSet('F:/ILSVRC2012_dataset/image_train')#加载图片根目录
+dataset.get_labels('train_label_origin.txt')
+image_batch,label_batch = dataset.get_batch_data()
+
+
 
 x = tf.placeholder("float", [None, 227*227*3])
 y_ = tf.placeholder("float", [None,1000])
@@ -58,11 +71,28 @@ print("y_conv:",y_conv.shape)
 
 cross_entropy = -tf.reduce_sum(y_*tf.log(y_conv))
 train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
+correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1))
+accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
 
-#for i in range(20000):#训练过程
-#  batch = mnist.train.next_batch(50)
-#  sess.run(train_step,feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
 
+with tf.Session() as sess:
+	init_op = tf.group(tf.global_variables_initializer(), tf.local_variables_initializer()) 
+	sess.run(init_op)
+	coord = tf.train.Coordinator()
+	threads = tf.train.start_queue_runners(sess=sess, coord=coord)
+	for i in range(26000):#训练过程
+		try:
+			image_v,label_v=sess.run([image_batch,label_batch])
+			if i%100 == 0:
+				train_accuracy = accuracy.eval(session=sess,feed_dict={x:batch[0], y_: batch[1], keep_prob: 1.0})
+				print("step %d, training accuracy %g"%(i, train_accuracy))
+			train_step.run(session=sess,feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
+		except BaseException:
+			pass
+		else:
+			pass
+	coord.request_stop()
+	coord.join(threads)
 
 
 

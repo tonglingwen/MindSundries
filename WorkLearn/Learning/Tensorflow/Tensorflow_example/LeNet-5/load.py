@@ -65,6 +65,7 @@ accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
 sess.run(tf.global_variables_initializer())
 for i in range(20000):#训练过程
   batch = mnist.train.next_batch(50)
+  print(batch[0].shape)
   if i%100 == 0:
     train_accuracy = accuracy.eval(session=sess,feed_dict={x:batch[0], y_: batch[1], keep_prob: 1.0})
     print("step %d, training accuracy %g"%(i, train_accuracy))
