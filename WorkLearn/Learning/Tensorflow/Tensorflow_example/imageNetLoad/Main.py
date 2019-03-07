@@ -7,10 +7,10 @@ import matplotlib.pyplot as plt
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 np.set_printoptions(threshold=np.inf)  
 
-dataset = readImageNet.ImageNetDataSet()
+dataset = readImageNet.ImageNetDataSet('F:/ILSVRC2012_dataset/image_train')
 #image_raw_data_jpg = tf.gfile.FastGFile('n01491361_25.JPEG', 'rb').read()
 #image_raw_data_jpg = tf.image.decode_jpeg(image_raw_data_jpg)
-dataset.get_labels('train_label_test.txt')
+dataset.get_labels('train_label_origin.txt')
 image_batch,label_batch = dataset.get_batch_data()
 #print(dataset.trainLabel)
 sess = tf.Session()

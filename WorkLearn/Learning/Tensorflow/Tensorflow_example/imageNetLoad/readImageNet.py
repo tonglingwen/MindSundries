@@ -19,8 +19,8 @@ class ImageNetDataSet:
 		self.trainLabel_value=tf.convert_to_tensor(self.trainLabel_value)
 		self.input_image,self.input_label = tf.train.slice_input_producer([self.trainLabel, self.trainLabel_value], shuffle=True,num_epochs=None)
 		self.images=tf.image.convert_image_dtype(tf.image.decode_jpeg(tf.read_file(self.rootpath+'/'+self.input_image)),tf.float32)		
-		self.images =tf.image.resize_images(self.images, size=[227, 227])
-		self.images=tf.reshape(self.images,[227*227*3])
+		self.imagess =tf.image.resize_images(self.images, size=[227, 227])
+		self.images=tf.reshape(self.imagess,[227*227*3])
 
 	def get_batch_data(self):
 		image_batch, label_batch = tf.train.batch([self.images,self.input_label], batch_size=1, num_threads=2, capacity=2048,allow_smaller_final_batch=True)
