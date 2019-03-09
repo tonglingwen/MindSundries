@@ -29,14 +29,14 @@ input_data=tf.reshape(x, [-1,227,227,3])
 w_conv1=tf.Variable(tf.truncated_normal([11,11,3,96], stddev=0.1))
 b_conv1=tf.Variable(tf.constant(0.1, shape=[96]))
 h_conv1=tf.nn.relu(tf.nn.conv2d(input_data, w_conv1, strides=[1, 4, 4, 1], padding='VALID')+b_conv1)
-h_pool1=tf.nn.local_response_normalization(tf.nn.max_pool(h_conv1, ksize=[1, 3, 3, 1],strides=[1, 2, 2, 1], padding='VALID'))
+h_pool1=tf.nn.local_response_normalization(tf.nn.max_pool(h_conv1, ksize=[1, 3, 3, 1],strides=[1, 2, 2, 1], padding='VALID'),alpha=0.001/9.0,beta=0.75)
 print("h_conv1:",h_conv1.shape)
 print("h_pool1:",h_pool1.shape)
 
 w_conv2=tf.Variable(tf.truncated_normal([5,5,96,256], stddev=0.1))
 b_conv2=tf.Variable(tf.constant(0.1, shape=[256]))
 h_conv2=tf.nn.relu(tf.nn.conv2d(h_pool1, w_conv2, strides=[1, 1, 1, 1], padding='SAME')+b_conv2)
-h_pool2=tf.nn.local_response_normalization(tf.nn.max_pool(h_conv2, ksize=[1, 3, 3, 1],strides=[1, 2, 2, 1], padding='VALID'))
+h_pool2=tf.nn.local_response_normalization(tf.nn.max_pool(h_conv2, ksize=[1, 3, 3, 1],strides=[1, 2, 2, 1], padding='VALID'),alpha=0.001/9.0,beta=0.75)
 print("h_conv2:",h_conv2.shape)
 print("h_pool2:",h_pool2.shape)
 
@@ -63,12 +63,12 @@ w_full6=tf.Variable(tf.truncated_normal([6*6*256,4096], stddev=0.1))
 b_full6=tf.Variable(tf.constant(0.1, shape=[4096]))
 h_full6=tf.nn.relu(tf.matmul(h_fullconv,w_full6)+b_full6)
 keep_prob = tf.placeholder("float")
-h_fc1_drop = tf.nn.dropout(h_full6, keep_prob)
+#h_fc1_drop = tf.nn.dropout(h_full6, keep_prob)
 print("h_full6:",h_full6.shape)
 
 w_full7=tf.Variable(tf.truncated_normal([4096,4096], stddev=0.1))
 b_full7=tf.Variable(tf.constant(0.1, shape=[4096]))
-h_full7=tf.nn.relu(tf.matmul(h_fc1_drop,w_full7)+b_full7)
+h_full7=tf.nn.relu(tf.matmul(h_full6,w_full7)+b_full7)
 h_fc2_drop = tf.nn.dropout(h_full7, keep_prob)
 print("h_full7:",h_full7.shape)
 
@@ -77,18 +77,19 @@ b_softmax=tf.Variable(tf.constant(0.1, shape=[ClassNum]))
 y_conv=tf.nn.softmax(tf.matmul(h_fc2_drop, w_softmax) + b_softmax)
 print("y_conv:",y_conv.shape)
 
-cross_entropy = -tf.reduce_sum(y_*tf.log(y_conv))
-train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
+cross_entropy =-tf.reduce_sum(y_*tf.log(tf.clip_by_value(y_conv,1e-10,1)))#tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits(logits=y_conv,labels=y_))# 
+train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)#tf.train.GradientDescentOptimizer(1e-4).minimize(cross_entropy)#
 correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
 
 
 with tf.Session() as sess:
-	init_op = tf.group(tf.global_variables_initializer(), tf.local_variables_initializer()) 
-	sess.run(init_op)
+	sess.run(tf.global_variables_initializer())
+	sess.run(tf.local_variables_initializer())
 	coord = tf.train.Coordinator()
 	threads = tf.train.start_queue_runners(sess=sess, coord=coord)
-	for i in range(1):#训练过程
+	asd=[]
+	for i in range(5000):#训练过程
 		try:
 			image_v,label_v=sess.run([image_batch,label_batch])
 			'''
@@ -102,10 +103,21 @@ with tf.Session() as sess:
 			if i%100 == 0:
 				train_accuracy = accuracy.eval(session=sess,feed_dict={x:image_v, y_: label_v, keep_prob: 1.0})
 				print("step %d, training accuracy %g"%(i, train_accuracy))
-			train_step.run(session=sess,feed_dict={x: image_v, y_: label_v, keep_prob: 0.5})
+			#train_step.run(session=sess,feed_dict={x: image_v, y_: label_v, keep_prob: 0.5})
+			sess.run(train_step,feed_dict={x: image_v, y_: label_v, keep_prob: 0.5})
+			sdd=sess.run(w_full7)
+			if len(asd)==0:
+				asd=sdd
+			if (asd==sdd).all():
+				print('==')
+			else:
+				print('!=')	
+			asd=sdd
 			
-		except BaseException:
-			pass
+			print(sess.run(cross_entropy,feed_dict={x: image_v, y_: label_v, keep_prob: 1}))
+		except BaseException as e:
+			print(str(e))
+			break
 		else:
 			pass
 	saver=tf.train.Saver()

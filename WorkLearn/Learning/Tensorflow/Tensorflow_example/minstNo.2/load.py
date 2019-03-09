@@ -1,5 +1,9 @@
 import input_data
 import tensorflow as tf
+import numpy as np  
+import os
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
+np.set_printoptions(threshold=np.inf) 
 
 mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 x = tf.placeholder("float", [None, 784])
@@ -63,12 +67,22 @@ train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)#设置损失�
 correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
 sess.run(tf.global_variables_initializer())
+asd=[]
 for i in range(20000):#训练过程
-  batch = mnist.train.next_batch(50)
-  if i%100 == 0:
-    train_accuracy = accuracy.eval(session=sess,feed_dict={x:batch[0], y_: batch[1], keep_prob: 1.0})
-    print("step %d, training accuracy %g"%(i, train_accuracy))
-  sess.run(train_step,feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
+	batch = mnist.train.next_batch(50)
+	if i%100 == 0:
+		train_accuracy = accuracy.eval(session=sess,feed_dict={x:batch[0], y_: batch[1], keep_prob: 1.0})
+		print("step %d, training accuracy %g"%(i, train_accuracy))
+	sess.run(train_step,feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
+	sdd=sess.run(W_fc2)
+	print(batch[0])
+	if len(asd)==0:
+		asd=sdd
+	if (asd==sdd).all():
+		print('==')
+	else:
+		print('!=')
+	asd=sdd
   #print(sess.run(h_conv2,feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5}).shape)
 
 print("test accuracy %g"%accuracy.eval(session=sess,feed_dict={x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}))
