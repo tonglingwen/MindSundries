@@ -9,7 +9,7 @@ ClassNum=2
 ImagePath='F:/ILSVRC2012_dataset/image_train'
 LabelPath='train_label_origin.txt'
 SavePath='./model/AlexNetModel.ckpt'
-BatchSize=50
+BatchSize=1
 
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
@@ -106,10 +106,16 @@ with tf.Session() as sess:
 			#train_step.run(session=sess,feed_dict={x: image_v, y_: label_v, keep_prob: 0.5})
 			sess.run(train_step,feed_dict={x: image_v, y_: label_v, keep_prob: 0.5})
 			sdd=sess.run(w_full7)
+			np.savetxt("image_v"+str(i)+".txt",image_v,fmt="%s",delimiter=",")							
+			np.savetxt("label_v"+str(i)+".txt",label_v,fmt="%s",delimiter=",")
 			if len(asd)==0:
 				asd=sdd
 			if (asd==sdd).all():
 				print('==')
+				if i!=0:
+					#print(image_v)
+					#print(label_v)
+					break
 			else:
 				print('!=')	
 			asd=sdd
@@ -120,8 +126,8 @@ with tf.Session() as sess:
 			break
 		else:
 			pass
-	saver=tf.train.Saver()
-	saver.save(sess,SavePath)
+	#saver=tf.train.Saver()
+	#saver.save(sess,SavePath)
 	coord.request_stop()
 	coord.join(threads)
 
@@ -130,3 +136,6 @@ with tf.Session() as sess:
 
 
 
+
+	
+	

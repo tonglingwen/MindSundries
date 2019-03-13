@@ -7,12 +7,15 @@ np.set_printoptions(threshold=np.inf)
 
 mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 x = tf.placeholder("float", [None, 784])
-W = tf.Variable(tf.zeros([784,10]))
+with tf.variable_scope('input1'):
+	W = tf.Variable(tf.zeros([784,10]))
+tf.summary.histogram('log/', W)
 b = tf.Variable(tf.zeros([10]))
 y = tf.nn.softmax(tf.matmul(x,W) + b)
 y_ = tf.placeholder("float", [None,10])
-sess = tf.Session()
 
+sess = tf.Session()
+writer = tf.summary.FileWriter("log/",sess.graph)
 #卷积操作
 def conv2d(x, W):                                                             
   return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding='SAME') #卷积操作x为输入的图片矩阵，W为卷积核，strides为在每一个维度的步幅，padding为扫面图片的方式
@@ -66,16 +69,18 @@ train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)#设置损失�
 #print("end")
 correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
+summaries = tf.summary.merge_all()
 sess.run(tf.global_variables_initializer())
 asd=[]
-for i in range(20000):#训练过程
+for i in range(200):#训练过程
 	batch = mnist.train.next_batch(50)
 	if i%100 == 0:
 		train_accuracy = accuracy.eval(session=sess,feed_dict={x:batch[0], y_: batch[1], keep_prob: 1.0})
 		print("step %d, training accuracy %g"%(i, train_accuracy))
-	sess.run(train_step,feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
+	train,summ= sess.run([train_step,summaries],feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
+	writer.add_summary(summ, global_step=i)
 	sdd=sess.run(W_fc2)
-	print(batch[0])
+	#print(batch[0])
 	if len(asd)==0:
 		asd=sdd
 	if (asd==sdd).all():
@@ -85,6 +90,7 @@ for i in range(20000):#训练过程
 	asd=sdd
   #print(sess.run(h_conv2,feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5}).shape)
 
+#tf.histogram_summary(layer_name + '/pre_activations', preactivate)
 print("test accuracy %g"%accuracy.eval(session=sess,feed_dict={x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}))
 
 
