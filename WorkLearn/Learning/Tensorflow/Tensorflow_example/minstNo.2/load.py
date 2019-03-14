@@ -34,12 +34,14 @@ def bias_variable(shape):
 W_conv1 = weight_variable([5, 5, 1, 32])
 b_conv1 = bias_variable([32])
 tf.summary.histogram('histogram/',W_conv1)#绘制权重的直方图，用来统计各个权重的出现频率用正态分布拟合
-
+tf.summary.histogram("x",x)
 x_image = tf.reshape(x, [-1,28,28,1])
 
 h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)#第一层卷积操作
 tf.summary.image('image/',h_conv1[:,:,:,0:3])#像素图，绘制张量的像素图最后一维必须为1，3或者4（对应灰度图，rgb图以及rgba图）
 h_pool1 = max_pool_2x2(h_conv1)                         #第一层池化层
+tf.summary.histogram("W_conv1",W_conv1)
+tf.summary.histogram("h_conv1",h_conv1)
 
 W_conv2 = weight_variable([5, 5, 32, 64])
 b_conv2 = bias_variable([64])
@@ -47,19 +49,27 @@ b_conv2 = bias_variable([64])
 h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)#第二层卷积操作
 h_pool2 = max_pool_2x2(h_conv2)                         #第二层池化层
 print(h_pool2.shape)
+tf.summary.histogram("W_conv2",W_conv2)
+tf.summary.histogram("h_conv2",h_conv2)
+
 W_fc1 = weight_variable([7 * 7 * 64, 1024])
 b_fc1 = bias_variable([1024])
 
 h_pool2_flat = tf.reshape(h_pool2, [-1, 7*7*64])
 h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, W_fc1) + b_fc1)#全连接层
+tf.summary.histogram("W_fc1",W_fc1)
+tf.summary.histogram("h_fc1",h_fc1)
 
 keep_prob = tf.placeholder("float")
 h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)              #dropout防止过拟合
 
 W_fc2 = weight_variable([1024, 10])
 b_fc2 = bias_variable([10])
+h_fc2=tf.matmul(h_fc1_drop, W_fc2) + b_fc2
+tf.summary.histogram("W_fc2",W_fc2)
+tf.summary.histogram("h_fc2",h_fc2)
 
-y_conv=tf.nn.softmax(tf.matmul(h_fc1_drop, W_fc2) + b_fc2)#将全连接层载入分类器softmax
+y_conv=tf.nn.softmax(h_fc2)#将全连接层载入分类器softmax
 
 
 cross_entropy = -tf.reduce_sum(y_*tf.log(y_conv))         #构建损失函数
@@ -76,12 +86,14 @@ sess = tf.Session()
 sess.run(tf.global_variables_initializer())
 getw_conv1= tf.reshape(W_conv1,[5,5*32])
 asd=[]
-for i in range(100):#训练过程
-	batch = mnist.train.next_batch(50)
+for i in range(1):#训练过程
+	batch = mnist.train.next_batch(1)
+	print("batch:",batch[1])
 	#if i%100 == 0:
 	#	train_accuracy = accuracy.eval(session=sess,feed_dict={x:batch[0], y_: batch[1], keep_prob: 1.0})
 	#	print("step %d, training accuracy %g"%(i, train_accuracy))
-	summ,train= sess.run([summaries,train_step],feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
+	summ,train,y_convyy= sess.run([summaries,train_step,h_fc1_drop],feed_dict={x: np.random.randint(-1,3,(1,784)), y_: batch[1], keep_prob: 0.5})
+	print("max:",y_convyy.max()," min:",y_convyy.min())
 	writer.add_summary(summ, global_step=i)#将本次的整合后的图形添加到summary中
 #	if i==0:
 #		np.savetxt('log/test.out', sess.run(getw_conv1), delimiter=',')

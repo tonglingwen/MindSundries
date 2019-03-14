@@ -30,5 +30,5 @@ class ImageNetDataSet:
 
 	def get_batch_data(self):
 		image_batch, label_batch = tf.train.batch([self.images,self.input_label], batch_size=self.batchsize, num_threads=64, capacity=2048,allow_smaller_final_batch=True)
-		label_batch = tf.one_hot(label_batch,self.classnum,1,0)
+		label_batch = tf.one_hot(label_batch,self.classnum,1.0,0.0,dtype=tf.float32)
 		return image_batch,label_batch
