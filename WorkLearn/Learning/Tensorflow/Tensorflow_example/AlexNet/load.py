@@ -1,4 +1,5 @@
 import readImageNet
+import kaggleCatDogLoad
 import tensorflow as tf
 import numpy as np  
 import os
@@ -14,20 +15,20 @@ cov5=True
 full6=True
 full7=True
 full8=True
-cross=False
+cross=True
 
 ClassNum=2
-ImagePath='C:/Users/25285/Desktop/testdataset'
+ImagePath='C:/Users/25285/Desktop/testdataset/train'
 LabelPath='train_label_origin.txt'
 SavePath='./model/AlexNetModel.ckpt'
-BatchSize=1
+BatchSize=50
 
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 np.set_printoptions(threshold=np.inf)  
 
-dataset = readImageNet.ImageNetDataSet(ImagePath,ClassNum,BatchSize)#加载图片根目录
-dataset.get_labels(LabelPath)
+dataset = kaggleCatDogLoad.ImageNetDataSet(ImagePath,BatchSize)#加载图片根目录
+dataset.get_labels()
 image_batch,label_batch = dataset.get_batch_data()
 
 
@@ -41,7 +42,7 @@ if data:
 	tf.summary.image("input_data",input_data)
 	tf.summary.histogram("x",x)
 
-w_conv1=tf.Variable(tf.truncated_normal([11,11,3,96], stddev=0.1))
+w_conv1=tf.Variable(tf.truncated_normal([11,11,3,96], stddev=0.0001))
 b_conv1=tf.Variable(tf.constant(0.1, shape=[96]))
 h_conv1=tf.nn.relu(tf.nn.conv2d(input_data, w_conv1, strides=[1, 4, 4, 1], padding='VALID')+b_conv1)
 h_pool1=tf.nn.local_response_normalization(tf.nn.max_pool(h_conv1, ksize=[1, 3, 3, 1],strides=[1, 2, 2, 1], padding='VALID'),alpha=0.001/9.0,beta=0.75)
@@ -51,7 +52,7 @@ if cov1:
 	tf.summary.histogram("w_conv1",w_conv1)
 	tf.summary.histogram("h_conv1",h_conv1)
 
-w_conv2=tf.Variable(tf.truncated_normal([5,5,96,256], stddev=0.1))
+w_conv2=tf.Variable(tf.truncated_normal([5,5,96,256], stddev=0.01))
 b_conv2=tf.Variable(tf.constant(0.1, shape=[256]))
 h_conv2=tf.nn.relu(tf.nn.conv2d(h_pool1, w_conv2, strides=[1, 1, 1, 1], padding='SAME')+b_conv2)
 h_pool2=tf.nn.local_response_normalization(tf.nn.max_pool(h_conv2, ksize=[1, 3, 3, 1],strides=[1, 2, 2, 1], padding='VALID'),alpha=0.001/9.0,beta=0.75)
@@ -61,21 +62,21 @@ if cov2:
 	tf.summary.histogram("w_conv2",w_conv2)
 	tf.summary.histogram("h_conv2",h_conv2)
 
-w_conv3=tf.Variable(tf.truncated_normal([3,3,256,384], stddev=0.1))
+w_conv3=tf.Variable(tf.truncated_normal([3,3,256,384], stddev=0.01))
 b_conv3=tf.Variable(tf.constant(0.1, shape=[384]))
 h_conv3=tf.nn.relu(tf.nn.conv2d(h_pool2, w_conv3, strides=[1, 1, 1, 1], padding='SAME')+b_conv3)
 print("h_conv3:",h_conv3.shape)
 if cov3:
 	tf.summary.histogram("h_conv3",h_conv3)
 
-w_conv4=tf.Variable(tf.truncated_normal([3,3,384,384], stddev=0.1))
+w_conv4=tf.Variable(tf.truncated_normal([3,3,384,384], stddev=0.01))
 b_conv4=tf.Variable(tf.constant(0.1, shape=[384]))
 h_conv4=tf.nn.relu(tf.nn.conv2d(h_conv3, w_conv4, strides=[1, 1, 1, 1], padding='SAME')+b_conv4)
 print("h_conv4:",h_conv4.shape)
 if cov4:
 	tf.summary.histogram("h_conv4",h_conv4)
 
-w_conv5=tf.Variable(tf.truncated_normal([3,3,384,256], stddev=0.1))
+w_conv5=tf.Variable(tf.truncated_normal([3,3,384,256], stddev=0.01))
 b_conv5=tf.Variable(tf.constant(0.1, shape=[256]))
 h_conv5=tf.nn.relu(tf.nn.conv2d(h_conv4, w_conv5, strides=[1, 1, 1, 1], padding='SAME')+b_conv5)
 h_pool5=tf.nn.max_pool(h_conv5, ksize=[1, 3, 3, 1],strides=[1, 2, 2, 1], padding='VALID')
@@ -109,15 +110,16 @@ if full7:
 w_softmax=tf.Variable(tf.truncated_normal([4096,2], stddev=0.1))
 tf.summary.histogram("w_softmax",w_softmax)
 b_softmax=tf.Variable(tf.constant(0.1, shape=[ClassNum]))
-y_conv_mat=tf.matmul(h_fc2_drop, w_softmax) + b_softmax
+y_conv=tf.matmul(h_fc2_drop, w_softmax) + b_softmax
+#y_conv_mat=tf.nn.relu(y_conv_mat0)
 #y_conv_mat=y_conv_mat-y_conv_mat[tf.argmax(y_conv_mat)]
-y_conv=tf.nn.softmax(y_conv_mat)
+#y_conv=tf.nn.softmax(y_conv_mat)
 print("y_conv:",y_conv.shape)
 if full8:
 	tf.summary.histogram("y_conv",y_conv)
 	
 y_conv_clip=tf.clip_by_value(y_conv,1e-10,1)
-cross_entropy =-tf.reduce_sum(y_*tf.log(y_conv_clip))#tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits(logits=y_conv,labels=y_))# 
+cross_entropy =tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=y_conv,labels=y_))# -tf.reduce_sum(y_*tf.log(y_conv_clip))#
 train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)#tf.train.GradientDescentOptimizer(1e-4).minimize(cross_entropy)#
 correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
@@ -135,7 +137,7 @@ with tf.Session() as sess:
 	coord = tf.train.Coordinator()
 	threads = tf.train.start_queue_runners(sess=sess, coord=coord)
 	asd=[]
-	for i in range(1):#训练过程
+	for i in range(201):#训练过程
 		try:
 			image_v,label_v=sess.run([image_batch,label_batch])
 			#print(label_v)
@@ -151,9 +153,13 @@ with tf.Session() as sess:
 				train_accuracy = accuracy.eval(session=sess,feed_dict={x:image_v, y_: label_v, keep_prob: 1.0})
 				print("step %d, training accuracy %g"%(i, train_accuracy))
 			#train_step.run(session=sess,feed_dict={x: image_v, y_: label_v, keep_prob: 0.5})
-			train,summ,xxyy =sess.run([train_step,summaries,y_conv_mat],feed_dict={x: image_v, y_: label_v, keep_prob: 0.5})
+			#np.random.randint(0.0,1.0,(1,154587))
+			train,summ,y_conv_out,cross_entropy_out =sess.run([train_step,summaries,y_conv,cross_entropy],feed_dict={x:image_v , y_: label_v, keep_prob: 0.5})
+			print("cross_entropy:",cross_entropy_out)
 			#print("label:",label_v)
-			#print("xxyy:",xxyy)
+			#print("y_conv_out:",y_conv_out)
+			#print("y_conv_mat_out:",y_conv_mat_out)
+			#print("y_conv_mat0_out:",y_conv_mat0_out)
 			writer.add_summary(summ, global_step=i)
 			'''
 			sdd=sess.run(w_full7)
