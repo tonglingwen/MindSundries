@@ -1,0 +1,8 @@
+opencv:
+install:pip install opencv-python
+import:import cv2
+skimage:
+install:pip install -U scikit-image
+import:from skimage import io   #导入io
+scipy:
+install:pip install scipy

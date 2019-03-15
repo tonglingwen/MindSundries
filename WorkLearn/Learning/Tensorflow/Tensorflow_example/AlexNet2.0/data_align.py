@@ -3,7 +3,7 @@ import os
 import numpy as np
 import tensorflow as tf
 from skimage import io
- 
+
 def rebuild(dir):
     for root, dirs, files in os.walk(dir):
         print(root,dirs,files)

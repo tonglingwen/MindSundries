@@ -4,6 +4,25 @@ import time
 import matplotlib.pyplot as plt
 from PIL import Image
 import numpy as np
+
+isBatchNormal=True
+
+def batch_norm(inputs,is_training,is_conv_out=True,decay=0.999):
+	scale=tf.Variable(tf.ones([inputs.get_shape()[-1]]))
+	beta=tf.Variable(tf.zeros([inputs.get_shape()[-1]]))
+	pop_mean=tf.Variable(tf.zeros([inputs.get_shape()[-1]]),trainable=False)
+	pop_var=tf.Variable(tf.ones([inputs.get_shape()[-1]]),trainable=False)
+	if is_training:
+		if is_conv_out:
+			batch_mean,batch_var=tf.nn.moments(inputs,[0,1,2])
+		else:
+			batch_mean,batch_var=tf.nn.moments(inputs,[0])
+		train_mean=tf.assign(pop_mean,pop_mean*decay+batch_mean*(1-decay))
+		train_var=tf.assign(pop_var,pop_var*decay+batch_var*(1-decay))
+		with tf.control_dependencies([train_mean,train_var]):
+			return tf.nn.batch_normalization(inputs,batch_mean,batch_var,beta,scale,0.001)
+	else:
+		return tf.nn.batch_normalization(inputs,pop_mean,pop_var,beta,scale,0.001)
  
 with tf.device('/cpu:0'):
     #参数值设置
@@ -49,6 +68,8 @@ with tf.device('/cpu:0'):
     #第1层卷积层
     conv1=tf.nn.conv2d(x,W_conv['conv1'],strides=[1,4,4,1],padding='VALID')
     conv1=tf.nn.bias_add(conv1,b_conv['conv1'])
+    if isBatchNormal:
+        conv1=batch_norm(conv1,True)
     conv1=tf.nn.relu(conv1)
     #第1层池化层
     pool1=tf.nn.avg_pool(conv1,ksize=[1,3,3,1],strides=[1,2,2,1],padding='VALID')
@@ -58,6 +79,8 @@ with tf.device('/cpu:0'):
     #第2层卷积层
     conv2=tf.nn.conv2d(norml,W_conv['conv2'],strides=[1,1,1,1],padding='SAME')
     conv2=tf.nn.bias_add(conv2,b_conv['conv2'])
+    if isBatchNormal:
+        conv2=batch_norm(conv2,True)
     conv2=tf.nn.relu(conv2)
     #第2层池化层
     pool2=tf.nn.avg_pool(conv2,ksize=[1,3,3,1],strides=[1,2,2,1],padding='VALID')
@@ -67,16 +90,22 @@ with tf.device('/cpu:0'):
     #第3层卷积层
     conv3=tf.nn.conv2d(norm2,W_conv['conv3'],strides=[1,1,1,1],padding='SAME')
     conv3=tf.nn.bias_add(conv3,b_conv['conv3'])
+    if isBatchNormal:
+        conv3=batch_norm(conv3,True)
     conv3=tf.nn.relu(conv3)
  
     #第4层卷积层
     conv4=tf.nn.conv2d(conv3,W_conv['conv4'],strides=[1,1,1,1],padding='SAME')
     conv4=tf.nn.bias_add(conv4,b_conv['conv4'])
+    if isBatchNormal:
+        conv4=batch_norm(conv4,True)
     conv4=tf.nn.relu(conv4)
  
     #第5层卷积层
     conv5=tf.nn.conv2d(conv4,W_conv['conv5'],strides=[1,1,1,1],padding='SAME')
     conv5=tf.nn.bias_add(conv5,b_conv['conv5'])
+    if isBatchNormal:
+        conv5=batch_norm(conv5,True)
     conv5=tf.nn.relu(conv5)
     #第5层池化层
     pool5=tf.nn.avg_pool(conv5,ksize=[1,3,3,1],strides=[1,2,2,1],padding='VALID')
@@ -85,11 +114,15 @@ with tf.device('/cpu:0'):
     # print(pool5.shape)
     reshape=tf.reshape(pool5,[-1,6*6*256])
     fc1=tf.add(tf.matmul(reshape,W_conv['fc1']),b_conv['fc1'])
+    if isBatchNormal:
+        fc1=batch_norm(fc1,True,False)
     fc1 = tf.nn.relu(fc1)
     fc1 = tf.nn.dropout(fc1, 0.5)
  
     #第7层全连接层
     fc2=tf.add(tf.matmul(fc1,W_conv['fc2']),b_conv['fc2'])
+    if isBatchNormal:
+        fc2=batch_norm(fc2,True,False)
     fc2=tf.nn.relu(fc2)
     fc2=tf.nn.dropout(fc2,0.5)
  
@@ -103,7 +136,7 @@ with tf.device('/cpu:0'):
     # labels=tf.argmax(y,axis=1)
     # loss=tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(labels=labels,logits=fc3))
     # loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(labels=fc3, logits=y))
-    loss = -tf.reduce_sum(y*tf.log(tf.clip_by_value(fc3,1e-10,1)))#tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y, logits=fc3))
+    loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y, logits=fc3))#-tf.reduce_sum(y*tf.log(tf.clip_by_value(fc3,1e-10,1)))#
     optimizer=tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(loss)#tf.train.GradientDescentOptimizer(learning_rate=learning_rate).minimize(loss)
     #评估模型
     correct_pred=tf.equal(tf.argmax(fc3,1),tf.argmax(y,1))
@@ -184,7 +217,7 @@ def per_class(imagefile):
 if __name__=='__main__':
     model='train'
     if model=='train':
-        get_images=r'C:/Users/25285/Desktop/testdataset/train'
+        get_images=r'F:/kaggle_cat_dog_dataset/train'
  
         X_train, y_train = data_align.get_file(get_images)
         image_batch, label_batch = data_align.get_batch(X_train, y_train, 227, 227, 50, 900)
