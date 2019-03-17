@@ -3,6 +3,7 @@ import kaggleCatDogLoad
 import numpy as np
 import imagenet_classes
 from scipy.misc import imread,imresize
+import matplotlib.pyplot as plt
 
 ClassNum=1000
 ImagePath='F:/kaggle_cat_dog_dataset/train'
@@ -112,9 +113,11 @@ with tf.Session() as sess:
 	coord = tf.train.Coordinator()
 	threads = tf.train.start_queue_runners(sess=sess, coord=coord)
 
-	for i in range(9):
+	for i in range(1):
 		img1=imread('dog.'+str(i)+'.jpg',mode='RGB')
-		img1=imresize(img1,(224,224))
+		img1=imresize(img1,(224,224))#图片整体缩放
+		plt.imshow(img1) # 显示图片
+		plt.show()
 		image_v,label_v=sess.run([image_batch,label_batch])
 		cal_result= sess.run(y_conv,feed_dict={x:[img1], keep_prob: 1.0})[0]
 		preds=(np.argsort(cal_result)[::-1])[0:5]
