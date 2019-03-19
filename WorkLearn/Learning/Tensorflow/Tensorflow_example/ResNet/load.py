@@ -1,6 +1,7 @@
 import tensorflow as tf
 import readImageNet
 from scipy.misc import imread,imresize
+import kaggleCatDogLoad
 
 def batch_norm(inputs,is_training,is_conv_out=True,decay=0.999):
 	scale=tf.Variable(tf.ones([inputs.get_shape()[-1]]))
@@ -28,7 +29,7 @@ def residual_2(input,out_channel):
 		h_conv=tf.nn.conv2d(input, w_conv, strides=[1, 2, 2, 1], padding='SAME')+b_conv
 	else:
 		h_conv=tf.nn.conv2d(input, w_conv, strides=[1, 1, 1, 1], padding='SAME')+b_conv
-	batch_norm(h_conv,True)
+	h_conv=batch_norm(h_conv,True)
 	h_conv= tf.nn.relu(h_conv)
 	w_conv1=tf.Variable(tf.truncated_normal([3,3,out_channel[0],out_channel[1]],stddev=0.0001))
 	b_conv1=tf.Variable(tf.constant(0.1,shape=[out_channel[1]]))
@@ -36,7 +37,7 @@ def residual_2(input,out_channel):
 	h_conv1= batch_norm(h_conv1,True)
 	h_conv1= tf.nn.relu(h_conv1)
 	if isChange:
-		w_conv2=tf.Variable(tf.truncated_normal([3,3,channel,out_channel[1]],stddev=0.0001))
+		w_conv2=tf.Variable(tf.truncated_normal([1,1,channel,out_channel[1]],stddev=0.0001))
 		b_conv2=tf.Variable(tf.constant(0.1,shape=[out_channel[1]]))
 		input=tf.nn.conv2d(input,w_conv2,strides=[1,2,2,1],padding='SAME')+b_conv2
 		input=batch_norm(input,True)
@@ -67,15 +68,17 @@ def residual_3(input,out_channel):
 	return h_conv2+input
 
 
-ClassNum=1000
-ImagePath='F:/ILSVRC2012_dataset/image_train'
+ClassNum=2
+ImagePath='F:/kaggle_cat_dog_dataset/train'
 LabelPath='train_label.txt'
 SavePath='./model/AlexNetModel.ckpt'
-BatchSize=50
+BatchSize=100
 
-	
-dataset = readImageNet.ImageNetDataSet(ImagePath,ClassNum,BatchSize)#加载图片根目录
-dataset.get_labels(LabelPath)
+dataset = kaggleCatDogLoad.ImageNetDataSet(ImagePath,BatchSize)#加载图片根目录
+dataset.get_labels()
+
+#dataset = readImageNet.ImageNetDataSet(ImagePath,ClassNum,BatchSize)#加载图片根目录
+#dataset.get_labels(LabelPath)
 image_batch,label_batch = dataset.get_batch_data()
 
 	
@@ -106,9 +109,9 @@ h_residual11=residual_2(h_residual10,[256,256])
 h_residual12=residual_2(h_residual11,[256,256])
 h_residual13=residual_2(h_residual12,[256,256])
 
-h_residual13=residual_2(h_residual12,[512,512])
 h_residual14=residual_2(h_residual13,[512,512])
 h_residual15=residual_2(h_residual14,[512,512])
+h_residual16=residual_2(h_residual15,[512,512])
 
 '''
 h_residual1=residual_3(h_pool1,[64,64,64])
@@ -131,7 +134,7 @@ h_residual13=residual_3(h_residual12,[512,512,512])
 h_residual14=residual_3(h_residual13,[512,512,512])
 h_residual15=residual_3(h_residual14,[512,512,512])
 '''
-h_pool2=tf.nn.avg_pool(h_residual15, ksize=[1, 7, 7, 1],strides=[1, 1, 1, 1], padding='VALID')
+h_pool2=tf.nn.avg_pool(h_residual16, ksize=[1, 7, 7, 1],strides=[1, 1, 1, 1], padding='VALID')
 
 h_fc=tf.reshape(h_pool2,[-1,1*1*512])
 
@@ -140,7 +143,7 @@ b_fc=tf.Variable(tf.constant(0.1,shape=[1000]))
 h_fc=tf.matmul(h_fc,w_fc)+b_fc
 
 cross_entropy =tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=h_fc,labels=y_))# -tf.reduce_sum(y_*tf.log(y_conv_clip))#
-train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)#tf.train.GradientDescentOptimizer(1e-4).minimize(cross_entropy)#
+train_step = tf.train.AdamOptimizer(1e-3).minimize(cross_entropy)#tf.train.GradientDescentOptimizer(1e-4).minimize(cross_entropy)#
 
 saver=tf.train.Saver()#保存模型
 sess=tf.Session()
@@ -150,10 +153,10 @@ sess.run(tf.local_variables_initializer())
 #saver.restore(sess,save_model)
 coord = tf.train.Coordinator()
 threads = tf.train.start_queue_runners(sess=sess, coord=coord)
-for i in range(1):
+for i in range(100):
 	image_v,label_v=sess.run([image_batch,label_batch])
 	train_step_out,cross_entropy_out=sess.run([train_step,cross_entropy],feed_dict={x:image_v,y_:label_v})
-	print("cross_entropy",cross_entropy_out)
+	print("cross_entropy"+str(i),cross_entropy_out)
 saver=tf.train.Saver()
 saver.save(sess,SavePath)
 coord.request_stop()
