@@ -21,8 +21,9 @@ def batch_norm(inputs,is_training,is_conv_out=True,decay=0.999):
 		return tf.nn.batch_normalization(inputs,pop_mean,pop_var,beta,scale,0.001)
 
 def residual_2(input,out_channel,i):
-	scope=str(i)
-	with tf.variable_scope("residual_2_"+scope):
+	attach=str(i)
+	with tf.variable_scope("residual_2_"+attach) as scope:
+		scope.reuse_variables()
 		channel =int(input.get_shape()[3])
 		isChange=(channel!=out_channel[1])
 		w_conv=tf.get_variable("w_conv",initializer=tf.truncated_normal([3,3,channel,out_channel[0]],stddev=0.0001))
@@ -71,7 +72,7 @@ def residual_3(input,out_channel):
 
 
 ClassNum=2
-ImagePath='C:/Users/25285/Desktop/testdataset/train'
+ImagePath='F:/kaggle_cat_dog_dataset/train'
 LabelPath='train_label.txt'
 SavePath='./model/AlexNetModel.ckpt'
 BatchSize=50
@@ -96,6 +97,13 @@ h_pool1=tf.nn.max_pool(h_conv, ksize=[1, 3, 3, 1],strides=[1, 2, 2, 1], padding=
 
 
 h_residual1=residual_2(h_pool1,[64,64],0)
+'''
+with tf.variable_scope("residual_2_0"):
+	tf.summary.histogram("residual_2_0_w_conv",tf.get_variable('w_conv'))
+	tf.summary.histogram("residual_2_0_h_conv",tf.get_variable('h_conv'))
+	tf.summary.histogram("residual_2_0_w_conv1",tf.get_variable('w_conv1'))
+	tf.summary.histogram("residual_2_0_h_conv1",tf.get_variable('h_conv1'))
+'''
 h_residual2=residual_2(h_residual1,[64,64],1)
 h_residual3=residual_2(h_residual2,[64,64],2)
 
@@ -147,6 +155,9 @@ h_fc=tf.matmul(h_fc,w_fc)+b_fc
 cross_entropy =tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=h_fc,labels=y_))# -tf.reduce_sum(y_*tf.log(y_conv_clip))#
 train_step = tf.train.AdamOptimizer(1e-3).minimize(cross_entropy)#tf.train.GradientDescentOptimizer(1e-4).minimize(cross_entropy)#
 
+writer=tf.summary.FileWriter("log/")
+summaries=tf.summary.merge_all()
+
 saver=tf.train.Saver()#保存模型
 sess=tf.Session()
 sess.run(tf.global_variables_initializer())
@@ -157,8 +168,9 @@ coord = tf.train.Coordinator()
 threads = tf.train.start_queue_runners(sess=sess, coord=coord)
 for i in range(300):
 	image_v,label_v=sess.run([image_batch,label_batch])
-	train_step_out,cross_entropy_out=sess.run([train_step,cross_entropy],feed_dict={x:image_v,y_:label_v})
-	print("cross_entropy"+str(i),cross_entropy_out)
+	train_step_out,cross_entropy_out,summaries_out=sess.run([train_step,cross_entropy,summaries],feed_dict={x:image_v,y_:label_v})
+	writer.add_summary(summaries)
+	print("cross_entropy:"+str(i),cross_entropy_out)
 saver=tf.train.Saver()
 saver.save(sess,SavePath)
 coord.request_stop()

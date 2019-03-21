@@ -9,3 +9,6 @@ install:pip install scipy
 matplotlib:
 install:pip install matplotlib
 import:import matplotlib.pyplot as plt
+升级tensorflow:
+pip install --upgrade tensorflow-gpu==1.10 升级到(1.10)版
+pip install --upgrade tensorflow-gpu       升级到最新版
