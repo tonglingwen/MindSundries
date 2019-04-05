@@ -173,6 +173,8 @@ if cross and isTraining:
 if isTraining:
 	writer = tf.summary.FileWriter("log/")#创建summary
 	summaries = tf.summary.merge_all()#整合所有要绘制的图形
+images_single=np.array([1])
+labels_single=np.array([1])
 saver=tf.train.Saver()#保存模型
 with tf.Session() as sess:
 	sess.run(tf.global_variables_initializer())
@@ -182,7 +184,7 @@ with tf.Session() as sess:
 	coord = tf.train.Coordinator()
 	threads = tf.train.start_queue_runners(sess=sess, coord=coord)
 	asd=[]
-	for i in range(1601):#训练过程
+	for i in range(20):#训练过程
 		try:
 			image_v,label_v=sess.run([image_batch,label_batch])
 			#print(label_v)

@@ -133,7 +133,7 @@ def get_batch(image_list,label_list,img_width,img_height,batch_size,capacity):
     image=tf.cast(image_list,tf.string)
     label=tf.cast(label_list,tf.int32)
  
-    input_queue=tf.train.slice_input_producer([image,label])
+    input_queue=tf.train.slice_input_producer([image,label],num_epochs=None)
     label=input_queue[1]
     image_contents=tf.read_file(input_queue[0])
     image=tf.image.decode_jpeg(image_contents,channels=3)

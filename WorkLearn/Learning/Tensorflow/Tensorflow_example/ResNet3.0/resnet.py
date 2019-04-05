@@ -312,7 +312,7 @@ def time_tensorflow_run(session, target, info_string):
 batch_size = 1
 height, width = 224, 224
 
-reader=kaggleCatDogLoad.ImageNetDataSet("C:/Users/25285/Desktop/testdataset/train",batch_size)
+reader=kaggleCatDogLoad.ImageNetDataSet("F:/kaggle_cat_dog_dataset/train",batch_size)
 reader.get_labels()
 images,labels=reader.get_batch_data()
 x = tf.placeholder("float", [None, 224*224*3])
@@ -323,9 +323,10 @@ tf.summary.image("input_data",input_data)
 inputs = tf.random_uniform((batch_size, height, width, 3))
 with slim.arg_scope(resnet_arg_scope(is_training=True)):
     net, end_points = resnet_v2_152(input_data, 2)
-y_conv=tf.reshape(end_points['prediction'],[-1,2])
+#end_points['prediction']
+y_conv=tf.reshape(net,[-1,2])
 #tf.nn.softmax_cross_entropy_with_logits(logits=y_conv,labels=y_))# 
-cross_entropy =tf.reduce_mean(-tf.reduce_sum(y_*tf.log(tf.clip_by_value(y_conv,1e-8,1))))#tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=y_conv,labels=y_))#
+cross_entropy =tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=y_conv,labels=y_))#tf.reduce_mean(-tf.reduce_sum(y_*tf.log(tf.clip_by_value(y_conv,1e-8,1))))#
 train_step = tf.train.AdamOptimizer(1).minimize(cross_entropy)#tf.train.GradientDescentOptimizer(1e-4).minimize(cross_entropy)#
 print("prediction:",y_conv.shape)
 correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1))

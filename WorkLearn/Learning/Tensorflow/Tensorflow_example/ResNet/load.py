@@ -2,6 +2,7 @@ import tensorflow as tf
 import readImageNet
 from scipy.misc import imread,imresize
 import kaggleCatDogLoad
+import numpy as np
 
 def batch_norm(inputs,is_training,is_conv_out=True,decay=0.999):
 	scale=tf.Variable(tf.ones([inputs.get_shape()[-1]]))
@@ -22,30 +23,30 @@ def batch_norm(inputs,is_training,is_conv_out=True,decay=0.999):
 
 def residual_2(input,out_channel,i):
 	attach=str(i)
-	with tf.variable_scope("residual_2_"+attach) as scope:
-		scope.reuse_variables()
-		channel =int(input.get_shape()[3])
-		isChange=(channel!=out_channel[1])
-		w_conv=tf.get_variable("w_conv",initializer=tf.truncated_normal([3,3,channel,out_channel[0]],stddev=0.0001))
-		b_conv=tf.get_variable("b_conv",initializer=tf.constant(0.1,shape=[out_channel[0]]))
-		if isChange:
-			h_conv=tf.nn.conv2d(input, w_conv, strides=[1, 2, 2, 1], padding='SAME')+b_conv
-		else:
-			h_conv=tf.nn.conv2d(input, w_conv, strides=[1, 1, 1, 1], padding='SAME')+b_conv
-		h_conv=batch_norm(h_conv,True)
-		h_conv= tf.nn.relu(h_conv)
-		w_conv1=tf.get_variable("w_conv1",initializer=tf.truncated_normal([3,3,out_channel[0],out_channel[1]],stddev=0.0001))
-		b_conv1=tf.get_variable("b_conv1",initializer=tf.constant(0.1,shape=[out_channel[1]]))
-		h_conv1=tf.nn.conv2d(h_conv, w_conv1, strides=[1, 1, 1, 1], padding='SAME')+b_conv1
-		h_conv1= batch_norm(h_conv1,True)
-		h_conv1= tf.nn.relu(h_conv1)
-		if isChange:
-			w_conv2=tf.get_variable("w_conv2",initializer=tf.truncated_normal([1,1,channel,out_channel[1]],stddev=0.0001))
-			b_conv2=tf.get_variable("b_conv2",initializer=tf.constant(0.1,shape=[out_channel[1]]))
-			input=tf.nn.conv2d(input,w_conv2,strides=[1,2,2,1],padding='SAME')+b_conv2
-			input=batch_norm(input,True)
-			input=tf.nn.relu(input)
-		return h_conv1+input
+	#with tf.variable_scope("residual_2_"+attach) as scope:
+	#scope.reuse_variables()
+	channel =int(input.get_shape()[3])
+	isChange=(channel!=out_channel[1])
+	w_conv=tf.get_variable("w_conv_"+str(i),initializer=tf.truncated_normal([3,3,channel,out_channel[0]],stddev=0.0001))
+	b_conv=tf.get_variable("b_conv_"+str(i),initializer=tf.constant(0.1,shape=[out_channel[0]]))
+	if isChange:
+		h_conv=tf.nn.conv2d(input, w_conv, strides=[1, 2, 2, 1], padding='SAME')+b_conv
+	else:
+		h_conv=tf.nn.conv2d(input, w_conv, strides=[1, 1, 1, 1], padding='SAME')+b_conv
+	h_conv=batch_norm(h_conv,True)
+	h_conv= tf.nn.relu(h_conv)
+	w_conv1=tf.get_variable("w_conv1_"+str(i),initializer=tf.truncated_normal([3,3,out_channel[0],out_channel[1]],stddev=0.0001))
+	b_conv1=tf.get_variable("b_conv1_"+str(i),initializer=tf.constant(0.1,shape=[out_channel[1]]))
+	h_conv1=tf.nn.conv2d(h_conv, w_conv1, strides=[1, 1, 1, 1], padding='SAME')+b_conv1
+	h_conv1= batch_norm(h_conv1,True)
+	h_conv1= tf.nn.relu(h_conv1)
+	if isChange:
+		w_conv2=tf.get_variable("w_conv2_"+str(i),initializer=tf.truncated_normal([1,1,channel,out_channel[1]],stddev=0.0001))
+		b_conv2=tf.get_variable("b_conv2_"+str(i),initializer=tf.constant(0.1,shape=[out_channel[1]]))
+		input=tf.nn.conv2d(input,w_conv2,strides=[1,2,2,1],padding='SAME')+b_conv2
+		input=batch_norm(input,True)
+		input=tf.nn.relu(input)
+	return h_conv1+input
 	
 
 def residual_3(input,out_channel):
@@ -75,7 +76,7 @@ ClassNum=2
 ImagePath='F:/kaggle_cat_dog_dataset/train'
 LabelPath='train_label.txt'
 SavePath='./model/AlexNetModel.ckpt'
-BatchSize=50
+BatchSize=1
 
 dataset = kaggleCatDogLoad.ImageNetDataSet(ImagePath,BatchSize)#加载图片根目录
 dataset.get_labels()
@@ -159,6 +160,8 @@ writer=tf.summary.FileWriter("log/")
 summaries=tf.summary.merge_all()
 
 saver=tf.train.Saver()#保存模型
+images_single=np.array([1])
+labels_single=np.array([1])
 sess=tf.Session()
 sess.run(tf.global_variables_initializer())
 sess.run(tf.local_variables_initializer())
@@ -166,12 +169,24 @@ sess.run(tf.local_variables_initializer())
 #saver.restore(sess,save_model)
 coord = tf.train.Coordinator()
 threads = tf.train.start_queue_runners(sess=sess, coord=coord)
-for i in range(300):
+for i in range(10):
 	image_v,label_v=sess.run([image_batch,label_batch])
+	'''
+	if images_single.size==1:
+		#images_single=image_v
+		#labels_single=label_v
+		#np.save("images.npy",images_single)
+		#np.save("labels.npy",labels_single)
+		images_single=np.load("images.npy")
+		labels_single=np.load("labels.npy")
+		#print(images_single)
+		#print(images_single.shape)
+		#print(labels_single.shape)
+	'''
 	train_step_out,cross_entropy_out,summaries_out=sess.run([train_step,cross_entropy,summaries],feed_dict={x:image_v,y_:label_v})
-	writer.add_summary(summaries)
+	writer.add_summary(summaries_out)
 	print("cross_entropy:"+str(i),cross_entropy_out)
-saver=tf.train.Saver()
+#saver=tf.train.Saver()
 saver.save(sess,SavePath)
 coord.request_stop()
 coord.join(threads)

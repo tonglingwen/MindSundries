@@ -213,14 +213,20 @@ def per_class(imagefile):
             return "cat"
         else:
             return "dog"
- 
+images_single=np.array([1])
+labels_single=np.array([1])
 if __name__=='__main__':
     model='train'
     if model=='train':
         get_images=r'F:/kaggle_cat_dog_dataset/train'
  
         X_train, y_train = data_align.get_file(get_images)
-        image_batch, label_batch = data_align.get_batch(X_train, y_train, 227, 227, 50, 900)
+        image_batch, label_batch = data_align.get_batch(X_train, y_train, 227, 227, 1, 900000)
+        if images_single.size==1:
+            images_single=image_batch
+            labels_single=label_batch
+            #np.save("image.npy",images_single)
+            #np.save("label.npy",labels_single)
         train(90)
     elif model=='test':
         imagefile = r'.//9.jpg'
