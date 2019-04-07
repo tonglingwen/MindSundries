@@ -3,6 +3,10 @@ import readImageNet
 from scipy.misc import imread,imresize
 import kaggleCatDogLoad
 import numpy as np
+import os
+
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
+np.set_printoptions(threshold=np.inf)
 
 def loadWeights(sess):
 	dict=np.load("weights.npy").item()
@@ -118,10 +122,10 @@ dataset.get_labels()
 #dataset.get_labels(LabelPath)
 image_batch,label_batch = dataset.get_batch_data()
 
-x = tf.placeholder("float", [None, 224*224*3])
+x = tf.placeholder("float", [None, 276*657*3])
 y_ = tf.placeholder("float", [None,ClassNum])
 #input_d=tf.get_variable("input_data0",initializer=tf.truncated_normal([1,224,224,3],stddev=0.0001))
-input_d=tf.reshape(x,[-1,224,224,3])
+input_d=tf.reshape(x,[-1,276,657,3])
 input_dd=tf.get_variable("input_data0",initializer=tf.truncated_normal([1,224,224,3],stddev=0.0001))
 
 #input_dd=tf.get_variable("input_data0",initializer=tf.truncated_normal([1,224,224,3],stddev=0.0001))
@@ -164,6 +168,11 @@ h_residual14=residual_2(h_residual13,[512,512],13,training)
 h_residual15=residual_2(h_residual14,[512,512],14,training)
 h_residual16=residual_2(h_residual15,[512,512],15,training)
 
+
+
+
+
+
 '''
 h_residual1=residual_3(h_pool1,[64,64,64],0)
 h_residual2=residual_3(h_residual1,[64,64,64],1)
@@ -186,7 +195,11 @@ h_residual15=residual_3(h_residual14,[512,512,512],14)
 h_residual16=residual_3(h_residual15,[512,512,512],15)
 '''
 
+
 h_pool2=tf.nn.avg_pool(h_residual16, ksize=[1, 7, 7, 1],strides=[1, 1, 1, 1], padding='VALID')
+
+
+
 
 h_fc=tf.reshape(h_pool2,[-1,1*1*512])
 
@@ -253,8 +266,8 @@ for i in range(1):
 	
 	#train_step_out,cross_entropy_out,summaries_out=sess.run([train_step,cross_entropy,summaries],feed_dict={y_:[[1.0,0.0]]})
 	#train_step_out,cross_entropy_out,summaries_out=sess.run([train_step,cross_entropy,summaries],feed_dict={x:image_v,y_:label_v})
-	accuracy_out=sess.run(accuracy,feed_dict={x:image_v,y_:label_v})
-	print("accuracy:",accuracy_out)
+	#accuracy_out=sess.run(accuracy,feed_dict={x:image_v,y_:label_v})
+	#print("accuracy:",accuracy_out)
 	#writer.add_summary(summaries_out)
 	#print("cross_entropy:"+str(i),cross_entropy_out)
 '''
@@ -264,7 +277,7 @@ for var in variables:
 	weightDict[var.name]=sess.run(var)
 np.save("weights.npy",weightDict)
 '''
-saveWeight()
+#saveWeight()
 #saver=tf.train.Saver()
 #saver.save(sess,SavePath)
 coord.request_stop()
