@@ -23,22 +23,16 @@ def sppnet(data,pyramid=[3,2,1]):
 			result=h_pool2
 		else:
 			result=tf.concat([result,h_pool2],1)
-	return result
+	r=result
+	result=tf.constant([1],shape=[1])
+	return r
 
-x = tf.placeholder("float", [21,324])
-y = tf.placeholder("float", [21,432])
-tf.concat([x,y],1)
+'''
+x = tf.placeholder("float", [None, 227,227,3])
+sppnet(x)
+'''
 
 
-x = tf.placeholder("float", [None, 10,10,512])
-y=sppnet(x,pyramid=[4,2,1])
-
-
-sess=tf.Session()
-sess.run(tf.global_variables_initializer())
-for i in range(10):
-	n=np.ones((64,10,10,512))
-	print(sess.run(y,feed_dict={x:n}).shape)
 
 
 

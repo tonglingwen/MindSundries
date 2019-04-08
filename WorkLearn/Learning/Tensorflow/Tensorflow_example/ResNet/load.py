@@ -1,5 +1,7 @@
 import tensorflow as tf
 import readImageNet
+import sppnet
+
 from scipy.misc import imread,imresize
 import kaggleCatDogLoad
 import numpy as np
@@ -8,20 +10,33 @@ import os
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 np.set_printoptions(threshold=np.inf)
 
+weightNames=[]
+
 def loadWeights(sess):
 	dict=np.load("weights.npy").item()
 	variables=tf.global_variables()
 	for var in variables:
-		if var.name in dict.keys():
-			cons=tf.constant(dict[var.name])
-			ass=tf.assign(var,cons)
-			sess.run(ass)
+		try:
+			if var.name in dict.keys():
+				weightNames.append(var.name)
+				cons=tf.constant(dict[var.name])
+				ass=tf.assign(var,cons)
+				sess.run(ass)
+		except BaseException as e:
+			print("加载权重时出现异常")
+		else:
+			pass
 
 def saveWeight():
 	weightDict={}
-	variables=tf.trainable_variables()
+	variables=tf.global_variables()
 	for var in variables:
-		weightDict[var.name]=sess.run(var)
+		try:
+			weightDict[var.name]=sess.run(var)
+		except BaseException as e:
+			pass
+		else:
+			pass
 	np.save("weights.npy",weightDict)
 
 def batch_norm(inputs,is_training,is_conv_out=True,decay=0.999,training=None):
@@ -113,7 +128,8 @@ ImagePath='F:/kaggle_cat_dog_dataset/test1'
 LabelPath='train_label.txt'
 SavePath='./model/AlexNetModel.ckpt'
 BatchSize=64
-training=True
+training=False
+trainingFc=True
 
 dataset = kaggleCatDogLoad.ImageNetDataSet(ImagePath,BatchSize)#加载图片根目录
 dataset.get_labels()
@@ -122,10 +138,10 @@ dataset.get_labels()
 #dataset.get_labels(LabelPath)
 image_batch,label_batch = dataset.get_batch_data()
 
-x = tf.placeholder("float", [None, 276*657*3])
+x = tf.placeholder("float", [None, 224*224*3])
 y_ = tf.placeholder("float", [None,ClassNum])
 #input_d=tf.get_variable("input_data0",initializer=tf.truncated_normal([1,224,224,3],stddev=0.0001))
-input_d=tf.reshape(x,[-1,276,657,3])
+input_d=tf.reshape(x,[-1,224,224,3])
 input_dd=tf.get_variable("input_data0",initializer=tf.truncated_normal([1,224,224,3],stddev=0.0001))
 
 #input_dd=tf.get_variable("input_data0",initializer=tf.truncated_normal([1,224,224,3],stddev=0.0001))
@@ -196,15 +212,14 @@ h_residual16=residual_3(h_residual15,[512,512,512],15)
 '''
 
 
-h_pool2=tf.nn.avg_pool(h_residual16, ksize=[1, 7, 7, 1],strides=[1, 1, 1, 1], padding='VALID')
+#h_pool2=tf.nn.avg_pool(h_residual16, ksize=[1, 7, 7, 1],strides=[1, 1, 1, 1], padding='VALID')
+#h_fc=tf.reshape(h_pool2,[-1,(4*4+2*+1*1)*512])
 
+h_fc=sppnet.sppnet(h_residual16)
+print("h_fc::::::::::::::",h_fc)
 
-
-
-h_fc=tf.reshape(h_pool2,[-1,1*1*512])
-
-w_fc=tf.Variable(tf.truncated_normal([1*1*512,ClassNum],stddev=0.01),trainable=training)
-b_fc=tf.Variable(tf.constant(0.1,shape=[ClassNum]),trainable=training)
+w_fc=tf.Variable(tf.truncated_normal([(3*3+2*2+1*1)*512,ClassNum],stddev=0.01),trainable=trainingFc)
+b_fc=tf.Variable(tf.constant(0.1,shape=[ClassNum]),trainable=trainingFc)
 h_fc=tf.matmul(h_fc,w_fc)+b_fc
 
 cross_entropy =tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=h_fc,labels=y_))# -tf.reduce_sum(y_*tf.log(y_conv_clip))#
@@ -219,10 +234,11 @@ summaries=tf.summary.merge_all()
 images_single=np.array([1])
 labels_single=np.array([1])
 
-
+'''
 image_test=tf.image.decode_jpeg(tf.read_file('E:/Work/MindSundries/WorkLearn/Learning/Tensorflow/Tensorflow_example/ResNet/581.jpg'),channels=3)
 image_test =tf.image.resize_images(image_test, size=[224, 224])
 image_test=tf.image.per_image_standardization(image_test)
+'''
 
 sess=tf.Session()
 #saver=tf.train.Saver()#保存模型
@@ -236,13 +252,13 @@ loadWeights(sess)
 coord = tf.train.Coordinator()
 threads = tf.train.start_queue_runners(sess=sess, coord=coord)
 
-
+'''
 image_test_out=sess.run(image_test)
 image_test_out=np.expand_dims(image_test_out,axis=0)
 sess.run(tf.assign(input_dd,tf.constant(image_test_out)))
-
+'''
 #print(sess.run(input_dd))
-for i in range(1):
+for i in range(4000):
 	image_v,label_v=sess.run([image_batch,label_batch])
 	
 	
@@ -265,11 +281,11 @@ for i in range(1):
 		#print(labels_single.shape)
 	
 	#train_step_out,cross_entropy_out,summaries_out=sess.run([train_step,cross_entropy,summaries],feed_dict={y_:[[1.0,0.0]]})
-	#train_step_out,cross_entropy_out,summaries_out=sess.run([train_step,cross_entropy,summaries],feed_dict={x:image_v,y_:label_v})
+	train_step_out,cross_entropy_out,summaries_out=sess.run([train_step,cross_entropy,summaries],feed_dict={x:image_v,y_:label_v})
 	#accuracy_out=sess.run(accuracy,feed_dict={x:image_v,y_:label_v})
 	#print("accuracy:",accuracy_out)
 	#writer.add_summary(summaries_out)
-	#print("cross_entropy:"+str(i),cross_entropy_out)
+	print("cross_entropy:"+str(i),cross_entropy_out)
 '''
 weightDict={}
 variables=tf.trainable_variables()
@@ -277,7 +293,7 @@ for var in variables:
 	weightDict[var.name]=sess.run(var)
 np.save("weights.npy",weightDict)
 '''
-#saveWeight()
+saveWeight()
 #saver=tf.train.Saver()
 #saver.save(sess,SavePath)
 coord.request_stop()
