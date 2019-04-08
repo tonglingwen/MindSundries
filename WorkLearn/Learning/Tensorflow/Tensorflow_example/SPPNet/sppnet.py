@@ -14,8 +14,10 @@ def sppnet(data,pyramid=[3,2,1]):
 		hi=h/i
 		wksize=math.ceil(wi)
 		wstrides=math.floor(wi)
+		wstrides=(1 if wstrides==0 else wstrides)
 		hksize=math.ceil(hi)
 		hstrides=math.floor(hi)
+		hstrides=(1 if hstrides==0 else hstrides)
 		h_pool2=tf.nn.avg_pool(data, ksize=[1, wksize, hksize, 1],strides=[1, wstrides, hstrides, 1], padding='VALID')
 		h_pool2=tf.reshape(h_pool2,[-1,dims*i*i])
 		if index==0:
@@ -26,6 +28,6 @@ def sppnet(data,pyramid=[3,2,1]):
 	return result
 
 
-x = tf.placeholder("float", [None, 3,3,512])
+x = tf.placeholder("float", [None, 1,1,512])
 
 print(sppnet(x))
