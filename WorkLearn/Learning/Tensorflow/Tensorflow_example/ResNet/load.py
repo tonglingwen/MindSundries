@@ -40,8 +40,8 @@ def saveWeight():
 	np.save("weights.npy",weightDict)
 
 def batch_norm(inputs,is_training,is_conv_out=True,decay=0.999,training=None):
-	scale=tf.Variable(tf.ones([inputs.get_shape()[-1]]),trainable=training)
-	beta=tf.Variable(tf.zeros([inputs.get_shape()[-1]]),trainable=training)
+	scale=tf.Variable(tf.ones([inputs.get_shape()[-1]]),trainable=False)
+	beta=tf.Variable(tf.zeros([inputs.get_shape()[-1]]),trainable=False)
 	pop_mean=tf.Variable(tf.zeros([inputs.get_shape()[-1]]),trainable=False)
 	pop_var=tf.Variable(tf.ones([inputs.get_shape()[-1]]),trainable=False)
 	if is_training:
@@ -128,8 +128,11 @@ ImagePath='F:/kaggle_cat_dog_dataset/test1'
 LabelPath='train_label.txt'
 SavePath='./model/AlexNetModel.ckpt'
 BatchSize=64
-training=False
+training=True
 trainingFc=True
+
+w=224
+h=224
 
 dataset = kaggleCatDogLoad.ImageNetDataSet(ImagePath,BatchSize)#加载图片根目录
 dataset.get_labels()
@@ -138,11 +141,11 @@ dataset.get_labels()
 #dataset.get_labels(LabelPath)
 image_batch,label_batch = dataset.get_batch_data()
 
-x = tf.placeholder("float", [None, 224*224*3])
+x = tf.placeholder("float", [None, w*h*3])
 y_ = tf.placeholder("float", [None,ClassNum])
 #input_d=tf.get_variable("input_data0",initializer=tf.truncated_normal([1,224,224,3],stddev=0.0001))
-input_d=tf.reshape(x,[-1,224,224,3])
-input_dd=tf.get_variable("input_data0",initializer=tf.truncated_normal([1,224,224,3],stddev=0.0001))
+input_d=tf.reshape(x,[-1,w,h,3])
+input_dd=tf.get_variable("input_data0",initializer=tf.truncated_normal([1,w,h,3],stddev=0.0001))
 
 #input_dd=tf.get_variable("input_data0",initializer=tf.truncated_normal([1,224,224,3],stddev=0.0001))
 #input_dd=tf.get_variable("input_data0",initializer=tf.truncated_normal([1,224,224,3],stddev=0.0001))
@@ -234,11 +237,11 @@ summaries=tf.summary.merge_all()
 images_single=np.array([1])
 labels_single=np.array([1])
 
-'''
+
 image_test=tf.image.decode_jpeg(tf.read_file('E:/Work/MindSundries/WorkLearn/Learning/Tensorflow/Tensorflow_example/ResNet/581.jpg'),channels=3)
-image_test =tf.image.resize_images(image_test, size=[224, 224])
+#image_test =tf.image.resize_images(image_test, size=[224, 224])
 image_test=tf.image.per_image_standardization(image_test)
-'''
+
 
 sess=tf.Session()
 #saver=tf.train.Saver()#保存模型
