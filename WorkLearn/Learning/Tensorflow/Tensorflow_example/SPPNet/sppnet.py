@@ -2,7 +2,7 @@ import tensorflow as tf
 import math
 import numpy as np
 
-def sppnet(data,pyramid=[3,2,1]):
+def sppnet(data,pyramid=[4,2,1]):
 	result=[]
 	shape= data.get_shape().as_list()
 	w=shape[1]
@@ -28,6 +28,6 @@ def sppnet(data,pyramid=[3,2,1]):
 	return result
 
 
-x = tf.placeholder("float", [None, 1,1,512])
+x = tf.placeholder("float", [None, 7,7,512])
 
-print(sppnet(x))
+print(sppnet(x,pyramid=[2,1]))

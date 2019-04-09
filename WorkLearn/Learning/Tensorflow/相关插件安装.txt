@@ -1,5 +1,7 @@
 opencv:
 install:pip install opencv-python
+install:pip3 install opencv-python==3.4.2.16
+install:pip3 install opencv-contrib-python==3.4.2.16
 import:import cv2
 skimage:
 install:pip install -U scikit-image
