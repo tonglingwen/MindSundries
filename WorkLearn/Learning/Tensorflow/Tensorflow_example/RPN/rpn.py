@@ -1,6 +1,8 @@
 import tensorflow as tf
 import numpy as np
 
+np.set_printoptions(threshold=np.inf)  
+
 def rpn(data):
 	return ""
 
@@ -27,11 +29,11 @@ def conv_layer(data):
 	return result
 
 
-def get_All_Anchor(width=60,height=40,ratios=[0.5,1,2],scale=[8,16,32]):#获取所有anchors
+def get_All_Anchor(width=60,height=40,stride=[224/60.0,224/40.0],ratios=[0.5,1,2],scale=[8,16,32]):#获取所有anchors
 	anchors =get_Anchor(ratios=ratios,scale=scale)
 	A = anchors.shape[0]
-	shift_x = np.arange(0, width)
-	shift_y = np.arange(0, height)
+	shift_x = np.arange(0, width)*stride[0]
+	shift_y = np.arange(0, height)*stride[1]
 	shift_x,shift_y=np.meshgrid(shift_x,shift_y)
 	shifts = np.vstack((shift_x.ravel(), shift_y.ravel(), shift_x.ravel(), shift_y.ravel())).transpose()
 	K = shifts.shape[0]
@@ -72,16 +74,66 @@ def center_to_axis(val):
 	result[:,3]=val[:,1]+(val[:,3]-1)*0.5
 	return result
 
-print(get_All_Anchor(width=7,height=7)[1])
+
+def iou(boxes,query_boxes):
+	N = boxes.shape[0]
+	K = query_boxes.shape[0]
+	overlaps = np.zeros((N, K))
+	for k in range(K):
+		box_area = (
+			(query_boxes[k, 2] - query_boxes[k, 0] + 1) *
+			(query_boxes[k, 3] - query_boxes[k, 1] + 1)
+		)
+		for n in range(N):
+			iw = (
+				min(boxes[n, 2], query_boxes[k, 2]) -
+				max(boxes[n, 0], query_boxes[k, 0]) + 1
+			)
+			if iw > 0:
+				ih = (
+					min(boxes[n, 3], query_boxes[k, 3]) -
+					max(boxes[n, 1], query_boxes[k, 1]) + 1
+				)
+				if ih > 0:
+					ua = float(
+						(boxes[n, 2] - boxes[n, 0] + 1) *
+						(boxes[n, 3] - boxes[n, 1] + 1) +
+						box_area - iw * ih
+					)
+					overlaps[n, k] = iw * ih / ua
+	return overlaps
+
+
+def anchor_target(weight,height,all_anchor,gt_boxs,limit=[0,0,224,244]):
+	#去除掉图片外的边框
+	inds_inside = np.where((all_anchor[:,0]>=limit[0])&
+							(all_anchor[:,1]>=limit[1])&
+							(all_anchor[:,2]<limit[2])&
+							(all_anchor[:,3]<limit[3]))[0]
+	labels = np.empty((len(inds_inside),), dtype=np.float32)
+	labels.fill(-1)
+	
+	anchors=all_anchor[inds_inside,:]
+	res_iou=iou(anchors,gt_boxs)
+	argmax_res_iou=res_iou.argmax(axis=1)
+	max_res_iou=res_iou[np.arange(len(inds_inside)),argmax_res_iou]      #所有框最近的真实框的iou
+	gt_argmax_res_iou=res_iou.argmax(axis=0)
+	gt_max_res_iou=res_iou[gt_argmax_res_iou,np.arange(res_iou.shape[1])]#最接近真实框的iou
+	
+	labels[max_res_iou <= 0.3] = 0
+	labels[max_res_iou >= 0.7] = 1
+	print(labels)
+	return anchors
 
 
 
+anchors,lenn = get_All_Anchor()
+anchor_target(60,40,anchors,np.array([[50,50,200,200],[0,0,150,150]]))
+	
+	
+	
+	
+#box=np.array([[2,3,4,5],[1,3,5,7]])
+#query=np.array([[2,3,4,5],[1,3,5,7]])
 
-
-
-
-
-
-
-
-
+#print(iou(box,query))
