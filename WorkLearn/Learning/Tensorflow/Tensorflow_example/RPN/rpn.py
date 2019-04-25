@@ -1,5 +1,6 @@
 import tensorflow as tf
 import numpy as np
+import numpy.random as npr
 
 np.set_printoptions(threshold=np.inf)  
 
@@ -104,36 +105,118 @@ def iou(boxes,query_boxes):
 	return overlaps
 
 
-def anchor_target(weight,height,all_anchor,gt_boxs,limit=[0,0,224,244]):
+def anchor_target(rpn_cls_score,all_anchor,gt_boxs,num_anchors=9,batchsize=256,limit=[0,0,224,224]):
+	A=num_anchors
+	height, width=rpn_cls_score.shape[1:3]
 	#去除掉图片外的边框
 	inds_inside = np.where((all_anchor[:,0]>=limit[0])&
 							(all_anchor[:,1]>=limit[1])&
 							(all_anchor[:,2]<limit[2])&
 							(all_anchor[:,3]<limit[3]))[0]
+	
+	#根据iou对标签进行评分
 	labels = np.empty((len(inds_inside),), dtype=np.float32)
 	labels.fill(-1)
-	
 	anchors=all_anchor[inds_inside,:]
 	res_iou=iou(anchors,gt_boxs)
 	argmax_res_iou=res_iou.argmax(axis=1)
 	max_res_iou=res_iou[np.arange(len(inds_inside)),argmax_res_iou]      #所有框最近的真实框的iou
 	gt_argmax_res_iou=res_iou.argmax(axis=0)
 	gt_max_res_iou=res_iou[gt_argmax_res_iou,np.arange(res_iou.shape[1])]#最接近真实框的iou
-	
 	labels[max_res_iou <= 0.3] = 0
 	labels[max_res_iou >= 0.7] = 1
-	print(labels)
-	return anchors
+	
+	#选取适当的batch
+	positive_label=np.where(labels==1)[0]
+	if len(positive_label)>batchsize*0.5:
+		positive_label = npr.choice(positive_label,size=int(len(positive_label)-batchsize*0.5),replace=False)
+		labels[positive_label]=-1
+	
+	negative_label=np.where(labels==0)[0]
+	if len(negative_label)>batchsize*0.5:
+		negative_label = npr.choice(negative_label,size=int(len(negative_label)-batchsize*0.5),replace=False)
+		labels[negative_label]=-1
+	
+	#计算bbox_targets(与真实框的差距)
+	bbox_targets= bbox_transform(anchors,gt_boxs[argmax_res_iou,:])
 
+	#计算smooth_l1_loss所需要的权重
+	bbox_inside_weights = np.zeros((len(inds_inside), 4), dtype=np.float32)
+	bbox_inside_weights[labels == 1, :] = np.array((1.0,1.0,1.0,1.0))
+	bbox_outside_weights = np.zeros((len(inds_inside), 4), dtype=np.float32)
+	num_examples = np.sum(labels >= 0)
+	positive_weights = np.ones((1, 4)) * 1.0 / num_examples
+	negative_weights = np.ones((1, 4)) * 1.0 / num_examples
+	bbox_outside_weights[labels == 1, :] = positive_weights
+	bbox_outside_weights[labels == 0, :] = negative_weights
+	
+	#替换到原all_anchor中
+	total_anchors=all_anchor.shape[0]
+	labels = replace_all_anchors(labels, total_anchors, inds_inside, fill=-1)
+	bbox_targets = replace_all_anchors(bbox_targets, total_anchors, inds_inside, fill=0)
+	bbox_inside_weights = replace_all_anchors(bbox_inside_weights, total_anchors, inds_inside, fill=0)
+	bbox_outside_weights = replace_all_anchors(bbox_outside_weights, total_anchors, inds_inside, fill=0)
+	
+	#设置形状
+	labels = labels.reshape((1, height, width, A)).transpose(0, 3, 1, 2)
+	labels = labels.reshape((1, 1, A * height, width))                            #shape=(1,1,540,60)
+	bbox_targets = bbox_targets.reshape((1, height, width, A * 4))                #shape=(1,60,40,36)
+	bbox_inside_weights = bbox_inside_weights.reshape((1, height, width, A * 4))  #shape=(1,60,40,36)
+	bbox_outside_weights = bbox_outside_weights.reshape((1, height, width, A * 4))#shape=(1,60,40,36)
+	
+	return labels,bbox_targets,bbox_inside_weights,bbox_outside_weights
+
+def replace_all_anchors(data, count, inds, fill=0):
+	if len(data.shape) == 1:
+		ret = np.empty((count,), dtype=np.float32)
+		ret.fill(fill)
+		ret[inds] = data
+	else:
+		ret = np.empty((count,) + data.shape[1:], dtype=np.float32)
+		ret.fill(fill)
+		ret[inds, :] = data
+	return ret
+
+def bbox_transform(ex_rois, gt_rois):
+	ex_widths = ex_rois[:, 2] - ex_rois[:, 0] + 1.0
+	ex_heights = ex_rois[:, 3] - ex_rois[:, 1] + 1.0
+	ex_ctr_x = ex_rois[:, 0] + 0.5 * ex_widths
+	ex_ctr_y = ex_rois[:, 1] + 0.5 * ex_heights
+
+	gt_widths = gt_rois[:, 2] - gt_rois[:, 0] + 1.0
+	gt_heights = gt_rois[:, 3] - gt_rois[:, 1] + 1.0
+	gt_ctr_x = gt_rois[:, 0] + 0.5 * gt_widths
+	gt_ctr_y = gt_rois[:, 1] + 0.5 * gt_heights
+
+	targets_dx = (gt_ctr_x - ex_ctr_x) / ex_widths
+	targets_dy = (gt_ctr_y - ex_ctr_y) / ex_heights
+	targets_dw = np.log(gt_widths / ex_widths)
+	targets_dh = np.log(gt_heights / ex_heights)
+
+	targets = np.vstack(
+	(targets_dx, targets_dy, targets_dw, targets_dh)).transpose()
+	return targets
 
 
 anchors,lenn = get_All_Anchor()
-anchor_target(60,40,anchors,np.array([[50,50,200,200],[0,0,150,150]]))
-	
-	
-	
-	
+labels,bbox_targets,bbox_inside_weights,bbox_outside_weights= anchor_target(np.zeros((1,60,40,9)),anchors,np.array([[0,0,150,150],[50,50,200,200]]))
+
+
+
 #box=np.array([[2,3,4,5],[1,3,5,7]])
 #query=np.array([[2,3,4,5],[1,3,5,7]])
 
 #print(iou(box,query))
+
+
+
+
+
+
+
+
+
+
+
+
+
