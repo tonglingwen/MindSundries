@@ -30,6 +30,75 @@ def conv_layer(data):
 	return result
 
 
+def _reshape_layer(bottom, num_dim, name): #bottom.shape=[1,60,40,255]
+	input_shape = tf.shape(bottom)
+	with tf.variable_scope(name) as scope:
+		# change the channel to the caffe format
+		to_caffe = tf.transpose(bottom, [0, 3, 1, 2])
+		# then force it to have channel 2
+		reshaped = tf.reshape(to_caffe,
+		tf.concat(axis=0, values=[[1, num_dim, -1], [input_shape[2]]]))
+		print(np.concatenate(([1, 2, -1], [40]),axis=0))
+		# then swap the channel back
+		to_tf = tf.transpose(reshaped, [0, 2, 3, 1])
+		return to_tf#to_tf.shape=[1,7650,40,2]
+	
+	
+	
+	
+	
+	
+	
+def cls_bbox():
+	conv_result = conv_layer()
+	cls = conv_result["cls"]
+	bbox=conv_result["bbox"]
+	gt_boxs=[]
+	im_info=[]
+	feat_stride=[]
+	anchors=[]
+	num_anchors=[]
+	res_anchor_targets=_anchor_target_layer(cls,gt_boxs,im_info,feat_stride,anchors,num_anchors)
+	
+	
+	rpn_cls_score_reshape = self._reshape_layer(cls, 2, 'rpn_cls_score_reshape')
+	rpn_cls_score=tf.reshape(rpn_cls_score_reshape,[-1,2])
+	rpn_label=tf.reshape(res_anchor_targets["rpn_labels"],[-1])
+	rpn_select = tf.where(tf.not_equal(rpn_label, -1))
+	
+	rpn_cls_score = tf.reshape(tf.gather(rpn_cls_score, rpn_select), [-1, 2])
+	rpn_label = tf.reshape(tf.gather(rpn_label, rpn_select), [-1])
+	rpn_cross_entropy = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits=rpn_cls_score, labels=rpn_label))#RPN类别判断及其损失函数
+	
+	
+	return ""
+
+
+def _anchor_target_layer(rpn_cls_score,gt_boxs,im_info,feat_stride,anchors,num_anchors):
+	#with tf.variable_scope(name) as scope:
+	rpn_labels, rpn_bbox_targets, rpn_bbox_inside_weights, rpn_bbox_outside_weights = tf.py_func(
+	anchor_target,
+	[rpn_cls_score, gt_boxes, im_info, feat_stride, anchors, num_anchors],
+	[tf.float32, tf.float32, tf.float32, tf.float32],
+	name="anchor_target")
+
+	rpn_labels.set_shape([1, 1, None, None])
+	rpn_bbox_targets.set_shape([1, None, None, self._num_anchors * 4])
+	rpn_bbox_inside_weights.set_shape([1, None, None, self._num_anchors * 4])
+	rpn_bbox_outside_weights.set_shape([1, None, None, self._num_anchors * 4])
+
+	rpn_labels = tf.to_int32(rpn_labels, name="to_int32")
+	_anchor_targets['rpn_labels'] = rpn_labels
+	_anchor_targets['rpn_bbox_targets'] = rpn_bbox_targets
+	_anchor_targets['rpn_bbox_inside_weights'] = rpn_bbox_inside_weights
+	_anchor_targets['rpn_bbox_outside_weights'] = rpn_bbox_outside_weights
+
+	#self._score_summaries.update(self._anchor_targets)
+
+	return _anchor_targets
+
+
+	
 def get_All_Anchor(width=60,height=40,stride=[224/60.0,224/40.0],ratios=[0.5,1,2],scale=[8,16,32]):#获取所有anchors
 	anchors =get_Anchor(ratios=ratios,scale=scale)
 	A = anchors.shape[0]
@@ -198,10 +267,21 @@ def bbox_transform(ex_rois, gt_rois):
 	return targets
 
 
+	
+con=tf.Variable(tf.truncated_normal([1,60,40,255],stddev=0.0001))
+print(_reshape_layer(con,2,"da"))
+
+
+
+	
+	
+	
+	
+'''
 anchors,lenn = get_All_Anchor()
 labels,bbox_targets,bbox_inside_weights,bbox_outside_weights= anchor_target(np.zeros((1,60,40,9)),anchors,np.array([[0,0,150,150],[50,50,200,200]]))
-
-
+print(labels.shape)
+'''
 
 #box=np.array([[2,3,4,5],[1,3,5,7]])
 #query=np.array([[2,3,4,5],[1,3,5,7]])
