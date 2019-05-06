@@ -53,13 +53,13 @@ def cls_bbox():
 	conv_result = conv_layer()
 	cls = conv_result["cls"]
 	bbox=conv_result["bbox"]
+	
 	gt_boxs=[]
 	im_info=[]
 	feat_stride=[]
 	anchors=[]
 	num_anchors=[]
 	res_anchor_targets=_anchor_target_layer(cls,gt_boxs,im_info,feat_stride,anchors,num_anchors)
-	
 	
 	rpn_cls_score_reshape = self._reshape_layer(cls, 2, 'rpn_cls_score_reshape')
 	rpn_cls_score=tf.reshape(rpn_cls_score_reshape,[-1,2])
@@ -68,12 +68,31 @@ def cls_bbox():
 	
 	rpn_cls_score = tf.reshape(tf.gather(rpn_cls_score, rpn_select), [-1, 2])
 	rpn_label = tf.reshape(tf.gather(rpn_label, rpn_select), [-1])
-	rpn_cross_entropy = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits=rpn_cls_score, labels=rpn_label))#RPN类别判断及其损失函数
 	
+	rpn_cross_entropy = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits=rpn_cls_score, labels=rpn_label))#RPN类别判断及其损失函数
+	rpn_loss_box=smooth_l1(bbox,res_anchor_targets["rpn_bbox_targets"],res_anchor_targets["rpn_bbox_inside_weights"],res_anchor_targets["rpn_bbox_outside_weights"],sigma=3.0,dim=[1, 2, 3])#bbox回归损失函数
 	
 	return ""
+	
+	
+	
+	
+def smooth_l1(bbox_pred, bbox_targets, bbox_inside_weights, bbox_outside_weights, sigma=1.0, dim=[1]):
+	sigma_2 = sigma ** 2
+	box_diff = bbox_pred - bbox_targets
+	in_box_diff = bbox_inside_weights * box_diff
+	abs_in_box_diff = tf.abs(in_box_diff)
+	smoothL1_sign = tf.stop_gradient(tf.to_float(tf.less(abs_in_box_diff, 1. / sigma_2)))
+	in_loss_box = tf.pow(in_box_diff, 2) * (sigma_2 / 2.) * smoothL1_sign \+ (abs_in_box_diff - (0.5 / sigma_2)) * (1. - smoothL1_sign)
+	out_loss_box = bbox_outside_weights * in_loss_box
+	loss_box = tf.reduce_mean(tf.reduce_sum(out_loss_box,axis=dim))
+return loss_box
+	
+	
+	
+	
 
-
+	
 def _anchor_target_layer(rpn_cls_score,gt_boxs,im_info,feat_stride,anchors,num_anchors):
 	#with tf.variable_scope(name) as scope:
 	rpn_labels, rpn_bbox_targets, rpn_bbox_inside_weights, rpn_bbox_outside_weights = tf.py_func(
@@ -267,9 +286,48 @@ def bbox_transform(ex_rois, gt_rois):
 	return targets
 
 
+
+	
+	
+def bbox_transform_inv(boxes, deltas):
+	if boxes.shape[0] == 0:
+		return np.zeros((0, deltas.shape[1]), dtype=deltas.dtype)
+
+	boxes = boxes.astype(deltas.dtype, copy=False)
+	widths = boxes[:, 2] - boxes[:, 0] + 1.0
+	heights = boxes[:, 3] - boxes[:, 1] + 1.0
+	ctr_x = boxes[:, 0] + 0.5 * widths
+	ctr_y = boxes[:, 1] + 0.5 * heights
+
+	dx = deltas[:, 0::4]
+	dy = deltas[:, 1::4]
+	dw = deltas[:, 2::4]
+	dh = deltas[:, 3::4]
+
+	pred_ctr_x = dx * widths[:, np.newaxis] + ctr_x[:, np.newaxis]
+	pred_ctr_y = dy * heights[:, np.newaxis] + ctr_y[:, np.newaxis]
+	pred_w = np.exp(dw) * widths[:, np.newaxis]
+	pred_h = np.exp(dh) * heights[:, np.newaxis]
+
+	pred_boxes = np.zeros(deltas.shape, dtype=deltas.dtype)
+	# x1
+	pred_boxes[:, 0::4] = pred_ctr_x - 0.5 * pred_w
+	# y1
+	pred_boxes[:, 1::4] = pred_ctr_y - 0.5 * pred_h
+	# x2
+	pred_boxes[:, 2::4] = pred_ctr_x + 0.5 * pred_w
+	# y2
+	pred_boxes[:, 3::4] = pred_ctr_y + 0.5 * pred_h
+
+	return pred_boxes
+
+	
+	
 	
 con=tf.Variable(tf.truncated_normal([1,60,40,255],stddev=0.0001))
 print(_reshape_layer(con,2,"da"))
+
+
 
 
 
