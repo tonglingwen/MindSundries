@@ -1,0 +1,1 @@
+docker中国镜像:https://registry.docker-cn.com
